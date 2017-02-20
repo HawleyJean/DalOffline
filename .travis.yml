@@ -1,0 +1,10 @@
+language: java
+install:
+- mvn install
+jdk:
+- oraclejdk8
+deploy:
+  provider: heroku
+  api_key:
+    secure: "02119998-d4e7-43da-a927-e15b701f5593"
+  app: csci3130-daloffline
