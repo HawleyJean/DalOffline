@@ -1,4 +1,7 @@
-package com.csci3130.daloffline;
+package com.csci3130.daloffline.Assignment2Thing;
+
+import com.csci3130.daloffline.Assignment2Thing.Student;
+import com.csci3130.daloffline.Assignment2Thing.StudentService;
 
 import javax.servlet.annotation.WebServlet;
 
@@ -6,12 +9,15 @@ import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.annotations.Widgetset;
+import com.vaadin.navigator.Navigator;
+import com.vaadin.navigator.View;
+import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
-import com.csci3130.daloffline.backend.Student;
-import com.csci3130.daloffline.backend.StudentService;
+import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Notification;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.v7.data.util.BeanItemContainer;
@@ -27,8 +33,19 @@ import com.vaadin.v7.ui.TextField;
 @Title("Dal Offline")
 @Theme("valo")
 @Widgetset("com.vaadin.v7.Vaadin7WidgetSet")
-public class StudentListUI extends UI {
+public class StudentListUI extends VerticalLayout implements View {
+    public StudentListUI() {
+        setSizeFull();
 
+        configureComponents();
+        buildLayout();
+    }
+
+    @Override
+    public void enter(ViewChangeEvent event) {
+        Notification.show("Welcome to my twisted mind");
+    }
+    
     /*
      * Hundreds of widgets. Vaadin's user interface components are just Java
      * objects that encapsulate and handle cross-browser support and
@@ -39,6 +56,7 @@ public class StudentListUI extends UI {
     TextField filter = new TextField();
     Grid studentList = new Grid();
     Button newStudent = new Button("New Student");
+    Button backButton = new Button("Go Back");
 
     // ContactForm is an example of a custom component class
     StudentForm studentForm = new StudentForm();
@@ -55,11 +73,6 @@ public class StudentListUI extends UI {
      * visible user interface. Executed on every browser reload because a new
      * instance is created for each web page loaded.
      */
-    @Override
-    protected void init(VaadinRequest request) {
-        configureComponents();
-        buildLayout();
-    }
 
     private void configureComponents() {
         /*
@@ -70,6 +83,7 @@ public class StudentListUI extends UI {
          * the needed changes to the web page without loading a new page.
          */
         newStudent.addClickListener(e -> studentForm.edit(new Student()));
+        backButton.addClickListener(e -> getUI().getNavigator().navigateTo("main"));
 
         filter.setInputPrompt("Filter students...");
         filter.addTextChangeListener(e -> refreshStudents(e.getText()));
@@ -94,7 +108,7 @@ public class StudentListUI extends UI {
      * choose to setup layout declaratively with Vaadin Designer, CSS and HTML.
      */
     private void buildLayout() {
-        HorizontalLayout actions = new HorizontalLayout(filter, newStudent);
+        HorizontalLayout actions = new HorizontalLayout(backButton, filter, newStudent);
         actions.setWidth("100%");
         filter.setWidth("100%");
         actions.setExpandRatio(filter, 1);
@@ -109,7 +123,7 @@ public class StudentListUI extends UI {
         mainLayout.setExpandRatio(left, 1);
 
         // Split and allow resizing
-        setContent(mainLayout);
+        addComponent(mainLayout);
     }
 
     /*
@@ -128,17 +142,4 @@ public class StudentListUI extends UI {
     	studentList.setContainerDataSource(new BeanItemContainer<>(Student.class, service.findAll(stringFilter)));
         studentForm.setVisible(false);
     }
-
-    /*
-     * Deployed as a Servlet or Portlet.
-     *
-     * You can specify additional servlet parameters like the URI and UI class
-     * name and turn on production mode when you have finished developing the
-     * application.
-     */
-    @WebServlet(urlPatterns = "/*")
-    @VaadinServletConfiguration(ui = StudentListUI.class, productionMode = false)
-    public static class MyUIServlet extends VaadinServlet {
-    }
-
 }

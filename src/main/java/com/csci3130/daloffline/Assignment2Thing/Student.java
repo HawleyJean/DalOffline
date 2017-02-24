@@ -1,4 +1,4 @@
-package com.csci3130.daloffline.backend;
+package com.csci3130.daloffline.Assignment2Thing;
 
 import org.apache.commons.beanutils.BeanUtils;
 

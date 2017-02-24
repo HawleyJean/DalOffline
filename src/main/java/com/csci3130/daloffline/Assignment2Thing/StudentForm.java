@@ -1,7 +1,9 @@
-package com.csci3130.daloffline;
+package com.csci3130.daloffline.Assignment2Thing;
+
+import com.csci3130.daloffline.Assignment2Thing.Student;
 
 import com.vaadin.event.ShortcutAction;
-import com.csci3130.daloffline.backend.Student;
+import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
@@ -80,11 +82,11 @@ public class StudentForm extends FormLayout {
             formFieldBindings.commit();
 
             // Save DAO to backend with direct synchronous service API
-            getUI().service.save(student);
+            thing().service.save(student);
 
             String msg = String.format("Saved '%s %s'.", student.getFirstName(), student.getLastName());
             Notification.show(msg, Type.TRAY_NOTIFICATION);
-            getUI().refreshStudents();
+            thing().refreshStudents();
         } catch (FieldGroup.CommitException e) {
             // Validation exceptions could be shown here
         }
@@ -93,7 +95,7 @@ public class StudentForm extends FormLayout {
     public void cancel(Button.ClickEvent event) {
         // Place to call business logic.
         Notification.show("Cancelled", Type.TRAY_NOTIFICATION);
-        getUI().studentList.select(null);
+        thing().studentList.select(null);
     }
 
     void edit(Student student) {
@@ -106,9 +108,8 @@ public class StudentForm extends FormLayout {
         setVisible(student != null);
     }
 
-    @Override
-    public StudentListUI getUI() {
-        return (StudentListUI) super.getUI();
+    public StudentListUI thing() {
+        return (StudentListUI) getUI().getNavigator().getCurrentView();
     }
 
 }
