@@ -1,5 +1,8 @@
 package com.csci3130.daloffline;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
+
 import javax.servlet.annotation.WebServlet;
 
 import com.csci3130.daloffline.Assignment2Thing.*;
@@ -32,7 +35,12 @@ public class NavigatorUI extends UI {
 		navigator = new Navigator(this, this);
 
         // Create and register the views
-        navigator.addView("", new LoginView());
+        try {
+			navigator.addView("", new LoginView());
+		} catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         navigator.addView(STUDENTLIST, new StudentListUI());
         navigator.addView(MAINVIEW, new MainView());
         navigator.addView(USERPROFILE, new ProfileView());
