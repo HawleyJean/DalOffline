@@ -1,24 +1,12 @@
-<<<<<<< Updated upstream
-C:\git\softeng\daloffline\src\main\java\com\csci3130\daloffline\views\LoginView.java
-C:\git\softeng\daloffline\src\main\java\com\csci3130\daloffline\views\ProfileView.java
-C:\git\softeng\daloffline\src\main\java\com\csci3130\daloffline\views\MainView.java
-C:\git\softeng\daloffline\src\main\java\com\csci3130\daloffline\Assignment2Thing\StudentForm.java
-C:\git\softeng\daloffline\src\main\java\com\csci3130\daloffline\Assignment2Thing\StudentService.java
-C:\git\softeng\daloffline\src\main\java\com\csci3130\daloffline\NavigatorUI.java
-C:\git\softeng\daloffline\src\main\java\com\csci3130\daloffline\Assignment2Thing\StudentListUI.java
-C:\git\softeng\daloffline\src\main\java\com\csci3130\daloffline\Assignment2Thing\Student.java
-C:\git\softeng\daloffline\src\main\java\com\csci3130\daloffline\authentication\Authenticator.java
-C:\git\softeng\daloffline\src\main\java\com\csci3130\daloffline\tests\AuthenticatorTest.java
-C:\git\softeng\daloffline\src\main\java\com\csci3130\daloffline\tests\TestRunner.java
-C:\git\softeng\daloffline\src\main\java\Course.java
-=======
 C:\Users\mcdri\workspace\daloffline\src\main\java\Course.java
 C:\Users\mcdri\workspace\daloffline\src\main\java\com\csci3130\daloffline\Assignment2Thing\Student.java
 C:\Users\mcdri\workspace\daloffline\src\main\java\com\csci3130\daloffline\Assignment2Thing\StudentForm.java
+C:\Users\mcdri\workspace\daloffline\src\main\java\com\csci3130\daloffline\views\CourseListView.java
 C:\Users\mcdri\workspace\daloffline\src\main\java\com\csci3130\daloffline\views\LoginView.java
+C:\Users\mcdri\workspace\daloffline\src\main\java\com\csci3130\daloffline\CourseInfo.java
 C:\Users\mcdri\workspace\daloffline\src\main\java\com\csci3130\daloffline\views\MainView.java
+C:\Users\mcdri\workspace\daloffline\src\main\java\com\csci3130\daloffline\authentication\Authenticator.java
 C:\Users\mcdri\workspace\daloffline\src\main\java\com\csci3130\daloffline\Assignment2Thing\StudentListUI.java
 C:\Users\mcdri\workspace\daloffline\src\main\java\com\csci3130\daloffline\Assignment2Thing\StudentService.java
 C:\Users\mcdri\workspace\daloffline\src\main\java\com\csci3130\daloffline\NavigatorUI.java
 C:\Users\mcdri\workspace\daloffline\src\main\java\com\csci3130\daloffline\views\ProfileView.java
->>>>>>> Stashed changes

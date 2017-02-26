@@ -29,6 +29,7 @@ public class NavigatorUI extends UI {
     protected static final String MAINVIEW = "main";
     protected static final String STUDENTLIST = "student_list";
     protected static final String USERPROFILE = "profile";
+    protected static final String COURSELIST = "course_list";
 
     @Override
     protected void init(VaadinRequest request) {
@@ -39,6 +40,7 @@ public class NavigatorUI extends UI {
 		navigator.addView("", new LoginView());
 		
         navigator.addView(STUDENTLIST, new StudentListUI());
+        navigator.addView(COURSELIST, new CourseListView());
         navigator.addView(MAINVIEW, new MainView());
         navigator.addView(USERPROFILE, new ProfileView());
     }

@@ -5,27 +5,44 @@ import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Notification;
+import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 //Main Menu
 public class MainView extends VerticalLayout implements View {
     public MainView() {
-        setSizeFull();
+    	VerticalLayout container = new VerticalLayout();
+    	Panel border = new Panel();
 
-        Button profileButton = new Button("User Profile"); //A button
+        Button profileButton = new Button("View Your Profile/Schedule"); //A button
         profileButton.addClickListener(e -> getUI().getNavigator().navigateTo("profile")); //Specify a view for this button to direct you to
         
-        Button studentListButton = new Button("Open that assignment 2 thing");
-        studentListButton.addClickListener(e -> getUI().getNavigator().navigateTo("student_list"));
+        Button studentListButton = new Button("View All Courses");
+        studentListButton.addClickListener(e -> getUI().getNavigator().navigateTo("course_list"));
         
-        addComponents(profileButton, studentListButton); //Add buttons to the view
-        setComponentAlignment(profileButton, Alignment.MIDDLE_CENTER); //Set alignments
-        setComponentAlignment(studentListButton, Alignment.MIDDLE_CENTER);
+        container.addComponents(profileButton, studentListButton); //Add buttons to the view
+        container.setComponentAlignment(profileButton, Alignment.MIDDLE_CENTER); //Set alignments
+        container.setComponentAlignment(studentListButton, Alignment.MIDDLE_CENTER);
+        //addComponent(container);
+        container.setHeight("30%");
+        //setComponentAlignment(container, Alignment.MIDDLE_CENTER);
+        
+        VerticalLayout container2 = new VerticalLayout();
+        container2.addComponent(container);
+        container2.setComponentAlignment(container, Alignment.MIDDLE_CENTER);
+        container2.setSizeFull();
+        border.setContent(container2);
+        
+        addComponent(border);
+        border.setWidth("80%");
+        border.setHeight("90%");
+        setComponentAlignment(border, Alignment.MIDDLE_CENTER);
+        setSizeFull();
     }
 
 
     @Override
     public void enter(ViewChangeEvent event) {
-        Notification.show("YOU ARE LOGGED IN!");
+        Notification.show("Successfully logged in!");
     }
 }

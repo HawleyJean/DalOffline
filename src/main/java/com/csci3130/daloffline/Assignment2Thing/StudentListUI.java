@@ -43,7 +43,7 @@ public class StudentListUI extends VerticalLayout implements View {
 
     @Override
     public void enter(ViewChangeEvent event) {
-        Notification.show("Welcome to my twisted mind");
+        //Notification.show("");
     }
     
     /*
