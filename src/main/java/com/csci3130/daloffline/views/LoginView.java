@@ -18,7 +18,7 @@ import com.vaadin.ui.VerticalLayout;
 public class LoginView extends VerticalLayout implements View {
    
 	
-	public LoginView() throws NoSuchAlgorithmException, UnsupportedEncodingException {
+	public LoginView() {
         setSizeFull();
 
         //Testing Placeholder

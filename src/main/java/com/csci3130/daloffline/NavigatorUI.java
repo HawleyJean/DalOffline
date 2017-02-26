@@ -25,6 +25,7 @@ import com.vaadin.ui.UI;
 //UI Navigator; displays views
 public class NavigatorUI extends UI {
 	public Navigator navigator;
+	
     protected static final String MAINVIEW = "main";
     protected static final String STUDENTLIST = "student_list";
     protected static final String USERPROFILE = "profile";
@@ -35,12 +36,8 @@ public class NavigatorUI extends UI {
 		navigator = new Navigator(this, this);
 
         // Create and register the views
-        try {
-			navigator.addView("", new LoginView());
-		} catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		navigator.addView("", new LoginView());
+		
         navigator.addView(STUDENTLIST, new StudentListUI());
         navigator.addView(MAINVIEW, new MainView());
         navigator.addView(USERPROFILE, new ProfileView());
