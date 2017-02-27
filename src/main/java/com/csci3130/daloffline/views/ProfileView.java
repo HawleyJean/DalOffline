@@ -21,8 +21,19 @@ import com.vaadin.v7.ui.components.calendar.event.BasicEvent;
 import com.vaadin.v7.ui.components.calendar.handler.*;
 import com.vaadin.shared.ui.label.ContentMode;
 
-//Main Menu
+/**
+ * User profile view. Shows the user their own profile, and allows them to view their current schedule.
+ * 
+ * @author Connor Foran
+ */
+
 public class ProfileView extends VerticalLayout implements View {
+	/**
+	 * Initializes and builds the profile page
+	 * 
+	 * @param None
+	 * @return Nothing
+	 */
     public ProfileView() {
         setSizeFull();
         
@@ -110,7 +121,5 @@ public class ProfileView extends VerticalLayout implements View {
 
 
     @Override
-    public void enter(ViewChangeEvent event) {
-        //Notification.show("Work in progress.");
-    }
+    public void enter(ViewChangeEvent event) {}
 }

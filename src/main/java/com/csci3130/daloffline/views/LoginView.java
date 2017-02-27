@@ -14,10 +14,22 @@ import com.vaadin.ui.PasswordField;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 
-//Login Screen
+/**
+ * Login screen where the user enters their account name and password in order to access the system.
+ * 
+ * @author Connor Foran
+ * @author Jesse MacLeod
+ * @author Alex Gordon
+ */
+
 public class LoginView extends VerticalLayout implements View {
    
-	
+	/**
+	 * Initializes and builds the login page
+	 * 
+	 * @param None
+	 * @return Nothing
+	 */
 	public LoginView() {
         setSizeFull();
 
@@ -42,6 +54,13 @@ public class LoginView extends VerticalLayout implements View {
         setComponentAlignment(content, Alignment.MIDDLE_CENTER);
     }
 
+	/**
+	 * Function that attempts to log the user in
+	 * 
+	 * @param username
+	 * @param password
+	 * @return Nothing
+	 */
 	private void login(String username, String password) {
 				
 		//System.out.println("username: "+username+"\n"+"password: "+password);
@@ -57,7 +76,5 @@ public class LoginView extends VerticalLayout implements View {
 	}
 
     @Override
-    public void enter(ViewChangeEvent event) {
-        Notification.show("hi");
-    }
+    public void enter(ViewChangeEvent event) {}
 }

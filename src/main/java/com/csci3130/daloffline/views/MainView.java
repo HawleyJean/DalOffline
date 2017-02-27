@@ -8,8 +8,19 @@ import com.vaadin.ui.Notification;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
-//Main Menu
+/**
+ * Main menu view. Displays buttons to the user that allows them to navigate to the other interfaces.
+ * 
+ * @author Connor Foran
+ */
+
 public class MainView extends VerticalLayout implements View {
+	/**
+	 * Initializes and builds the main menu page
+	 * 
+	 * @param None
+	 * @return Nothing
+	 */
     public MainView() {
     	VerticalLayout container = new VerticalLayout();
     	Panel border = new Panel();
@@ -23,9 +34,7 @@ public class MainView extends VerticalLayout implements View {
         container.addComponents(profileButton, studentListButton); //Add buttons to the view
         container.setComponentAlignment(profileButton, Alignment.MIDDLE_CENTER); //Set alignments
         container.setComponentAlignment(studentListButton, Alignment.MIDDLE_CENTER);
-        //addComponent(container);
         container.setHeight("30%");
-        //setComponentAlignment(container, Alignment.MIDDLE_CENTER);
         
         VerticalLayout container2 = new VerticalLayout();
         container2.addComponent(container);
