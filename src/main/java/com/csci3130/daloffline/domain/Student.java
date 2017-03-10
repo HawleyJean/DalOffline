@@ -4,16 +4,16 @@ import java.util.Set;
 import javax.persistence.*;
 
 @Entity
-public class Student /*implements UserClass*/ {
+public class Student extends UserClass {
 	@Id
 	@GeneratedValue
 	long id;
 	
-	String lastname;
-	String firstname;
+	//String lastname;
+	//String firstname;
 	
-	String username;
-	String password;
+	//String username;
+	//String password;
 	
 	@ManyToMany
 	Set<Course> courses;
@@ -41,6 +41,9 @@ public class Student /*implements UserClass*/ {
 	}
 	public void setFirstname(String firstname) {
 		this.firstname = firstname;
+	}
+	public void setUserPasswordPair(UserPasswordPair upp) {
+		this.userPasswordPair = upp;
 	}
 	
 	

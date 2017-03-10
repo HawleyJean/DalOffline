@@ -2,7 +2,7 @@ package com.csci3130.daloffline.domain;
 public class UserClass {
 	//Base/abstracted class for other user types to inherit from
 	//I have no idea what I'm doing I don't even know if I remember anything from Java II
-	String id;
+	long id;
 	String lastname;
 	String firstname;
 	String usertype;
@@ -10,10 +10,10 @@ public class UserClass {
 	//boolean isThankfulforExisting = false;
 	//int saltInAttitude = 0;
 	
-	public String getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public String getLastname() {

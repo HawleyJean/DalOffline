@@ -10,7 +10,6 @@ public class UserPasswordPair {
 	//long id;
 	
 	@Id
-	@Column(unique=true)
 	String username;
 
 	String password;
