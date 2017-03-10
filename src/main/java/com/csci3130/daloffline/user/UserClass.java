@@ -2,10 +2,10 @@ package com.csci3130.daloffline.user;
 
 public class UserClass {
 	//Base/abstracted class for other user types to inherit from
-	//I have no idea what I'm doing I don't even know if I remember anything from Java II - EN 
+	//I have no idea what I'm doing I don't even know if I remember anything from Java II
 	String id;
-	String name;
-	String password;
+	String lastname;
+	String firstname;
 	boolean isThankfulforExisting = false;
 	int saltInAttitude = 0;
 	
@@ -15,11 +15,17 @@ public class UserClass {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+	public String getLastname() {
+		return lastname;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+	public String getFirstname() {
+		return firstname;
+	}
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
 	}
 	//No methods for passwords because that's unacceptable
 	public boolean isThankfulforExisting() {
@@ -33,7 +39,8 @@ public class UserClass {
 	}
 	@Override
 	public String toString() {
-		return "UserClass [id=" + id + ", name=" + name + "]\n Please Kill Me";
+		return "UserClass [id=" + id + ", surname=" + lastname + ", first name=" + firstname + 
+				"]\n Please Kill Me";
 	}
 	//Probably not gonna need most of these attributes or even any of them
 }
