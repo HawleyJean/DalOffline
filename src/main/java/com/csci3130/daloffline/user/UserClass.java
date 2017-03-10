@@ -6,6 +6,7 @@ public class UserClass {
 	String id;
 	String lastname;
 	String firstname;
+	
 	boolean isThankfulforExisting = false;
 	int saltInAttitude = 0;
 	
