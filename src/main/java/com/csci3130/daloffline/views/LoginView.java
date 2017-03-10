@@ -3,7 +3,12 @@ package com.csci3130.daloffline.views;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 
+import com.csci3130.daloffline.NavigatorUI;
 import com.csci3130.daloffline.authentication.Authenticator;
+import com.csci3130.daloffline.domain.Student;
+import com.csci3130.daloffline.domain.UserPasswordPair;
+import com.vaadin.addon.jpacontainer.JPAContainer;
+import com.vaadin.addon.jpacontainer.JPAContainerFactory;
 import com.vaadin.navigator.*;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Alignment;
@@ -30,11 +35,16 @@ public class LoginView extends VerticalLayout implements View {
 	 * @param None
 	 * @return Nothing
 	 */
+	
+	JPAContainer<UserPasswordPair> usernamePasswordPairs;
+	
 	public LoginView() {
         setSizeFull();
 
+
+        
         //Testing Placeholder
-        Authenticator.initializePlaceHolderData();
+        //Authenticator.initializePlaceHolderData();
         
         VerticalLayout content = new VerticalLayout();
         Label title = new Label("Welcome to DalOffline!");
@@ -66,7 +76,7 @@ public class LoginView extends VerticalLayout implements View {
 		//System.out.println("username: "+username+"\n"+"password: "+password);
 		//System.out.println(auth.authenticator(username, password));
 		
-		if(Authenticator.authenticate(username, password)) {
+		if(Authenticator.authenticate(username, password, usernamePasswordPairs)) {
 			getUI().getNavigator().navigateTo("main");
 		}
 		else {
@@ -76,5 +86,7 @@ public class LoginView extends VerticalLayout implements View {
 	}
 
     @Override
-    public void enter(ViewChangeEvent event) {}
+    public void enter(ViewChangeEvent event) {
+        usernamePasswordPairs = JPAContainerFactory.make(UserPasswordPair.class, NavigatorUI.PERSISTENCE_UNIT);
+    }
 }

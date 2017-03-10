@@ -12,11 +12,17 @@ public class Student /*implements UserClass*/ {
 	String lastname;
 	String firstname;
 	
+	String username;
+	String password;
+	
 	@ManyToMany
 	Set<Course> courses;
 	
 	@ManyToOne
 	Faculty faculty;
+
+	@OneToOne
+	UserPasswordPair userPasswordPair;
 	
 	public long getId() {
 		return id;

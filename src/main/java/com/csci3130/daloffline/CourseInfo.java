@@ -51,7 +51,7 @@ public class CourseInfo extends VerticalLayout {
 	public void setCourse(Course course)
 	{
 		String text = "<b>Course Name:</b> "+course.getName()+"<br><b>Course Code:</b> "+course.getCode()
-        		      +"<br><b>Professor:</b> "+course.getProfessorName()+"<br><b>Department:</b> "+course.getFaculties();
+        		      +"<br><b>Professor:</b> "+course.getProfessorName()+"<br><b>Faculty:</b> "+course.getFaculties();
 		
 		info.setCaption(text);
 	}

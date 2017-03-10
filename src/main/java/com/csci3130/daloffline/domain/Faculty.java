@@ -8,4 +8,6 @@ public class Faculty {
 	@Id
 	@GeneratedValue
 	long id;
+	//Set<Employees> employees; //Uncomment this when we're actually dealing with faculties
+	
 }

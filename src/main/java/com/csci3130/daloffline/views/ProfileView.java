@@ -2,6 +2,7 @@ package com.csci3130.daloffline.views;
 
 import java.util.GregorianCalendar;
 
+import com.vaadin.addon.jpacontainer.JPAContainer;
 import com.vaadin.navigator.*;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.ExternalResource;
@@ -47,6 +48,10 @@ public class ProfileView extends VerticalLayout implements View {
         
         HorizontalLayout profile = new HorizontalLayout(); //Profile tab
         profile.setSizeFull();
+        
+        // JPA containers
+        
+     
         
         //Panel with three buttons inside it
         Panel actions = new Panel("Actions");

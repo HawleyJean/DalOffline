@@ -30,6 +30,7 @@ public class NavigatorUI extends UI {
     protected static final String STUDENTLIST = "student_list";
     protected static final String USERPROFILE = "profile";
     protected static final String COURSELIST = "course_list";
+    public static final String PERSISTENCE_UNIT = "daloffline_db";
 
 	/**
 	 * This function changes the view based on a VaadinRequest sent by some action
