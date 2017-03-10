@@ -1,7 +1,12 @@
-package com.csci3130.daloffline.classes;
+package com.csci3130.daloffline.domain;
 
 import java.io.Serializable;
 import java.util.*;
+
+import javax.persistence.*;
+
+import com.csci3130.daloffline.classes.Lab;
+import com.csci3130.daloffline.classes.Lecture;
 
 /**
  * Class that represents a university course
@@ -9,15 +14,22 @@ import java.util.*;
  * @author Hawley Jean
  */
 
+@Entity
 public class Course implements Serializable, Cloneable {
 	
+	@Id
+	@GeneratedValue
+	long id;
 	private String courseName;
-	private String department;
+	
+	@ManyToMany
+	private Set<Faculty> faculties;
+	
 	private String courseCode;
 	private String professorName;
 	
-	private Vector<Lecture> LectureTimes = new Vector<Lecture>();
-	private Vector<Lab> LabTimes = new Vector<Lab>();
+	private ArrayList<Lecture> LectureTimes = new ArrayList<Lecture>();
+	private ArrayList<Lab> LabTimes = new ArrayList<Lab>();
 	
 	/**
 	 * Base Constructor
@@ -41,7 +53,7 @@ public class Course implements Serializable, Cloneable {
 	public Course(String cName, String depar, String code, String prof)
 	{	
 		courseName = cName;
-		department = depar;
+		//faculties = depar;
 		courseCode = code;
 		professorName = prof;
 	}
@@ -80,9 +92,9 @@ public class Course implements Serializable, Cloneable {
 	 * 
 	 * @return String
 	 */
-	public String getDepartment()
+	public Set<Faculty> getFaculties()
 	{
-		return department;
+		return faculties;
 	}
 	/**
 	 * Returns the course code

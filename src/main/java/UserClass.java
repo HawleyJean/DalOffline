@@ -4,6 +4,7 @@ public class UserClass {
 	String id;
 	String lastname;
 	String firstname;
+	String usertype;
 	
 	//boolean isThankfulforExisting = false;
 	//int saltInAttitude = 0;
@@ -25,6 +26,12 @@ public class UserClass {
 	}
 	public void setFirstname(String firstname) {
 		this.firstname = firstname;
+	}
+	public String getUsertype() {
+		return usertype;
+	}
+	public void setUsertype(String usertype) {
+		this.usertype = usertype;
 	}
 	//No methods for passwords because that's unacceptable
 	//public boolean isThankfulforExisting() {
