@@ -5,6 +5,7 @@ public class UserClass {
 	//I have no idea what I'm doing I don't even know if I remember anything from Java II - EN 
 	String id;
 	String name;
+	String password;
 	boolean isThankfulforExisting = false;
 	int saltInAttitude = 0;
 	
@@ -20,6 +21,7 @@ public class UserClass {
 	public void setName(String name) {
 		this.name = name;
 	}
+	//No methods for passwords because that's unacceptable
 	public boolean isThankfulforExisting() {
 		return isThankfulforExisting;
 	}
@@ -33,5 +35,6 @@ public class UserClass {
 	public String toString() {
 		return "UserClass [id=" + id + ", name=" + name + "]\n Please Kill Me";
 	}
+	//Probably not gonna need most of these attributes or even any of them
 }
 
