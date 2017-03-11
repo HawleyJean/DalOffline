@@ -3,6 +3,9 @@ package com.csci3130.daloffline.views;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 
+//import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 import com.csci3130.daloffline.NavigatorUI;
 import com.csci3130.daloffline.authentication.Authenticator;
 import com.csci3130.daloffline.domain.Student;
@@ -72,10 +75,10 @@ public class LoginView extends VerticalLayout implements View {
 	 * @return Nothing
 	 */
 	private void login(String username, String password) {
-				
+		
 		//System.out.println("username: "+username+"\n"+"password: "+password);
 		//System.out.println(auth.authenticator(username, password));
-		
+		usernamePasswordPairs = JPAContainerFactory.make(UserPasswordPair.class, NavigatorUI.PERSISTENCE_UNIT);
 		if(Authenticator.authenticate(username, password, usernamePasswordPairs)) {
 			getUI().getNavigator().navigateTo("main");
 		}
@@ -87,6 +90,6 @@ public class LoginView extends VerticalLayout implements View {
 
     @Override
     public void enter(ViewChangeEvent event) {
-        usernamePasswordPairs = JPAContainerFactory.make(UserPasswordPair.class, NavigatorUI.PERSISTENCE_UNIT);
+        //usernamePasswordPairs = JPAContainerFactory.make(UserPasswordPair.class, NavigatorUI.PERSISTENCE_UNIT);
     }
 }

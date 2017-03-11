@@ -46,7 +46,7 @@ public class Authenticator {
 			//TODO link this with data source to get the usernames and passwords rather than this stupid arraylist
 			if (db_pass.equals(hash(password)))
 			{
-					//System.out.println("s[0]: "+s[0]+"\n"+"s[1]: "+s[1]); <-- fuck you you're irrelevant now
+					//System.out.println("s[0]: "+s[0]+"\n"+"s[1]: "+s[1]);
 					return true;
 			
 			}

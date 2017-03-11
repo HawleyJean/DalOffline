@@ -9,11 +9,12 @@ public class Student extends UserClass {
 	@GeneratedValue
 	long id;
 	
-	//String lastname;
-	//String firstname;
+	//Some shit already in UserClass
+/*	String lastname;
+	String firstname;
 	
-	//String username;
-	//String password;
+	String username;
+	String password;*/
 	
 	@ManyToMany
 	Set<Course> courses;
@@ -24,7 +25,7 @@ public class Student extends UserClass {
 	@OneToOne
 	UserPasswordPair userPasswordPair;
 	
-	public long getId() {
+/*	public long getId() {
 		return id;
 	}
 	public void setId(long id) {
@@ -41,7 +42,7 @@ public class Student extends UserClass {
 	}
 	public void setFirstname(String firstname) {
 		this.firstname = firstname;
-	}
+	} */
 	public void setUserPasswordPair(UserPasswordPair upp) {
 		this.userPasswordPair = upp;
 	}

@@ -5,7 +5,7 @@ public class UserClass {
 	long id;
 	String lastname;
 	String firstname;
-	String usertype;
+	String usertype; //May or may not actually be needed
 	
 	//boolean isThankfulforExisting = false;
 	//int saltInAttitude = 0;
