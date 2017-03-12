@@ -1,4 +1,4 @@
-package com.csci3130.daloffline.classes;
+package com.csci3130.daloffline.domain;
 
 /**
  * Work in progress subclass for a course's lecture

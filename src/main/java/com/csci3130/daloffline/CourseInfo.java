@@ -1,6 +1,7 @@
 package com.csci3130.daloffline;
 
-import com.csci3130.daloffline.classes.*;
+import com.csci3130.daloffline.courses.*;
+import com.csci3130.daloffline.domain.Course;
 import com.csci3130.daloffline.views.CourseListView;
 import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.Button;
