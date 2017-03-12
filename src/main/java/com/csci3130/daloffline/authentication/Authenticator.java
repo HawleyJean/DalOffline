@@ -39,6 +39,8 @@ public class Authenticator {
 		//hash("pass");
 	}
 	
+	
+	
 	/**
 	 * 
 	 * Returns true if username and password parameters match username/password pair
@@ -77,7 +79,7 @@ public class Authenticator {
 	 * @throws NoSuchAlgorithmException
 	 * @throws UnsupportedEncodingException
 	 */
-	private static String hash(String query) {
+	public static String hash(String query) {
 		
 		MessageDigest md;
 		byte[] result = null;

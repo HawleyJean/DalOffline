@@ -23,8 +23,11 @@ import com.vaadin.ui.UI;
 @Title("Dal Offline")
 @Theme("valo")
 @Widgetset("com.vaadin.v7.Vaadin7WidgetSet")
-public class NavigatorUI extends UI {
+public class DalOfflineUI extends UI {
 	public Navigator navigator;
+	
+	// the name of the database as defined in persistance.xml
+	public static final String PERSISTANCE_UNIT = "daloffline_db";
 	
     protected static final String MAINVIEW = "main";
     protected static final String STUDENTLIST = "student_list";
@@ -51,7 +54,7 @@ public class NavigatorUI extends UI {
     }
     
     @WebServlet(urlPatterns = "/*")
-    @VaadinServletConfiguration(ui = NavigatorUI.class, productionMode = false)
+    @VaadinServletConfiguration(ui = DalOfflineUI.class, productionMode = false)
     public static class MyUIServlet extends VaadinServlet{}
 
 }

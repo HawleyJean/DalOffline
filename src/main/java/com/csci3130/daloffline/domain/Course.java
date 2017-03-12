@@ -17,6 +17,11 @@ import com.csci3130.daloffline.courses.Lecture;
 @Entity
 public class Course implements Serializable, Cloneable {
 	
+	/**
+	 *  init version
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue
 	private long id;
