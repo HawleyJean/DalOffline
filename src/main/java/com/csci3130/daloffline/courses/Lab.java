@@ -1,6 +1,9 @@
-package com.csci3130.daloffline.domain;
+package com.csci3130.daloffline.courses;
 
+import java.io.Serializable;
 import java.util.Vector;
+
+import javax.persistence.*;
 
 /**
  * Work in progress subclass for a course's lab
@@ -8,7 +11,9 @@ import java.util.Vector;
  * @author Hawley Jean
  */
 
-public class Lab extends Period{
+@Entity
+@Inheritance
+public class Lab extends Period implements Serializable{
 	
 	private Vector<String> teachingAssistants = new Vector<String>();
 	

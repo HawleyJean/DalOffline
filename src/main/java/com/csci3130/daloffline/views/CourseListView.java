@@ -3,10 +3,10 @@ package com.csci3130.daloffline.views;
 import java.util.ArrayList;
 
 import com.csci3130.daloffline.CourseInfo;
-import com.csci3130.daloffline.courses.*;
+import com.csci3130.daloffline.courses.Lab;
+import com.csci3130.daloffline.courses.Lecture;
+import com.csci3130.daloffline.coursess.*;
 import com.csci3130.daloffline.domain.Course;
-import com.csci3130.daloffline.domain.Lab;
-import com.csci3130.daloffline.domain.Lecture;
 import com.vaadin.navigator.*;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Alignment;

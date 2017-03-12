@@ -3,21 +3,36 @@ package com.csci3130.daloffline.domain;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.*;
+
+import com.csci3130.daloffline.courses.Lab;
+import com.csci3130.daloffline.courses.Lecture;
+
 /**
  * Class that represents a university course
  * 
  * @author Hawley Jean
  */
 
+@Entity
 public class Course implements Serializable, Cloneable {
 	
-	private String courseName;
-	private String department;
-	private String courseCode;
-	private String professorName;
+	@Id
+	@GeneratedValue
+	private long id;
 	
-	private Vector<Lecture> LectureTimes = new Vector<Lecture>();
-	private Vector<Lab> LabTimes = new Vector<Lab>();
+	private String courseName;
+	private String faculty;
+	private String courseCode;
+	private String instructorName;
+	
+	//@ElementCollection
+	@Transient // remove this when working
+	private Set<Lecture> lectures = new HashSet<Lecture>();
+	
+	//@ElementCollection
+	@Transient // remove this when working
+	private Set<Lab> labs = new HashSet<Lab>();
 	
 	/**
 	 * Base Constructor
@@ -32,29 +47,29 @@ public class Course implements Serializable, Cloneable {
 	/**
 	 * Constructor that initializes values
 	 * 
-	 * @param cName - The name of the course
-	 * @param depar - The course's department
+	 * @param courseName - The name of the course
+	 * @param faculty - The faculty that the course belongs to
 	 * @param code - The course code
-	 * @param prof - The name of the professor
+	 * @param prof - The name of the instructor
 	 * @category Constructor
 	 */
-	public Course(String cName, String depar, String code, String prof)
+	public Course(String courseName, String faculty, String courseCode, String instructorName)
 	{	
-		courseName = cName;
-		department = depar;
-		courseCode = code;
-		professorName = prof;
+		this.courseName = courseName;
+		this.faculty = faculty;
+		this.courseCode = courseCode;
+		this.instructorName = instructorName;
 	}
 	
 	/**
-	 * Adds a lecture to LectureTimes
+	 * Adds a lecture to the course
 	 * 
 	 * @param lec - A Lecture object
 	 * @return Nothing
 	 */
 	public void addLecture(Lecture lec)
 	{
-		LectureTimes.add(lec);
+		lectures.add(lec);
 	}
 	/**
 	 * Adds a lab to LabTimes
@@ -64,14 +79,14 @@ public class Course implements Serializable, Cloneable {
 	 */
 	public void addLab(Lab lab)
 	{
-		LabTimes.add(lab);
+		labs.add(lab);
 	}
 	/**
 	 * Returns the course name
 	 * 
 	 * @return String
 	 */
-	public String getName()
+	public String getCourseName()
 	{
 		return courseName;
 	}
@@ -80,16 +95,16 @@ public class Course implements Serializable, Cloneable {
 	 * 
 	 * @return String
 	 */
-	public String getDepartment()
+	public String getFaculty()
 	{
-		return department;
+		return faculty;
 	}
 	/**
 	 * Returns the course code
 	 * 
 	 * @return String
 	 */
-	public String getCode()
+	public String getCourseCode()
 	{
 		return courseCode;
 	}
@@ -98,8 +113,8 @@ public class Course implements Serializable, Cloneable {
 	 * 
 	 * @return String
 	 */
-	public String getProfessorName() {
-		return professorName;
+	public String getInstructorName() {
+		return instructorName;
 	}
 }
 	

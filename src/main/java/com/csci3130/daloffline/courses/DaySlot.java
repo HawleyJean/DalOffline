@@ -1,4 +1,4 @@
-package com.csci3130.daloffline.domain;
+package com.csci3130.daloffline.courses;
 
 /**
  * Class to represent a time period for a class's lecture or lab
