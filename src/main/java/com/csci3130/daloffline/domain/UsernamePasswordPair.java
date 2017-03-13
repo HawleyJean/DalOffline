@@ -15,6 +15,10 @@ public class UsernamePasswordPair implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
+	@GeneratedValue
+	private long id;
+	
+	@Column(unique=true)
 	private String username;
 	private String password;
 	

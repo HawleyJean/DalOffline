@@ -12,6 +12,7 @@ import com.csci3130.daloffline.courses.Lecture;
  * Class that represents a university course
  * 
  * @author Hawley Jean
+ * @author Jesse MacLeod
  */
 
 @Entity

@@ -11,19 +11,20 @@ import java.util.Set;
  * Entity implementation class for Entity: Student
  *
  */
-@Entity
-@Inheritance
+//@Entity
+//@Inheritance
 public class Student extends User implements Serializable {
 
 	
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-	@GeneratedValue
+	//@Id
+	//@GeneratedValue
 	private long Id;
 	
 	// hashsets dont sort
-	@ElementCollection
+	//@ElementCollection
+	//@Transient
 	Set<Course> courses;	
 	
 	public Student() {

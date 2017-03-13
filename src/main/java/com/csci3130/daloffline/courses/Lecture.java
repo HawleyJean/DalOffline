@@ -10,8 +10,7 @@ import javax.persistence.*;
  * @author Hawley Jean
  */
 
-@Entity
-@Inheritance
+
 public class Lecture extends Period implements Serializable
 {
 	/**

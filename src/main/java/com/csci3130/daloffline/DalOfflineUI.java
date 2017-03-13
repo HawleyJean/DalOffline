@@ -2,6 +2,9 @@ package com.csci3130.daloffline;
 
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.servlet.annotation.WebServlet;
 import com.csci3130.daloffline.views.*;
 
@@ -18,17 +21,20 @@ import com.vaadin.ui.UI;
  * UI Navigation class. Controls the current view shown to the user.
  * 
  * @author Connor Foran
+ * @author Jesse MacLeod
  */
 
 @Title("Dal Offline")
 @Theme("valo")
 @Widgetset("com.vaadin.v7.Vaadin7WidgetSet")
 public class DalOfflineUI extends UI {
-	public Navigator navigator;
 	
 	// the name of the database as defined in persistance.xml
-	public static final String PERSISTANCE_UNIT = "daloffline_db";
+	public static final String PERSISTENCE_UNIT = "daloffline_db";
 	
+	public Navigator navigator;
+	
+	// View Names
     protected static final String MAINVIEW = "main";
     protected static final String STUDENTLIST = "student_list";
     protected static final String USERPROFILE = "profile";
@@ -42,6 +48,8 @@ public class DalOfflineUI extends UI {
 	 */
     @Override
     protected void init(VaadinRequest request) {
+    	
+    	
     	// Create a navigator to control the views
 		navigator = new Navigator(this, this);
 

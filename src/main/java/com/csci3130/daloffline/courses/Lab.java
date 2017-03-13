@@ -11,8 +11,7 @@ import javax.persistence.*;
  * @author Hawley Jean
  */
 
-@Entity
-@Inheritance
+
 public class Lab extends Period implements Serializable{
 	
 	private Vector<String> teachingAssistants = new Vector<String>();

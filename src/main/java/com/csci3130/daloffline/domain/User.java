@@ -7,17 +7,21 @@ import javax.persistence.*;
  * Entity implementation class for Entity: User
  *
  */
-@Entity
+//@Entity
 public class User implements Serializable {
 
 	
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-	@GeneratedValue
+	//@Id
+	//@GeneratedValue
 	private long id;
+
+	String username;
 	
-	@OneToOne
+	//@OneToOne
+	//@JoinColumn(name="username_pw_id", referencedColumnName="username")
+	@Transient
 	private UsernamePasswordPair usernamePasswordPair;
 	
 	private String firstName;

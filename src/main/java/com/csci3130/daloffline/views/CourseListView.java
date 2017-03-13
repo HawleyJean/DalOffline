@@ -64,7 +64,7 @@ public class CourseListView extends VerticalLayout implements View {
         
         refreshList();
         buildLayout();
-        courseList.setColumnOrder("name", "code", "department");
+        //courseList.setColumnOrder("name", "code", "faculty");
     }
     
 	/**
