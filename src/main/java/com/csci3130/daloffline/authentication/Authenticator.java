@@ -39,35 +39,15 @@ public class Authenticator {
 	 * @param password
 	 * @return True is username/password pair is found in data source
 	 */
-	public static boolean authenticate(String username, String password) {
+
+	public static boolean authenticate(String username, String password, EntityManagerFactory factory) {
 		
-		return authenticate(username, password, DalOfflineUI.PERSISTENCE_UNIT);
-	}
-	
-	/**
-	 * 
-	 * Returns true if username and password parameters match username/password pair
-	 * in the database specified by persistenceUnitName.
-	 * 
-	 * TODO Update this to connect to a data source to get the usernames and passwords
-	 * 		rather than some stupid arraylist. 
-	 * 
-	 * @param username
-	 * @param password
-	 * @param persistenceUnitName
-	 * @return True is username/password pair is found in data source
-	 */
-	public static boolean authenticate(String username, String password, String persistenceUnitName) {
-		
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory(persistenceUnitName);
 		EntityManager em = factory.createEntityManager(); 
 		
 		boolean out = false;
 		
 		try {
-
-			System.out.println("Finding: "+username+" in database: "+persistenceUnitName);
-		
+	
 			// this is messy as hell but solves the problem of finding a single usernamepasswordpair by username
 			// field rather than primary key.
 			em.getTransaction().begin();
@@ -91,7 +71,6 @@ public class Authenticator {
 		}
 		
 		em.close();
-		factory.close();
 		
 		return out;
 		

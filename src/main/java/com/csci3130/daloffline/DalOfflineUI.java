@@ -6,6 +6,8 @@ import java.security.NoSuchAlgorithmException;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.servlet.annotation.WebServlet;
+
+import com.csci3130.daloffline.initialization.DatabaseInitializer;
 import com.csci3130.daloffline.views.*;
 
 import com.vaadin.annotations.Theme;
@@ -34,6 +36,9 @@ public class DalOfflineUI extends UI {
 	
 	public Navigator navigator;
 	
+	// creating this once
+	public static EntityManagerFactory factory;
+	
 	// View Names
     protected static final String MAINVIEW = "main";
     protected static final String STUDENTLIST = "student_list";
@@ -49,6 +54,8 @@ public class DalOfflineUI extends UI {
     @Override
     protected void init(VaadinRequest request) {
     	
+    	factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+    	DatabaseInitializer.generateUsers(factory);
     	
     	// Create a navigator to control the views
 		navigator = new Navigator(this, this);

@@ -40,10 +40,6 @@ public class LoginView extends VerticalLayout implements View {
 	 */
 	public LoginView() {
         setSizeFull();
-
-        //Testing Placeholder
-       // DatabaseInitializer.clearUsers();
-        DatabaseInitializer.generateUsers();
         
         VerticalLayout content = new VerticalLayout();
         Label title = new Label("Welcome to DalOffline!");
@@ -71,19 +67,13 @@ public class LoginView extends VerticalLayout implements View {
 	 */
 	private void login(String username, String password) {
 				
-		// I dont know where this should go.
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory(DalOfflineUI.PERSISTENCE_UNIT);
-        EntityManager em = factory.createEntityManager();
-		
-		if(Authenticator.authenticate(username, password)) {
+		if(Authenticator.authenticate(username, password, DalOfflineUI.factory)) {
 			getUI().getNavigator().navigateTo("main");
 		}
 		else {
 			 Notification.show("Invalid password or username. (For testing purposes use \"user\" and \"pass\")");
 		}
-		
-		em.close();
-		factory.close();
+
 	}
 
     @Override
