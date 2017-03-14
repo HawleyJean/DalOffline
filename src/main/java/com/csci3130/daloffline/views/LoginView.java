@@ -3,7 +3,13 @@ package com.csci3130.daloffline.views;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import com.csci3130.daloffline.DalOfflineUI;
 import com.csci3130.daloffline.authentication.Authenticator;
+import com.csci3130.daloffline.initialization.DatabaseInitializer;
 import com.vaadin.navigator.*;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Alignment;
@@ -24,6 +30,8 @@ import com.vaadin.ui.VerticalLayout;
 
 public class LoginView extends VerticalLayout implements View {
    
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * Initializes and builds the login page
 	 * 
@@ -34,15 +42,15 @@ public class LoginView extends VerticalLayout implements View {
         setSizeFull();
 
         //Testing Placeholder
-        Authenticator.initializePlaceHolderData();
+       // DatabaseInitializer.clearUsers();
+        DatabaseInitializer.generateUsers();
         
         VerticalLayout content = new VerticalLayout();
         Label title = new Label("Welcome to DalOffline!");
         TextField username = new TextField("Username:"); //The string here sets a title for the field (text above it)
         PasswordField password = new PasswordField("Password:");
         Button button = new Button("Log In");
-                     
-        
+               
         button.addClickListener(e -> login(username.getValue(), password.getValue()));
 
         content.addComponents(title, username, password, button);
@@ -63,8 +71,9 @@ public class LoginView extends VerticalLayout implements View {
 	 */
 	private void login(String username, String password) {
 				
-		//System.out.println("username: "+username+"\n"+"password: "+password);
-		//System.out.println(auth.authenticator(username, password));
+		// I dont know where this should go.
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory(DalOfflineUI.PERSISTENCE_UNIT);
+        EntityManager em = factory.createEntityManager();
 		
 		if(Authenticator.authenticate(username, password)) {
 			getUI().getNavigator().navigateTo("main");
@@ -73,6 +82,8 @@ public class LoginView extends VerticalLayout implements View {
 			 Notification.show("Invalid password or username. (For testing purposes use \"user\" and \"pass\")");
 		}
 		
+		em.close();
+		factory.close();
 	}
 
     @Override

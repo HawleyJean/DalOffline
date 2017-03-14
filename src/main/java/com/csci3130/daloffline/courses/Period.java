@@ -1,4 +1,4 @@
-package com.csci3130.daloffline.classes;
+package com.csci3130.daloffline.courses;
 
 import java.util.Vector;
 
