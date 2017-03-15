@@ -66,9 +66,12 @@ public class LoginView extends VerticalLayout implements View {
 	 * @return Nothing
 	 */
 	private void login(String username, String password) {
-				
+		
 		if(Authenticator.authenticate(username, password, DalOfflineUI.factory)) {
-			getUI().getNavigator().navigateTo("main");
+			getUI().getNavigator().addView("courselist", new CourseListView());
+	        getUI().getNavigator().addView("main", new MainView());
+	        getUI().getNavigator().addView("profile", new ProfileView());
+			getUI().getNavigator().navigateTo("main/"+username);
 		}
 		else {
 			 Notification.show("Invalid password or username. (For testing purposes use \"user\" and \"pass\")");

@@ -4,6 +4,7 @@ import com.vaadin.navigator.*;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
@@ -21,17 +22,19 @@ public class MainView extends VerticalLayout implements View {
 	 * @param None
 	 * @return Nothing
 	 */
+	private String username;
     public MainView() {
+   
     	VerticalLayout container = new VerticalLayout();
     	Panel border = new Panel();
-
+    	Label name = new Label(username);
         Button profileButton = new Button("View Your Profile/Schedule"); //A button
-        profileButton.addClickListener(e -> getUI().getNavigator().navigateTo("profile")); //Specify a view for this button to direct you to
+        profileButton.addClickListener(e -> getUI().getNavigator().navigateTo("profile/"+username)); //Specify a view for this button to direct you to
         
         Button studentListButton = new Button("View All Courses");
-        studentListButton.addClickListener(e -> getUI().getNavigator().navigateTo("course_list"));
+        studentListButton.addClickListener(e -> getUI().getNavigator().navigateTo("courselist/"+username));
         
-        container.addComponents(profileButton, studentListButton); //Add buttons to the view
+        container.addComponents(name, profileButton, studentListButton); //Add buttons to the view
         container.setComponentAlignment(profileButton, Alignment.MIDDLE_CENTER); //Set alignments
         container.setComponentAlignment(studentListButton, Alignment.MIDDLE_CENTER);
         container.setHeight("30%");
@@ -51,7 +54,9 @@ public class MainView extends VerticalLayout implements View {
 
 
     @Override
-    public void enter(ViewChangeEvent event) {
-        Notification.show("Successfully logged in!");
+    public void enter(ViewChangeListener.ViewChangeEvent event) {
+    	String[] param = event.getParameters().split("/");
+    	username = param[0];
+        Notification.show("Hello, "+username);
     }
 }

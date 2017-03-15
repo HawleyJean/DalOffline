@@ -63,9 +63,7 @@ public class DalOfflineUI extends UI {
         // Create and register the views
 		navigator.addView("", new LoginView());
 		
-        navigator.addView(COURSELIST, new CourseListView());
-        navigator.addView(MAINVIEW, new MainView());
-        navigator.addView(USERPROFILE, new ProfileView());
+        
     }
     
     @WebServlet(urlPatterns = "/*")
