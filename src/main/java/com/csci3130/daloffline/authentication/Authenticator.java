@@ -8,6 +8,9 @@ import java.util.Arrays;
 import java.util.Base64;
 import java.util.Base64.Encoder;
 
+import com.csci3130.daloffline.domain.UserPasswordPair;
+import com.vaadin.addon.jpacontainer.JPAContainer;
+
  
 /**
  * Static class that has methods to authenticates user and password pairs.
@@ -20,24 +23,6 @@ public class Authenticator {
 	// placeholder stuff to be replaced with database stuff 
 	private static ArrayList<String[]> userPasswordPairs;
 	
-	
-	
-	/**
-	 * Initialize the Arraylist used in place of a database. 
-	 * Holds only one user/password pair ("user", "pass").
-	 * 
-	 * @throws NoSuchAlgorithmException
-	 * @throws UnsupportedEncodingException
-	 */
-	public static void initializePlaceHolderData() {
-		
-		// TODO replace this with data connector to user table in database or some
-		userPasswordPairs = new ArrayList<String[]>();
-				
-		String[] userPair = {"user", hash("pass")};
-		userPasswordPairs.add(userPair);
-		//hash("pass");
-	}
 	
 	/**
 	 * 
@@ -53,16 +38,22 @@ public class Authenticator {
 	 * @throws NoSuchAlgorithmException
 	 * @throws UnsupportedEncodingException
 	 */
-	public static boolean authenticate(String username, String password) {
+	public static boolean authenticate(String username, String password, JPAContainer<UserPasswordPair> userNamePasswordPairs) {
 		
-		//TODO link this with data source to get the usernames and passwords rather than this stupid arraylist
-		for(String[] s : userPasswordPairs)
-		{
-			if (s[0].equals(username) && s[1].equals(hash(password)))
+		try{
+			String db_pass = userNamePasswordPairs.getItem(username).getEntity().getPassword();	
+			
+			//TODO link this with data source to get the usernames and passwords rather than this stupid arraylist
+			if (db_pass.equals(hash(password)))
 			{
-				//System.out.println("s[0]: "+s[0]+"\n"+"s[1]: "+s[1]);
-				return true;
+					//System.out.println("s[0]: "+s[0]+"\n"+"s[1]: "+s[1]);
+					return true;
+			
 			}
+		} catch(Exception e) {
+			System.out.println(e.toString());
+			e.printStackTrace();
+			return false;
 		}
 		
 		return false;
@@ -77,7 +68,7 @@ public class Authenticator {
 	 * @throws NoSuchAlgorithmException
 	 * @throws UnsupportedEncodingException
 	 */
-	private static String hash(String query) {
+	public static String hash(String query) {
 		
 		MessageDigest md;
 		byte[] result = null;

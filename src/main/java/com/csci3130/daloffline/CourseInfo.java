@@ -1,6 +1,7 @@
 package com.csci3130.daloffline;
 
 import com.csci3130.daloffline.classes.*;
+import com.csci3130.daloffline.domain.Course;
 import com.csci3130.daloffline.views.CourseListView;
 import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.Button;
@@ -50,7 +51,7 @@ public class CourseInfo extends VerticalLayout {
 	public void setCourse(Course course)
 	{
 		String text = "<b>Course Name:</b> "+course.getName()+"<br><b>Course Code:</b> "+course.getCode()
-        		      +"<br><b>Professor:</b> "+course.getProfessorName()+"<br><b>Department:</b> "+course.getDepartment();
+        		      +"<br><b>Professor:</b> "+course.getProfessorName()+"<br><b>Faculty:</b> "+course.getFaculties();
 		
 		info.setCaption(text);
 	}

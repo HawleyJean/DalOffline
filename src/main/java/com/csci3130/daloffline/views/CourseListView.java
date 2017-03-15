@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import com.csci3130.daloffline.CourseInfo;
 import com.csci3130.daloffline.classes.*;
-
+import com.csci3130.daloffline.domain.Course;
 import com.vaadin.navigator.*;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Alignment;
@@ -62,7 +62,7 @@ public class CourseListView extends VerticalLayout implements View {
         
         refreshList();
         buildLayout();
-        courseList.setColumnOrder("name", "code", "department");
+        courseList.setColumnOrder("name", "code", "faculties");
     }
     
 	/**

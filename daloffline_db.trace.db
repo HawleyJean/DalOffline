@@ -1,0 +1,471 @@
+2017-03-10 14:21:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "STUDENT" not found; SQL statement:
+ALTER TABLE STUDENT DROP CONSTRAINT FK_STUDENT_USERPASSWORDPAIR_USERNAME [42102-193]
+2017-03-10 14:21:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "STUDENT" not found; SQL statement:
+ALTER TABLE STUDENT DROP CONSTRAINT FK_STUDENT_FACULTY_ID [42102-193]
+2017-03-10 14:21:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "COURSE_FACULTY" not found; SQL statement:
+ALTER TABLE COURSE_FACULTY DROP CONSTRAINT FK_COURSE_FACULTY_faculties_ID [42102-193]
+2017-03-10 14:21:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "COURSE_FACULTY" not found; SQL statement:
+ALTER TABLE COURSE_FACULTY DROP CONSTRAINT FK_COURSE_FACULTY_Course_ID [42102-193]
+2017-03-10 14:21:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "STUDENT_COURSE" not found; SQL statement:
+ALTER TABLE STUDENT_COURSE DROP CONSTRAINT FK_STUDENT_COURSE_courses_ID [42102-193]
+2017-03-10 14:21:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "STUDENT_COURSE" not found; SQL statement:
+ALTER TABLE STUDENT_COURSE DROP CONSTRAINT FK_STUDENT_COURSE_Student_ID [42102-193]
+2017-03-10 14:21:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USERPASSWORDPAIR" not found; SQL statement:
+DROP TABLE USERPASSWORDPAIR [42102-193]
+2017-03-10 14:21:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "COURSE" not found; SQL statement:
+DROP TABLE COURSE [42102-193]
+2017-03-10 14:21:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "STUDENT" not found; SQL statement:
+DROP TABLE STUDENT [42102-193]
+2017-03-10 14:21:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "FACULTY" not found; SQL statement:
+DROP TABLE FACULTY [42102-193]
+2017-03-10 14:21:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "COURSE_FACULTY" not found; SQL statement:
+DROP TABLE COURSE_FACULTY [42102-193]
+2017-03-10 14:21:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "STUDENT_COURSE" not found; SQL statement:
+DROP TABLE STUDENT_COURSE [42102-193]
+2017-03-10 14:21:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USERPASSWORDPAIR" not found; SQL statement:
+DROP TABLE USERPASSWORDPAIR [42102-193]
+2017-03-10 14:21:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "COURSE" not found; SQL statement:
+DROP TABLE COURSE [42102-193]
+2017-03-10 14:21:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "STUDENT" not found; SQL statement:
+DROP TABLE STUDENT [42102-193]
+2017-03-10 14:21:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "FACULTY" not found; SQL statement:
+DROP TABLE FACULTY [42102-193]
+2017-03-10 14:21:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "COURSE_FACULTY" not found; SQL statement:
+DROP TABLE COURSE_FACULTY [42102-193]
+2017-03-10 14:21:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "STUDENT_COURSE" not found; SQL statement:
+DROP TABLE STUDENT_COURSE [42102-193]
+2017-03-10 14:21:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USERPASSWORDPAIR" not found; SQL statement:
+DROP TABLE USERPASSWORDPAIR [42102-193]
+2017-03-10 14:21:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "COURSE" not found; SQL statement:
+DROP TABLE COURSE [42102-193]
+2017-03-10 14:21:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "STUDENT" not found; SQL statement:
+DROP TABLE STUDENT [42102-193]
+2017-03-10 14:21:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "FACULTY" not found; SQL statement:
+DROP TABLE FACULTY [42102-193]
+2017-03-10 14:21:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "COURSE_FACULTY" not found; SQL statement:
+DROP TABLE COURSE_FACULTY [42102-193]
+2017-03-10 14:21:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "STUDENT_COURSE" not found; SQL statement:
+DROP TABLE STUDENT_COURSE [42102-193]
+2017-03-10 14:21:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USERPASSWORDPAIR" not found; SQL statement:
+DROP TABLE USERPASSWORDPAIR [42102-193]
+2017-03-10 14:21:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "COURSE" not found; SQL statement:
+DROP TABLE COURSE [42102-193]
+2017-03-10 14:21:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "STUDENT" not found; SQL statement:
+DROP TABLE STUDENT [42102-193]
+2017-03-10 14:21:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "FACULTY" not found; SQL statement:
+DROP TABLE FACULTY [42102-193]
+2017-03-10 14:21:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "COURSE_FACULTY" not found; SQL statement:
+DROP TABLE COURSE_FACULTY [42102-193]
+2017-03-10 14:21:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "STUDENT_COURSE" not found; SQL statement:
+DROP TABLE STUDENT_COURSE [42102-193]
+2017-03-10 14:21:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USERPASSWORDPAIR" not found; SQL statement:
+DROP TABLE USERPASSWORDPAIR [42102-193]
+2017-03-10 14:21:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "COURSE" not found; SQL statement:
+DROP TABLE COURSE [42102-193]
+2017-03-10 14:21:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "STUDENT" not found; SQL statement:
+DROP TABLE STUDENT [42102-193]
+2017-03-10 14:21:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "FACULTY" not found; SQL statement:
+DROP TABLE FACULTY [42102-193]
+2017-03-10 14:21:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "COURSE_FACULTY" not found; SQL statement:
+DROP TABLE COURSE_FACULTY [42102-193]
+2017-03-10 14:21:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "STUDENT_COURSE" not found; SQL statement:
+DROP TABLE STUDENT_COURSE [42102-193]
+2017-03-10 14:21:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SEQUENCE" not found; SQL statement:
+SELECT SEQ_NAME FROM SEQUENCE WHERE SEQ_NAME <> SEQ_NAME [42102-193]
+2017-03-10 14:36:42 database: flush
+org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/User/workspace/daloffline/daloffline/daloffline_db.mv.db [1.4.193/7]" [50000-193]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:295)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:94)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:379)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:362)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2923)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:154)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:99)
+	at org.h2.engine.Database.getPageStore(Database.java:2468)
+	at org.h2.engine.Database.open(Database.java:695)
+	at org.h2.engine.Database.openDatabase(Database.java:273)
+	at org.h2.engine.Database.<init>(Database.java:267)
+	at org.h2.engine.Engine.openSession(Engine.java:64)
+	at org.h2.engine.Engine.openSession(Engine.java:176)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:154)
+	at org.h2.engine.Engine.createSession(Engine.java:137)
+	at org.h2.engine.Engine.createSession(Engine.java:27)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:349)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:115)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:99)
+	at org.h2.Driver.connect(Driver.java:69)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:208)
+	at org.eclipse.persistence.sessions.DefaultConnector.connect(DefaultConnector.java:98)
+	at org.eclipse.persistence.sessions.DatasourceLogin.connectToDatasource(DatasourceLogin.java:162)
+	at org.eclipse.persistence.internal.sessions.DatabaseSessionImpl.setOrDetectDatasource(DatabaseSessionImpl.java:207)
+	at org.eclipse.persistence.internal.sessions.DatabaseSessionImpl.loginAndDetectDatasource(DatabaseSessionImpl.java:760)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryProvider.login(EntityManagerFactoryProvider.java:265)
+	at org.eclipse.persistence.internal.jpa.EntityManagerSetupImpl.deploy(EntityManagerSetupImpl.java:731)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryDelegate.getAbstractSession(EntityManagerFactoryDelegate.java:205)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryDelegate.createEntityManagerImpl(EntityManagerFactoryDelegate.java:305)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryImpl.createEntityManagerImpl(EntityManagerFactoryImpl.java:337)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryImpl.createEntityManager(EntityManagerFactoryImpl.java:303)
+	at com.vaadin.addon.jpacontainer.JPAContainerFactory.createEntityManagerForPersistenceUnit(JPAContainerFactory.java:124)
+	at com.vaadin.addon.jpacontainer.JPAContainerFactory.make(JPAContainerFactory.java:105)
+	at com.csci3130.daloffline.util.DatabaseUtil.generateUsernamePasswordPairs(DatabaseUtil.java:16)
+	at com.csci3130.daloffline.util.DatabaseUtil.main(DatabaseUtil.java:43)
+Caused by: org.h2.jdbc.JdbcSQLException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/User/workspace/daloffline/daloffline/daloffline_db.mv.db [1.4.193/7]" [50000-193]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 37 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/Users/User/workspace/daloffline/daloffline/daloffline_db.mv.db [1.4.193/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:765)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:348)
+	... 32 more
+2017-03-10 14:36:42 database: flush
+org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/User/workspace/daloffline/daloffline/daloffline_db.mv.db [1.4.193/7]" [50000-193]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:295)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:94)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:379)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:362)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2923)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:154)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:99)
+	at org.h2.engine.Database.getPageStore(Database.java:2468)
+	at org.h2.engine.Database.open(Database.java:695)
+	at org.h2.engine.Database.openDatabase(Database.java:273)
+	at org.h2.engine.Database.<init>(Database.java:267)
+	at org.h2.engine.Engine.openSession(Engine.java:64)
+	at org.h2.engine.Engine.openSession(Engine.java:176)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:154)
+	at org.h2.engine.Engine.createSession(Engine.java:137)
+	at org.h2.engine.Engine.createSession(Engine.java:27)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:349)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:115)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:99)
+	at org.h2.Driver.connect(Driver.java:69)
+	at org.eclipse.persistence.sessions.DefaultConnector.directConnect(DefaultConnector.java:165)
+	at org.eclipse.persistence.sessions.DefaultConnector.connect(DefaultConnector.java:117)
+	at org.eclipse.persistence.sessions.DatasourceLogin.connectToDatasource(DatasourceLogin.java:162)
+	at org.eclipse.persistence.internal.sessions.DatabaseSessionImpl.setOrDetectDatasource(DatabaseSessionImpl.java:207)
+	at org.eclipse.persistence.internal.sessions.DatabaseSessionImpl.loginAndDetectDatasource(DatabaseSessionImpl.java:760)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryProvider.login(EntityManagerFactoryProvider.java:265)
+	at org.eclipse.persistence.internal.jpa.EntityManagerSetupImpl.deploy(EntityManagerSetupImpl.java:731)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryDelegate.getAbstractSession(EntityManagerFactoryDelegate.java:205)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryDelegate.createEntityManagerImpl(EntityManagerFactoryDelegate.java:305)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryImpl.createEntityManagerImpl(EntityManagerFactoryImpl.java:337)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryImpl.createEntityManager(EntityManagerFactoryImpl.java:303)
+	at com.vaadin.addon.jpacontainer.JPAContainerFactory.createEntityManagerForPersistenceUnit(JPAContainerFactory.java:124)
+	at com.vaadin.addon.jpacontainer.JPAContainerFactory.make(JPAContainerFactory.java:105)
+	at com.csci3130.daloffline.util.DatabaseUtil.generateUsernamePasswordPairs(DatabaseUtil.java:16)
+	at com.csci3130.daloffline.util.DatabaseUtil.main(DatabaseUtil.java:43)
+Caused by: org.h2.jdbc.JdbcSQLException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/User/workspace/daloffline/daloffline/daloffline_db.mv.db [1.4.193/7]" [50000-193]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 36 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/Users/User/workspace/daloffline/daloffline/daloffline_db.mv.db [1.4.193/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:765)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:348)
+	... 31 more
+2017-03-10 15:58:50 database: flush
+org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/User/workspace/daloffline/daloffline/daloffline_db.mv.db [1.4.193/7]" [50000-193]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:295)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:94)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:379)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:362)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2923)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:154)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:99)
+	at org.h2.engine.Database.getPageStore(Database.java:2468)
+	at org.h2.engine.Database.open(Database.java:695)
+	at org.h2.engine.Database.openDatabase(Database.java:273)
+	at org.h2.engine.Database.<init>(Database.java:267)
+	at org.h2.engine.Engine.openSession(Engine.java:64)
+	at org.h2.engine.Engine.openSession(Engine.java:176)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:154)
+	at org.h2.engine.Engine.createSession(Engine.java:137)
+	at org.h2.engine.Engine.createSession(Engine.java:27)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:349)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:115)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:99)
+	at org.h2.Driver.connect(Driver.java:69)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:208)
+	at org.eclipse.persistence.sessions.DefaultConnector.connect(DefaultConnector.java:98)
+	at org.eclipse.persistence.sessions.DatasourceLogin.connectToDatasource(DatasourceLogin.java:162)
+	at org.eclipse.persistence.internal.sessions.DatabaseSessionImpl.setOrDetectDatasource(DatabaseSessionImpl.java:207)
+	at org.eclipse.persistence.internal.sessions.DatabaseSessionImpl.loginAndDetectDatasource(DatabaseSessionImpl.java:760)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryProvider.login(EntityManagerFactoryProvider.java:265)
+	at org.eclipse.persistence.internal.jpa.EntityManagerSetupImpl.deploy(EntityManagerSetupImpl.java:731)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryDelegate.getAbstractSession(EntityManagerFactoryDelegate.java:205)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryDelegate.createEntityManagerImpl(EntityManagerFactoryDelegate.java:305)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryImpl.createEntityManagerImpl(EntityManagerFactoryImpl.java:337)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryImpl.createEntityManager(EntityManagerFactoryImpl.java:303)
+	at com.csci3130.daloffline.util.DatabaseUtil.generateUsernamePasswordPairs(DatabaseUtil.java:22)
+	at com.csci3130.daloffline.util.DatabaseUtil.main(DatabaseUtil.java:57)
+Caused by: org.h2.jdbc.JdbcSQLException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/User/workspace/daloffline/daloffline/daloffline_db.mv.db [1.4.193/7]" [50000-193]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 35 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/Users/User/workspace/daloffline/daloffline/daloffline_db.mv.db [1.4.193/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:765)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:348)
+	... 30 more
+2017-03-10 15:58:50 database: flush
+org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/User/workspace/daloffline/daloffline/daloffline_db.mv.db [1.4.193/7]" [50000-193]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:295)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:94)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:379)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:362)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2923)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:154)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:99)
+	at org.h2.engine.Database.getPageStore(Database.java:2468)
+	at org.h2.engine.Database.open(Database.java:695)
+	at org.h2.engine.Database.openDatabase(Database.java:273)
+	at org.h2.engine.Database.<init>(Database.java:267)
+	at org.h2.engine.Engine.openSession(Engine.java:64)
+	at org.h2.engine.Engine.openSession(Engine.java:176)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:154)
+	at org.h2.engine.Engine.createSession(Engine.java:137)
+	at org.h2.engine.Engine.createSession(Engine.java:27)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:349)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:115)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:99)
+	at org.h2.Driver.connect(Driver.java:69)
+	at org.eclipse.persistence.sessions.DefaultConnector.directConnect(DefaultConnector.java:165)
+	at org.eclipse.persistence.sessions.DefaultConnector.connect(DefaultConnector.java:117)
+	at org.eclipse.persistence.sessions.DatasourceLogin.connectToDatasource(DatasourceLogin.java:162)
+	at org.eclipse.persistence.internal.sessions.DatabaseSessionImpl.setOrDetectDatasource(DatabaseSessionImpl.java:207)
+	at org.eclipse.persistence.internal.sessions.DatabaseSessionImpl.loginAndDetectDatasource(DatabaseSessionImpl.java:760)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryProvider.login(EntityManagerFactoryProvider.java:265)
+	at org.eclipse.persistence.internal.jpa.EntityManagerSetupImpl.deploy(EntityManagerSetupImpl.java:731)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryDelegate.getAbstractSession(EntityManagerFactoryDelegate.java:205)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryDelegate.createEntityManagerImpl(EntityManagerFactoryDelegate.java:305)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryImpl.createEntityManagerImpl(EntityManagerFactoryImpl.java:337)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryImpl.createEntityManager(EntityManagerFactoryImpl.java:303)
+	at com.csci3130.daloffline.util.DatabaseUtil.generateUsernamePasswordPairs(DatabaseUtil.java:22)
+	at com.csci3130.daloffline.util.DatabaseUtil.main(DatabaseUtil.java:57)
+Caused by: org.h2.jdbc.JdbcSQLException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/User/workspace/daloffline/daloffline/daloffline_db.mv.db [1.4.193/7]" [50000-193]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 34 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/Users/User/workspace/daloffline/daloffline/daloffline_db.mv.db [1.4.193/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:765)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:348)
+	... 29 more
+2017-03-10 18:26:40 database: flush
+org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/User/workspace/daloffline/daloffline/daloffline_db.mv.db [1.4.193/7]" [50000-193]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:295)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:94)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:379)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:362)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2923)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:154)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:99)
+	at org.h2.engine.Database.getPageStore(Database.java:2468)
+	at org.h2.engine.Database.open(Database.java:695)
+	at org.h2.engine.Database.openDatabase(Database.java:273)
+	at org.h2.engine.Database.<init>(Database.java:267)
+	at org.h2.engine.Engine.openSession(Engine.java:64)
+	at org.h2.engine.Engine.openSession(Engine.java:176)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:154)
+	at org.h2.engine.Engine.createSession(Engine.java:137)
+	at org.h2.engine.Engine.createSession(Engine.java:27)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:349)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:115)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:99)
+	at org.h2.Driver.connect(Driver.java:69)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:208)
+	at org.eclipse.persistence.sessions.DefaultConnector.connect(DefaultConnector.java:98)
+	at org.eclipse.persistence.sessions.DatasourceLogin.connectToDatasource(DatasourceLogin.java:162)
+	at org.eclipse.persistence.internal.sessions.DatabaseSessionImpl.setOrDetectDatasource(DatabaseSessionImpl.java:207)
+	at org.eclipse.persistence.internal.sessions.DatabaseSessionImpl.loginAndDetectDatasource(DatabaseSessionImpl.java:760)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryProvider.login(EntityManagerFactoryProvider.java:265)
+	at org.eclipse.persistence.internal.jpa.EntityManagerSetupImpl.deploy(EntityManagerSetupImpl.java:731)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryDelegate.getAbstractSession(EntityManagerFactoryDelegate.java:205)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryDelegate.createEntityManagerImpl(EntityManagerFactoryDelegate.java:305)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryImpl.createEntityManagerImpl(EntityManagerFactoryImpl.java:337)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryImpl.createEntityManager(EntityManagerFactoryImpl.java:303)
+	at com.csci3130.daloffline.util.DatabaseUtil.generateUsernamePasswordPairs(DatabaseUtil.java:20)
+	at com.csci3130.daloffline.util.DatabaseUtil.main(DatabaseUtil.java:55)
+Caused by: org.h2.jdbc.JdbcSQLException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/User/workspace/daloffline/daloffline/daloffline_db.mv.db [1.4.193/7]" [50000-193]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 35 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/Users/User/workspace/daloffline/daloffline/daloffline_db.mv.db [1.4.193/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:765)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:348)
+	... 30 more
+2017-03-10 18:26:40 database: flush
+org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/User/workspace/daloffline/daloffline/daloffline_db.mv.db [1.4.193/7]" [50000-193]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:295)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:94)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:379)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:362)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2923)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:154)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:99)
+	at org.h2.engine.Database.getPageStore(Database.java:2468)
+	at org.h2.engine.Database.open(Database.java:695)
+	at org.h2.engine.Database.openDatabase(Database.java:273)
+	at org.h2.engine.Database.<init>(Database.java:267)
+	at org.h2.engine.Engine.openSession(Engine.java:64)
+	at org.h2.engine.Engine.openSession(Engine.java:176)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:154)
+	at org.h2.engine.Engine.createSession(Engine.java:137)
+	at org.h2.engine.Engine.createSession(Engine.java:27)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:349)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:115)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:99)
+	at org.h2.Driver.connect(Driver.java:69)
+	at org.eclipse.persistence.sessions.DefaultConnector.directConnect(DefaultConnector.java:165)
+	at org.eclipse.persistence.sessions.DefaultConnector.connect(DefaultConnector.java:117)
+	at org.eclipse.persistence.sessions.DatasourceLogin.connectToDatasource(DatasourceLogin.java:162)
+	at org.eclipse.persistence.internal.sessions.DatabaseSessionImpl.setOrDetectDatasource(DatabaseSessionImpl.java:207)
+	at org.eclipse.persistence.internal.sessions.DatabaseSessionImpl.loginAndDetectDatasource(DatabaseSessionImpl.java:760)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryProvider.login(EntityManagerFactoryProvider.java:265)
+	at org.eclipse.persistence.internal.jpa.EntityManagerSetupImpl.deploy(EntityManagerSetupImpl.java:731)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryDelegate.getAbstractSession(EntityManagerFactoryDelegate.java:205)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryDelegate.createEntityManagerImpl(EntityManagerFactoryDelegate.java:305)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryImpl.createEntityManagerImpl(EntityManagerFactoryImpl.java:337)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryImpl.createEntityManager(EntityManagerFactoryImpl.java:303)
+	at com.csci3130.daloffline.util.DatabaseUtil.generateUsernamePasswordPairs(DatabaseUtil.java:20)
+	at com.csci3130.daloffline.util.DatabaseUtil.main(DatabaseUtil.java:55)
+Caused by: org.h2.jdbc.JdbcSQLException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/User/workspace/daloffline/daloffline/daloffline_db.mv.db [1.4.193/7]" [50000-193]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 34 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/Users/User/workspace/daloffline/daloffline/daloffline_db.mv.db [1.4.193/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:765)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:348)
+	... 29 more
+2017-03-10 18:26:56 database: flush
+org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/User/workspace/daloffline/daloffline/daloffline_db.mv.db [1.4.193/7]" [50000-193]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:295)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:94)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:379)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:362)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2923)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:154)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:99)
+	at org.h2.engine.Database.getPageStore(Database.java:2468)
+	at org.h2.engine.Database.open(Database.java:695)
+	at org.h2.engine.Database.openDatabase(Database.java:273)
+	at org.h2.engine.Database.<init>(Database.java:267)
+	at org.h2.engine.Engine.openSession(Engine.java:64)
+	at org.h2.engine.Engine.openSession(Engine.java:176)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:154)
+	at org.h2.engine.Engine.createSession(Engine.java:137)
+	at org.h2.engine.Engine.createSession(Engine.java:27)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:349)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:115)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:99)
+	at org.h2.Driver.connect(Driver.java:69)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:208)
+	at org.eclipse.persistence.sessions.DefaultConnector.connect(DefaultConnector.java:98)
+	at org.eclipse.persistence.sessions.DatasourceLogin.connectToDatasource(DatasourceLogin.java:162)
+	at org.eclipse.persistence.internal.sessions.DatabaseSessionImpl.setOrDetectDatasource(DatabaseSessionImpl.java:207)
+	at org.eclipse.persistence.internal.sessions.DatabaseSessionImpl.loginAndDetectDatasource(DatabaseSessionImpl.java:760)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryProvider.login(EntityManagerFactoryProvider.java:265)
+	at org.eclipse.persistence.internal.jpa.EntityManagerSetupImpl.deploy(EntityManagerSetupImpl.java:731)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryDelegate.getAbstractSession(EntityManagerFactoryDelegate.java:205)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryDelegate.createEntityManagerImpl(EntityManagerFactoryDelegate.java:305)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryImpl.createEntityManagerImpl(EntityManagerFactoryImpl.java:337)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryImpl.createEntityManager(EntityManagerFactoryImpl.java:303)
+	at com.csci3130.daloffline.util.DatabaseUtil.generateUsernamePasswordPairs(DatabaseUtil.java:20)
+	at com.csci3130.daloffline.util.DatabaseUtil.main(DatabaseUtil.java:55)
+Caused by: org.h2.jdbc.JdbcSQLException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/User/workspace/daloffline/daloffline/daloffline_db.mv.db [1.4.193/7]" [50000-193]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 35 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/Users/User/workspace/daloffline/daloffline/daloffline_db.mv.db [1.4.193/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:765)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:348)
+	... 30 more
+2017-03-10 18:26:56 database: flush
+org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/User/workspace/daloffline/daloffline/daloffline_db.mv.db [1.4.193/7]" [50000-193]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:295)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:94)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:379)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:362)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2923)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:154)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:99)
+	at org.h2.engine.Database.getPageStore(Database.java:2468)
+	at org.h2.engine.Database.open(Database.java:695)
+	at org.h2.engine.Database.openDatabase(Database.java:273)
+	at org.h2.engine.Database.<init>(Database.java:267)
+	at org.h2.engine.Engine.openSession(Engine.java:64)
+	at org.h2.engine.Engine.openSession(Engine.java:176)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:154)
+	at org.h2.engine.Engine.createSession(Engine.java:137)
+	at org.h2.engine.Engine.createSession(Engine.java:27)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:349)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:115)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:99)
+	at org.h2.Driver.connect(Driver.java:69)
+	at org.eclipse.persistence.sessions.DefaultConnector.directConnect(DefaultConnector.java:165)
+	at org.eclipse.persistence.sessions.DefaultConnector.connect(DefaultConnector.java:117)
+	at org.eclipse.persistence.sessions.DatasourceLogin.connectToDatasource(DatasourceLogin.java:162)
+	at org.eclipse.persistence.internal.sessions.DatabaseSessionImpl.setOrDetectDatasource(DatabaseSessionImpl.java:207)
+	at org.eclipse.persistence.internal.sessions.DatabaseSessionImpl.loginAndDetectDatasource(DatabaseSessionImpl.java:760)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryProvider.login(EntityManagerFactoryProvider.java:265)
+	at org.eclipse.persistence.internal.jpa.EntityManagerSetupImpl.deploy(EntityManagerSetupImpl.java:731)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryDelegate.getAbstractSession(EntityManagerFactoryDelegate.java:205)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryDelegate.createEntityManagerImpl(EntityManagerFactoryDelegate.java:305)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryImpl.createEntityManagerImpl(EntityManagerFactoryImpl.java:337)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryImpl.createEntityManager(EntityManagerFactoryImpl.java:303)
+	at com.csci3130.daloffline.util.DatabaseUtil.generateUsernamePasswordPairs(DatabaseUtil.java:20)
+	at com.csci3130.daloffline.util.DatabaseUtil.main(DatabaseUtil.java:55)
+Caused by: org.h2.jdbc.JdbcSQLException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/User/workspace/daloffline/daloffline/daloffline_db.mv.db [1.4.193/7]" [50000-193]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 34 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/Users/User/workspace/daloffline/daloffline/daloffline_db.mv.db [1.4.193/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:765)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:348)
+	... 29 more
