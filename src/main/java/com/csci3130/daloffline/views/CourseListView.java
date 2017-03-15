@@ -3,6 +3,7 @@ package com.csci3130.daloffline.views;
 import java.util.ArrayList;
 
 import com.csci3130.daloffline.CourseInfo;
+import com.csci3130.daloffline.DalOfflineUI;
 import com.csci3130.daloffline.courses.Lab;
 import com.csci3130.daloffline.courses.Lecture;
 import com.csci3130.daloffline.courses.*;
@@ -41,7 +42,7 @@ public class CourseListView extends VerticalLayout implements View {
 	 * @param None
 	 * @return Nothing
 	 */
-    public CourseListView() {
+    public CourseListView(DalOfflineUI ui) {
         backButton.addClickListener(e -> getUI().getNavigator().navigateTo("main"));
 
         filter.setInputPrompt("Filter courses...");

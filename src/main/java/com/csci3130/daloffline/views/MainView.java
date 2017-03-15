@@ -1,5 +1,6 @@
 package com.csci3130.daloffline.views;
 
+import com.csci3130.daloffline.DalOfflineUI;
 import com.vaadin.navigator.*;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Alignment;
@@ -23,21 +24,21 @@ public class MainView extends VerticalLayout implements View {
 	 * @return Nothing
 	 */
 	private String username;
-    public MainView() {
-   
+    public MainView(DalOfflineUI ui) {
+    	username = (String) ui.getSession().getAttribute("username");
     	VerticalLayout container = new VerticalLayout();
     	Panel border = new Panel();
-    	Label name = new Label(username);
         Button profileButton = new Button("View Your Profile/Schedule"); //A button
-        profileButton.addClickListener(e -> getUI().getNavigator().navigateTo("profile/"+username)); //Specify a view for this button to direct you to
-        
+        profileButton.addClickListener(e -> getUI().getNavigator().navigateTo("profile")); //Specify a view for this button to direct you to
+      Label name = new Label(username);
         Button studentListButton = new Button("View All Courses");
-        studentListButton.addClickListener(e -> getUI().getNavigator().navigateTo("courselist/"+username));
+        studentListButton.addClickListener(e -> getUI().getNavigator().navigateTo("courselist"));
         
         container.addComponents(name, profileButton, studentListButton); //Add buttons to the view
         container.setComponentAlignment(profileButton, Alignment.MIDDLE_CENTER); //Set alignments
         container.setComponentAlignment(studentListButton, Alignment.MIDDLE_CENTER);
-        container.setHeight("30%");
+        container.setComponentAlignment(name, Alignment.MIDDLE_CENTER);
+        container.setHeight("40%");
         
         VerticalLayout container2 = new VerticalLayout();
         container2.addComponent(container);
@@ -55,8 +56,7 @@ public class MainView extends VerticalLayout implements View {
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
-    	String[] param = event.getParameters().split("/");
-    	username = param[0];
+
         Notification.show("Hello, "+username);
     }
 }

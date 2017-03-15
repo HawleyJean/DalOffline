@@ -38,7 +38,7 @@ public class LoginView extends VerticalLayout implements View {
 	 * @param None
 	 * @return Nothing
 	 */
-	public LoginView() {
+	public LoginView(DalOfflineUI ui) {
         setSizeFull();
         
         VerticalLayout content = new VerticalLayout();
@@ -47,7 +47,7 @@ public class LoginView extends VerticalLayout implements View {
         PasswordField password = new PasswordField("Password:");
         Button button = new Button("Log In");
                
-        button.addClickListener(e -> login(username.getValue(), password.getValue()));
+        button.addClickListener(e -> login(username.getValue(), password.getValue(), ui));
 
         content.addComponents(title, username, password, button);
         content.setComponentAlignment(username, Alignment.MIDDLE_CENTER);
@@ -65,13 +65,16 @@ public class LoginView extends VerticalLayout implements View {
 	 * @param password
 	 * @return Nothing
 	 */
-	private void login(String username, String password) {
+	private void login(String username, String password, DalOfflineUI ui) {
 		
 		if(Authenticator.authenticate(username, password, DalOfflineUI.factory)) {
-			getUI().getNavigator().addView("courselist", new CourseListView());
-	        getUI().getNavigator().addView("main", new MainView());
-	        getUI().getNavigator().addView("profile", new ProfileView());
-			getUI().getNavigator().navigateTo("main/"+username);
+			ui.getSession().setAttribute("username", username);
+			ui.getSession().getSession().setMaxInactiveInterval(600);
+			getUI().getNavigator().addView("courselist", new CourseListView(ui));
+	        getUI().getNavigator().addView("main", new MainView(ui));
+	        getUI().getNavigator().addView("profile", new ProfileView(ui));
+	        
+			getUI().getNavigator().navigateTo("main");
 		}
 		else {
 			 Notification.show("Invalid password or username. (For testing purposes use \"user\" and \"pass\")");
