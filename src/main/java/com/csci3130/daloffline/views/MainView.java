@@ -30,7 +30,7 @@ public class MainView extends VerticalLayout implements View {
     	Panel border = new Panel();
         Button profileButton = new Button("View Your Profile/Schedule"); //A button
         profileButton.addClickListener(e -> getUI().getNavigator().navigateTo("profile")); //Specify a view for this button to direct you to
-      Label name = new Label(username);
+      Label name = new Label("Hello, "+username);
         Button studentListButton = new Button("View All Courses");
         studentListButton.addClickListener(e -> getUI().getNavigator().navigateTo("courselist"));
         
