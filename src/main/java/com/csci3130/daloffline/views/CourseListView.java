@@ -1,12 +1,22 @@
 package com.csci3130.daloffline.views;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import com.csci3130.daloffline.CourseInfo;
 import com.csci3130.daloffline.DalOfflineUI;
+<<<<<<< HEAD
 import com.csci3130.daloffline.courses.Lab;
 import com.csci3130.daloffline.courses.Lecture;
 import com.csci3130.daloffline.courses.*;
+=======
+//import com.csci3130.daloffline.courses.Lab;
+//import com.csci3130.daloffline.courses.Lecture;
+//import com.csci3130.daloffline.courses.*;
+>>>>>>> upstream/master
 import com.csci3130.daloffline.domain.Course;
 import com.vaadin.navigator.*;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -16,7 +26,9 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.v7.data.Item;
 import com.vaadin.v7.data.util.BeanItemContainer;
+import com.vaadin.v7.data.util.IndexedContainer;
 import com.vaadin.v7.event.ItemClickEvent;
 import com.vaadin.v7.ui.Grid;
 import com.vaadin.v7.ui.TextField;
@@ -34,10 +46,9 @@ public class CourseListView extends VerticalLayout implements View {
     public Grid courseList = new Grid();
     Button backButton = new Button("Go Back");
     public CourseInfo courseInfo = new CourseInfo();
-    ArrayList<Course> courses = new ArrayList<Course>();
     
 	/**
-	 * Initializes and builds the course list
+	 * Initializes the view
 	 * 
 	 * @param None
 	 * @return Nothing
@@ -45,27 +56,13 @@ public class CourseListView extends VerticalLayout implements View {
     public CourseListView(DalOfflineUI ui) {
         backButton.addClickListener(e -> getUI().getNavigator().navigateTo("main"));
 
-        filter.setInputPrompt("Filter courses...");
+        filter.setInputPrompt("Type something here and imagine that filtering was implemented...");
         //filter.addTextChangeListener(e -> refreshList(e.getText()));
-
-        Course newCourse = new Course("Software Engineering", "Computer Science", "CSCI3130", "Dr. Ashraf Abusharek");
-        Lecture lec = new Lecture("LSC-PSYCHOLOGY P5260", 1234);
-        lec.addTime(3, 16, 0, 90);
-        lec.addTime(5, 16, 0, 90);
-        Lab lab = new Lab("KILLAM 2600", 1234);
-        lab.addTime(4, 8, 30, 90);
-        newCourse.addLab(lab);
-        newCourse.addLecture(lec);
         
-        courses.add(newCourse);
-        courses.add(new Course("Network Computing", "Computer Science", "CSCI3171", "Dr. Nur Zincir-Heywood"));
-        courses.add(new Course("Principles of Programming Languages", "Computer Science", "CSCI3136", "Dr. Nauzer Kalyaniwalla"));
-        
-        courseList.addSelectionListener(e -> viewCourse((Course) courseList.getSelectedRow()));
+        courseList.addSelectionListener(e -> viewCourse((Course)courseList.getSelectedRow()));
         
         refreshList();
         buildLayout();
-        //courseList.setColumnOrder("name", "code", "faculty");
     }
     
 	/**
@@ -113,18 +110,43 @@ public class CourseListView extends VerticalLayout implements View {
     }
     
 	/**
-	 * Refresh the table and hide the side panel
+	 * Refresh/fill the table
 	 * 
 	 * @param None
 	 * @return Nothing
 	 */
-    void refreshList() {
-    	//refreshList(filter.getValue());
-    	courseList.setContainerDataSource(new BeanItemContainer<>(Course.class, courses));
+    @SuppressWarnings("unchecked") //Don't worry about it
+	void refreshList()
+    {
+    	EntityManager em = DalOfflineUI.factory.createEntityManager();
+    	em.getTransaction().begin();
+    	Query query = em.createQuery("SELECT c FROM COURSES c");
+    	List<Course> courses = query.getResultList();
+    	em.getTransaction().commit();
+    	em.close();
+    	
+    	//Probably not the best way to do this, but it works for now, and theres nothing reeeeally wrong with it
+    	IndexedContainer container = new IndexedContainer();
+    	container.addContainerProperty("Course ID", Long.class, "");
+    	container.addContainerProperty("Course Name", String.class, "");
+    	container.addContainerProperty("Course Code", String.class, "");
+    	container.addContainerProperty("Faculty", String.class, "");
+    	container.addContainerProperty("Instructor", String.class, "");
+    	
+    	for (Course course : courses){
+    		Item item = container.addItem(course);
+    		item.getItemProperty("Course ID").setValue(course.getID());
+    		item.getItemProperty("Course Name").setValue(course.getCourseName());
+            item.getItemProperty("Course Code").setValue(course.getCourseCode());
+            item.getItemProperty("Faculty").setValue(course.getFaculty());
+            item.getItemProperty("Instructor").setValue(course.getInstructorName());
+    	}
+    	
+    	courseList.setContainerDataSource(container);
     	courseInfo.setVisible(false);
     }
 
-    //private void refreshList(String stringFilter) {}
+    //private void refreshList(String stringFilter) {} //Filtering coming ""soon""
 
     @Override
     public void enter(ViewChangeEvent event) {}
