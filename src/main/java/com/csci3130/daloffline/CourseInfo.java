@@ -1,7 +1,8 @@
 package com.csci3130.daloffline;
 
-import com.csci3130.daloffline.courses.*;
-import com.csci3130.daloffline.domain.Course;
+import java.util.ArrayList;
+
+import com.csci3130.daloffline.domain.*;
 import com.csci3130.daloffline.views.CourseListView;
 import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.Button;
@@ -48,11 +49,27 @@ public class CourseInfo extends VerticalLayout {
 	 * @param Course
 	 * @return Nothing
 	 */
-	public void setCourse(Course course)
+	public void setCourse(Course course) //This panel gets the course object from the table passed to it, so you can use this to add a ref to it in student, or something
 	{
 		String text = "<b>Course Name:</b> "+course.getCourseName()+"<br><b>Course Code:</b> "+course.getCourseCode()
         		      +"<br><b>Professor:</b> "+course.getInstructorName()+"<br><b>Department:</b> "+course.getFaculty();
 		
+		//very basic, just prints out info from the sections to prove that they exist. needs more work
+		//Print out lectures
+		ArrayList<Section> lectures = course.getLectures();
+		text += "<br><br><b>Lecture Sections:</b>";
+		for(Section lec : lectures)
+		{
+			text += "<br>-At "+lec.getLocation()+" with "+lec.getInstructor();
+		}
+		
+		//Print out labs
+		ArrayList<Section> labs = course.getLabs();
+		text += "<br><br><b>Lab Sections:</b>";
+		for(Section lab : labs)
+		{
+			text += "<br>-At "+lab.getLocation()+" with "+lab.getInstructor();
+		}
 		info.setCaption(text);
 	}
 	

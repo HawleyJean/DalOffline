@@ -56,6 +56,7 @@ public class DalOfflineUI extends UI {
     	
     	factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
     	DatabaseInitializer.generateUsers(factory);
+    	DatabaseInitializer.generateCourses(factory);
     	
     	// Create a navigator to control the views
 		navigator = new Navigator(this, this);
