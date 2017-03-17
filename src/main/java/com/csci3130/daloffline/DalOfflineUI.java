@@ -61,7 +61,7 @@ public class DalOfflineUI extends UI {
 	 */
     @Override
     protected void init(VaadinRequest request) {
-    	getSession().getSession().setMaxInactiveInterval(60);
+    	
     	factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
     	DatabaseInitializer.generateUsers(factory);
     	
