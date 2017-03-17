@@ -1,5 +1,6 @@
 package com.csci3130.daloffline.courses;
 
+import java.util.ArrayList;
 import java.util.Vector;
 
 /**
@@ -13,6 +14,7 @@ public class Period {
 	String location;
 	private int CRN;
 	private Vector<DaySlot> times = new Vector<DaySlot>();
+	//Vectorss are garbage and we should use arraylists because they are not garbage. -Alex & Braden
 		
 	public Period()
 	{
@@ -43,6 +45,24 @@ public class Period {
 	}
 	public void setCRN(int CRN) {
 		this.CRN = CRN;
+	}
+	
+	public Period checkConflicts(ArrayList<Period> array){
+		
+		for(int i = 0; i < array.size(); i++){
+			for(int j = 0; j < array.get(i).getTimes().size(); j++){
+				
+			}
+		}
+		
+		
+		
+		
+		
+		return null;
+	}
+	public Vector<DaySlot> getTimes() {
+		return times;
 	}
 		
 }
