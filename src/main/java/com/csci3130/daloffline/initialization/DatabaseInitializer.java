@@ -9,12 +9,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceContextType;
 import javax.persistence.*;
-
-
 
 
 /**
@@ -26,6 +21,7 @@ import javax.persistence.*;
 public class DatabaseInitializer {
 
 	public static ArrayList<UsernamePasswordPair> usernamePasswordPairs = new ArrayList<UsernamePasswordPair>();
+	//public static ArrayList<Course> courses = new ArrayList<Course>();
 	
 	/**
 	 * Fills the specified persistence unit (database) with user and password pairs for testing.
@@ -66,6 +62,49 @@ public class DatabaseInitializer {
 			e.printStackTrace();
 		}
 			
+		em.close();
+	}
+	
+	/**
+	 * Fills the specified persistence unit (database) with courses for testing.
+	 * @param persistenceUnitName
+	 */
+	public static void generateCourses(EntityManagerFactory factory) {
+		
+		EntityManager em = factory.createEntityManager();
+		
+		em.getTransaction().begin(); //Begin a transaction
+		Course newCourse = new Course("Software Engineering", "Computer Science", "CSCI3130", "Dr. Ashraf Abusharekh"); //Create a course object with params
+		Section newSection = new Section("Killam Fun Zone", 123, "The TAs", 8, 30, 90); //Create a section with params
+		newSection.addDays(new int[]{4,6}); //Set days for this section
+		newCourse.addLab(newSection); //Add the section to the course as a lab or lecture
+		newSection.setCourse(newCourse); //Set the reference to the parent course from the section
+		
+		newSection = new Section("Psychology building for some reason", 69, "The Professor", 4, 0, 90);
+		newSection.addDays(new int[]{3,5});
+		newCourse.addLecture(newSection);
+		newSection.setCourse(newCourse);
+		em.persist(newCourse); //Persist the course (will automatically persist the added sections)
+		
+		newCourse = new Course("Principles of Programming Languages", "Computer Science", "CSCI3136", "NAUZER");
+		newSection = new Section("CS 127", 666, "NAAUUUZER", 2, 30, 60);
+		newSection.addDays(new int[]{2,4,6});
+		newCourse.addLecture(newSection);
+		newSection.setCourse(newCourse);
+		newSection = new Section("Somewhere Else", 667, "NAAUUUZER", 11, 30, 60);
+		newSection.addDays(new int[]{2,4,6});
+		newCourse.addLecture(newSection);
+		newSection.setCourse(newCourse);
+		em.persist(newCourse);
+
+		em.getTransaction().commit();
+		
+		/*em.getTransaction().begin();
+		Course gotCourse = (Course) em.createQuery("SELECT c FROM COURSES c").getSingleResult();
+		ArrayList<Section> sections = gotCourse.getSections();
+		Section fuck = sections.get(0);
+		System.out.println("!---> Coursename: "+gotCourse.getCourseName()+" - "+fuck.getLocation());
+		em.getTransaction().commit();*/
 		em.close();
 	}
 	

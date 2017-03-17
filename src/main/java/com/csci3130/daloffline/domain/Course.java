@@ -1,21 +1,19 @@
 package com.csci3130.daloffline.domain;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
 
 import javax.persistence.*;
 
-import com.csci3130.daloffline.courses.Lab;
-import com.csci3130.daloffline.courses.Lecture;
 
 /**
  * Class that represents a university course
  * 
  * @author Hawley Jean
- * @author Jesse MacLeod
+ * @author Connor Foran
  */
 
-@Entity
+@Entity(name = "COURSES") 
 public class Course implements Serializable, Cloneable {
 	
 	/**
@@ -23,22 +21,22 @@ public class Course implements Serializable, Cloneable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue
+    @Id
+    @Column(name = "COURSE_ID", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
+    //Attributes
 	private String courseName;
-	private String faculty;
 	private String courseCode;
+	private String faculty;
 	private String instructorName;
 	
-	//@ElementCollection
-	@Transient // remove this when working
-	private Set<Lecture> lectures = new HashSet<Lecture>();
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "course")
+	private ArrayList<Section> lectures;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "course")
+	private ArrayList<Section> labs;
 	
-	//@ElementCollection
-	@Transient // remove this when working
-	private Set<Lab> labs = new HashSet<Lab>();
 	
 	/**
 	 * Base Constructor
@@ -48,7 +46,12 @@ public class Course implements Serializable, Cloneable {
 	 */
 	public Course()
 	{	
-		
+		courseName = "Unknown";
+		faculty = "Unknown";
+		courseCode = "XXXX0000";
+		instructorName = "Unknown";
+		lectures = new ArrayList<Section>();
+		labs = new ArrayList<Section>();
 	}
 	/**
 	 * Constructor that initializes values
@@ -65,28 +68,98 @@ public class Course implements Serializable, Cloneable {
 		this.faculty = faculty;
 		this.courseCode = courseCode;
 		this.instructorName = instructorName;
+		lectures = new ArrayList<Section>();
+		labs = new ArrayList<Section>();
 	}
 	
 	/**
 	 * Adds a lecture to the course
 	 * 
-	 * @param lec - A Lecture object
+	 * @param lec - A Section object representing a lecture
 	 * @return Nothing
 	 */
-	public void addLecture(Lecture lec)
+	public void addLecture(Section lec)
 	{
 		lectures.add(lec);
 	}
 	/**
-	 * Adds a lab to LabTimes
+	 * Adds a lecture to the course
 	 * 
-	 * @param lab - A Lab object
+	 * @param loc - a string representing the location
+	 * @param CRN - an integer for the Course Registration Number
+	 * @param Instructor - A string for the instructor's name
 	 * @return Nothing
 	 */
-	public void addLab(Lab lab)
+	public void addLecture(String loc, int CRN, String instructor)
+	{
+		lectures.add(new Section(loc, CRN, instructor));
+	}
+	/**
+	 * Adds a lab to the course
+	 * 
+	 * @param lab - A Section object representing a lab
+	 * @return Nothing
+	 */
+	public void addLab(Section lab)
 	{
 		labs.add(lab);
 	}
+	/**
+	 * Adds a lab to the course
+	 * 
+	 * @param loc - a string representing the location
+	 * @param CRN - an integer for the Course Registration Number
+	 * @param Instructor - A string for the instructor's name
+	 * @return Nothing
+	 */
+	public void addLab(String loc, int CRN, String instructor)
+	{
+		labs.add(new Section(loc, CRN, instructor));
+	}
+	
+	/**
+	 * Deletes all lectures and labs
+	 * 
+	 * @param None
+	 * @return Nothing
+	 */
+	public void clearSections()
+	{
+		labs.clear();
+		lectures.clear();
+	}
+	
+	/**
+	 * Returns an arraylist of lectures (Section objects)
+	 * 
+	 * @param lab - A Section object representing a lab
+	 * @return ArrayList<Section>
+	 */
+	public ArrayList<Section> getLectures()
+	{
+		return lectures;
+	}
+	/**
+	 * Returns an arraylist of labs (Section objects)
+	 * 
+	 * @param lab - A Section object representing a lab
+	 * @return ArrayList<Section>
+	 */
+	public ArrayList<Section> getLabs()
+	{
+		return labs;
+	}
+	
+	/**
+	 * Returns the primary key
+	 * 
+	 * @return long
+	 */
+	public long getID()
+	{
+		return id;
+	}
+	
 	/**
 	 * Returns the course name
 	 * 
