@@ -28,9 +28,9 @@ public class MainView extends VerticalLayout implements View {
     	username = (String) ui.getSession().getAttribute("username");
     	VerticalLayout container = new VerticalLayout();
     	Panel border = new Panel();
-        Button profileButton = new Button("View Your Profile/Schedule"); //A button
+        Button profileButton = new Button("View Your Profile And Schedule"); //A button
         profileButton.addClickListener(e -> getUI().getNavigator().navigateTo("profile")); //Specify a view for this button to direct you to
-      Label name = new Label("Hello, "+username);
+        Label name = new Label("Hello, "+username);
         Button studentListButton = new Button("View All Courses");
         studentListButton.addClickListener(e -> getUI().getNavigator().navigateTo("courselist"));
         
@@ -56,7 +56,7 @@ public class MainView extends VerticalLayout implements View {
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
-
-        Notification.show("Hello, "+username);
+    	//This is getting in the way of testing, and seems unnecessary
+//        Notification.show("Hello, "+username);
     }
 }
