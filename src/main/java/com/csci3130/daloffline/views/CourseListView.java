@@ -36,6 +36,7 @@ public class CourseListView extends VerticalLayout implements View {
 	Panel border = new Panel();
     TextField filter = new TextField();
     public Grid courseList = new Grid();
+    HorizontalLayout mainLayout;
     Button backButton = new Button("Go Back");
     public CourseInfo courseInfo = new CourseInfo();
     
@@ -46,7 +47,7 @@ public class CourseListView extends VerticalLayout implements View {
 	 * @return Nothing
 	 */
     public CourseListView(DalOfflineUI ui) {
-        backButton.addClickListener(e -> getUI().getNavigator().navigateTo("main"));
+        backButton.addClickListener(e -> getUI().getNavigator().navigateTo(DalOfflineUI.MAINVIEW));
 
         filter.setInputPrompt("Type something here and imagine that filtering was implemented...");
         //filter.addTextChangeListener(e -> refreshList(e.getText()));
@@ -63,7 +64,8 @@ public class CourseListView extends VerticalLayout implements View {
 	 * @param None
 	 * @return Nothing
 	 */
-    private void buildLayout() {
+    private void buildLayout()
+    {
         HorizontalLayout actions = new HorizontalLayout(backButton, filter);
         actions.setWidth("100%");
         filter.setWidth("100%");
@@ -74,7 +76,7 @@ public class CourseListView extends VerticalLayout implements View {
         courseList.setSizeFull();
         left.setExpandRatio(courseList, 1);
 
-        HorizontalLayout mainLayout = new HorizontalLayout(left, courseInfo);
+        mainLayout = new HorizontalLayout(left, courseInfo);
         mainLayout.setSizeFull();
         mainLayout.setExpandRatio(left, 1);
 
@@ -97,6 +99,11 @@ public class CourseListView extends VerticalLayout implements View {
     {
     	if(course == null)
     		return;
+    	
+    	mainLayout.removeComponent(courseInfo);
+    	courseInfo = new CourseInfo();
+    	mainLayout.addComponent(courseInfo);
+    	
     	courseInfo.setCourse(course);
     	courseInfo.setVisible(true);
     }

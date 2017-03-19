@@ -44,7 +44,7 @@ public class ProfileView extends VerticalLayout implements View {
         TabSheet tabsheet = new TabSheet(); //Tabs
         
         Button backButton = new Button("Go Back"); //Button to go back to the main menu
-        backButton.addClickListener(e -> getUI().getNavigator().navigateTo("main"));
+        backButton.addClickListener(e -> getUI().getNavigator().navigateTo(DalOfflineUI.MAINVIEW));
         
         HorizontalLayout profile = new HorizontalLayout(); //Profile tab
         profile.setSizeFull();

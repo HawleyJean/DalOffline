@@ -29,14 +29,14 @@ public class MainView extends VerticalLayout implements View {
     	VerticalLayout container = new VerticalLayout();
     	Panel border = new Panel();
         Button profileButton = new Button("View Your Profile/Schedule"); //A button
-        profileButton.addClickListener(e -> getUI().getNavigator().navigateTo("profile")); //Specify a view for this button to direct you to
-      Label name = new Label("Hello, "+username);
-        Button studentListButton = new Button("View All Courses");
-        studentListButton.addClickListener(e -> getUI().getNavigator().navigateTo("courselist"));
+        profileButton.addClickListener(e -> getUI().getNavigator().navigateTo(DalOfflineUI.USERPROFILE)); //Specify a view for this button to direct you to
+        Label name = new Label("Hello, "+username);
+        Button courseListButton = new Button("View All Courses");
+        courseListButton.addClickListener(e -> getUI().getNavigator().navigateTo(DalOfflineUI.COURSELIST));
         
-        container.addComponents(name, profileButton, studentListButton); //Add buttons to the view
+        container.addComponents(name, profileButton, courseListButton); //Add buttons to the view
         container.setComponentAlignment(profileButton, Alignment.MIDDLE_CENTER); //Set alignments
-        container.setComponentAlignment(studentListButton, Alignment.MIDDLE_CENTER);
+        container.setComponentAlignment(courseListButton, Alignment.MIDDLE_CENTER);
         container.setComponentAlignment(name, Alignment.MIDDLE_CENTER);
         container.setHeight("40%");
         

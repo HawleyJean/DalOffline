@@ -73,6 +73,11 @@ public class Section implements Serializable, Cloneable {
 	}
 	
 	
+	public long getID()
+	{
+		return id;
+	}
+	
 	//Set the time
 	public void setTime(int hours, int minutes, int dur)
 	{
@@ -111,6 +116,7 @@ public class Section implements Serializable, Cloneable {
 			newTime.set(GregorianCalendar.HOUR_OF_DAY, startHour);
 			newTime.set(GregorianCalendar.MINUTE, startMinute);
 			newTime.set(GregorianCalendar.SECOND, 0);
+			startTimes.add(newTime);
 		}
 		return startTimes;
 	}
@@ -125,6 +131,7 @@ public class Section implements Serializable, Cloneable {
 			newTime.set(GregorianCalendar.HOUR_OF_DAY, startHour);
 			newTime.set(GregorianCalendar.MINUTE, startMinute+durationMinutes);
 			newTime.set(GregorianCalendar.SECOND, 0);
+			endTimes.add(newTime);
 		}
 		return endTimes;
 	}
