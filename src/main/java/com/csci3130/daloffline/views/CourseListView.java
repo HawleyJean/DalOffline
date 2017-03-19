@@ -1,4 +1,5 @@
 package com.csci3130.daloffline.views;
+import com.csci3130.daloffline.domain.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,9 +9,6 @@ import javax.persistence.Query;
 
 import com.csci3130.daloffline.CourseInfo;
 import com.csci3130.daloffline.DalOfflineUI;
-//import com.csci3130.daloffline.courses.Lab;
-//import com.csci3130.daloffline.courses.Lecture;
-//import com.csci3130.daloffline.courses.*;
 import com.csci3130.daloffline.domain.Course;
 import com.vaadin.navigator.*;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -47,7 +45,7 @@ public class CourseListView extends VerticalLayout implements View {
 	 * @param None
 	 * @return Nothing
 	 */
-    public CourseListView() {
+    public CourseListView(DalOfflineUI ui) {
         backButton.addClickListener(e -> getUI().getNavigator().navigateTo("main"));
 
         filter.setInputPrompt("Type something here and imagine that filtering was implemented...");

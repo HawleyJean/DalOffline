@@ -2,6 +2,7 @@ package com.csci3130.daloffline.views;
 
 import java.util.GregorianCalendar;
 
+import com.csci3130.daloffline.DalOfflineUI;
 import com.vaadin.navigator.*;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.ExternalResource;
@@ -34,7 +35,7 @@ public class ProfileView extends VerticalLayout implements View {
 	 * @param None
 	 * @return Nothing
 	 */
-    public ProfileView() {
+    public ProfileView(DalOfflineUI ui) {
         setSizeFull();
         
         VerticalLayout container = new VerticalLayout();
