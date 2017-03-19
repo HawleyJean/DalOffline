@@ -70,9 +70,9 @@ public class LoginView extends VerticalLayout implements View {
 		if(Authenticator.authenticate(username, password, DalOfflineUI.factory)) {
 			ui.getSession().setAttribute("username", username);
 			ui.getSession().getSession().setMaxInactiveInterval(600);
-			getUI().getNavigator().addView("courselist", new CourseListView(ui));
-	        getUI().getNavigator().addView("main", new MainView(ui));
-	        getUI().getNavigator().addView("profile", new ProfileView(ui));
+			getUI().getNavigator().addView(DalOfflineUI.COURSELIST, new CourseListView(ui));
+	        getUI().getNavigator().addView(DalOfflineUI.MAINVIEW, new MainView(ui));
+	        getUI().getNavigator().addView(DalOfflineUI.USERPROFILE, new ProfileView(ui));
 	        
 			getUI().getNavigator().navigateTo("main");
 		}

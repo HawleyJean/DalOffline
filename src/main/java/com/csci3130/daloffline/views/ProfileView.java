@@ -1,8 +1,15 @@
 package com.csci3130.daloffline.views;
 
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import com.csci3130.daloffline.DalOfflineUI;
+import com.csci3130.daloffline.domain.Course;
+import com.csci3130.daloffline.domain.Section;
 import com.vaadin.navigator.*;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.ExternalResource;
@@ -36,6 +43,12 @@ public class ProfileView extends VerticalLayout implements View {
 	 * @return Nothing
 	 */
     public ProfileView(DalOfflineUI ui) {
+    	EntityManager em = DalOfflineUI.factory.createEntityManager();
+    	em.getTransaction().begin();
+    	Query query = em.createQuery("SELECT s FROM Section s");
+    	List<Section> sections = query.getResultList();
+    	em.getTransaction().commit();
+    	em.close();
         setSizeFull();
         
         VerticalLayout container = new VerticalLayout();
@@ -44,7 +57,7 @@ public class ProfileView extends VerticalLayout implements View {
         TabSheet tabsheet = new TabSheet(); //Tabs
         
         Button backButton = new Button("Go Back"); //Button to go back to the main menu
-        backButton.addClickListener(e -> getUI().getNavigator().navigateTo("main"));
+        backButton.addClickListener(e -> getUI().getNavigator().navigateTo(DalOfflineUI.MAINVIEW));
         
         HorizontalLayout profile = new HorizontalLayout(); //Profile tab
         profile.setSizeFull();
@@ -85,24 +98,18 @@ public class ProfileView extends VerticalLayout implements View {
         schedule.setHandler((BasicEventResizeHandler)null);
         schedule.setHandler((BasicDateClickHandler)null);
         schedule.setSizeFull();
-        
-        //Add CSCI3130 to schedule
-        GregorianCalendar start = new GregorianCalendar();
-        start.set(GregorianCalendar.DAY_OF_WEEK, 3);
-        start.set(GregorianCalendar.HOUR_OF_DAY, 16);
-        start.set(GregorianCalendar.MINUTE, 0);
-        GregorianCalendar end = (GregorianCalendar) start.clone();
-        end.add(GregorianCalendar.MINUTE, 90);
-        schedule.addEvent(new BasicEvent("CSCI3130",
-                "Software Engineering",
-                start.getTime(), end.getTime()));
-        GregorianCalendar start2 = (GregorianCalendar) start.clone();
-        GregorianCalendar end2 = (GregorianCalendar) end.clone();
-        start2.add(GregorianCalendar.DAY_OF_WEEK, 2);
-        end2.add(GregorianCalendar.DAY_OF_WEEK, 2);
-        schedule.addEvent(new BasicEvent("CSCI3130",
-                "Software Engineering",
-                start2.getTime(), end2.getTime()));
+        schedule.setFirstVisibleHourOfDay(7);
+        schedule.setLastVisibleHourOfDay(18);
+        //populate schedule with items from database
+        	for(Section sec :sections){
+         	   String ccode = sec.getCourse().getCourseCode();
+         		String cname = sec.getCourse().getCourseName();
+             	ArrayList<GregorianCalendar> startTimes = sec.getStartTimes();
+             	ArrayList<GregorianCalendar> endTimes = sec.getEndTimes();
+             	for(int i=0; i<startTimes.size(); i++){
+             		schedule.addEvent(new BasicEvent(ccode, cname, startTimes.get(i).getTime(), endTimes.get(i).getTime()));
+             	}
+             }
     
         //Build page
         container.addComponents(backButton, tabsheet);
