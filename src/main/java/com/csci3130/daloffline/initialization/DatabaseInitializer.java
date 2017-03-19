@@ -80,14 +80,14 @@ public class DatabaseInitializer {
 		newCourse.addLab(newSection); //Add the section to the course as a lab or lecture
 		newSection.setCourse(newCourse); //Set the reference to the parent course from the section
 		
-		newSection = new Section("Psychology building for some reason", 69, "The Professor", 4, 0, 90);
+		newSection = new Section("Psychology building for some reason", 69, "The Professor", 16, 0, 90);
 		newSection.addDays(new int[]{3,5});
 		newCourse.addLecture(newSection);
 		newSection.setCourse(newCourse);
 		em.persist(newCourse); //Persist the course (will automatically persist the added sections)
 		
 		newCourse = new Course("Principles of Programming Languages", "Computer Science", "CSCI3136", "NAUZER");
-		newSection = new Section("CS 127", 666, "NAAUUUZER", 2, 30, 60);
+		newSection = new Section("CS 127", 666, "NAAUUUZER", 13, 30, 60);
 		newSection.addDays(new int[]{2,4,6});
 		newCourse.addLecture(newSection);
 		newSection.setCourse(newCourse);
