@@ -92,7 +92,12 @@
 		    <artifactId>h2</artifactId>
 		    <version>1.4.193</version>
 		</dependency>
-		
+		<!-- TestBench -->
+		<dependency>
+		    <groupId>com.vaadin</groupId>
+		    <artifactId>vaadin-testbench</artifactId>
+		    <version>4.2.0</version>
+		</dependency>		
     </dependencies>
 
     <build>
