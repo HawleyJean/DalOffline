@@ -47,10 +47,9 @@ public class DalOfflineUI extends UI {
 	public static EntityManagerFactory factory;
 	
 	// View Names
-    protected static final String MAINVIEW = "main";
-    protected static final String STUDENTLIST = "student_list";
-    protected static final String USERPROFILE = "profile";
-    protected static final String COURSELIST = "course_list";
+	public static final String MAINVIEW = "main";
+    public static final String USERPROFILE = "profile";
+    public static final String COURSELIST = "course_list";
     private String user ="";
 
 	/**
@@ -83,10 +82,5 @@ public class DalOfflineUI extends UI {
     }
     @WebServlet(urlPatterns = "/*")
     @VaadinServletConfiguration(ui = DalOfflineUI.class, productionMode = false)
-    public static class MyUIServlet extends VaadinServlet{
-
-    }
-
-
-
+    public static class MyUIServlet extends VaadinServlet{}
 }
