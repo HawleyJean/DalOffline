@@ -2,7 +2,12 @@ package com.csci3130.daloffline;
 
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.servlet.annotation.WebServlet;
+
+import com.csci3130.daloffline.initialization.DatabaseInitializer;
 import com.csci3130.daloffline.views.*;
 
 import com.vaadin.annotations.Theme;
@@ -18,14 +23,23 @@ import com.vaadin.ui.UI;
  * UI Navigation class. Controls the current view shown to the user.
  * 
  * @author Connor Foran
+ * @author Jesse MacLeod
  */
 
 @Title("Dal Offline")
 @Theme("valo")
 @Widgetset("com.vaadin.v7.Vaadin7WidgetSet")
-public class NavigatorUI extends UI {
+public class DalOfflineUI extends UI {
+	
+	// the name of the database as defined in persistance.xml
+	public static final String PERSISTENCE_UNIT = "daloffline_db";
+	
 	public Navigator navigator;
 	
+	// creating this once
+	public static EntityManagerFactory factory;
+	
+	// View Names
     protected static final String MAINVIEW = "main";
     protected static final String STUDENTLIST = "student_list";
     protected static final String USERPROFILE = "profile";
@@ -39,6 +53,11 @@ public class NavigatorUI extends UI {
 	 */
     @Override
     protected void init(VaadinRequest request) {
+    	
+    	factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+    	DatabaseInitializer.generateUsers(factory);
+    	DatabaseInitializer.generateCourses(factory);
+    	
     	// Create a navigator to control the views
 		navigator = new Navigator(this, this);
 
@@ -51,7 +70,7 @@ public class NavigatorUI extends UI {
     }
     
     @WebServlet(urlPatterns = "/*")
-    @VaadinServletConfiguration(ui = NavigatorUI.class, productionMode = false)
+    @VaadinServletConfiguration(ui = DalOfflineUI.class, productionMode = false)
     public static class MyUIServlet extends VaadinServlet{}
 
 }

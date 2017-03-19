@@ -7,6 +7,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.Base64.Encoder;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
+
+import com.csci3130.daloffline.DalOfflineUI;
+import com.csci3130.daloffline.domain.UsernamePasswordPair;
 
  
 /**
@@ -16,33 +26,11 @@ import java.util.Base64.Encoder;
  * @author Alex Gordon
  */
 public class Authenticator {
-
-	// placeholder stuff to be replaced with database stuff 
-	private static ArrayList<String[]> userPasswordPairs;
-	
-	
-	
-	/**
-	 * Initialize the Arraylist used in place of a database. 
-	 * Holds only one user/password pair ("user", "pass").
-	 * 
-	 * @throws NoSuchAlgorithmException
-	 * @throws UnsupportedEncodingException
-	 */
-	public static void initializePlaceHolderData() {
-		
-		// TODO replace this with data connector to user table in database or some
-		userPasswordPairs = new ArrayList<String[]>();
-				
-		String[] userPair = {"user", hash("pass")};
-		userPasswordPairs.add(userPair);
-		//hash("pass");
-	}
 	
 	/**
 	 * 
 	 * Returns true if username and password parameters match username/password pair
-	 * in the placeholder arraylist.
+	 * in the database. Defaults to the main, persistant database set in Daloffline.PERSISTEBNCE_UNIT
 	 * 
 	 * TODO Update this to connect to a data source to get the usernames and passwords
 	 * 		rather than some stupid arraylist. 
@@ -50,22 +38,41 @@ public class Authenticator {
 	 * @param username
 	 * @param password
 	 * @return True is username/password pair is found in data source
-	 * @throws NoSuchAlgorithmException
-	 * @throws UnsupportedEncodingException
 	 */
-	public static boolean authenticate(String username, String password) {
+
+	public static boolean authenticate(String username, String password, EntityManagerFactory factory) {
 		
-		//TODO link this with data source to get the usernames and passwords rather than this stupid arraylist
-		for(String[] s : userPasswordPairs)
-		{
-			if (s[0].equals(username) && s[1].equals(hash(password)))
-			{
-				//System.out.println("s[0]: "+s[0]+"\n"+"s[1]: "+s[1]);
-				return true;
+		EntityManager em = factory.createEntityManager(); 
+		
+		boolean out = false;
+		
+		try {
+	
+			// this is messy as hell but solves the problem of finding a single usernamepasswordpair by username
+			// field rather than primary key.
+			em.getTransaction().begin();
+			List<UsernamePasswordPair> test_result = em.createQuery("Select a from UsernamePasswordPair a", UsernamePasswordPair.class).getResultList();
+			em.getTransaction().commit();
+			
+			System.out.println(test_result.size() + " RESULTS FOUND");
+			
+			for(UsernamePasswordPair u : test_result) {
+				System.out.println("FOUND: "+u.getUsername()+", PASSWORD: "+u.getPassword());
 			}
+			
+			em.getTransaction().begin();
+			UsernamePasswordPair userpw = em.createQuery("SELECT user FROM UsernamePasswordPair user WHERE user.username = :input_user", UsernamePasswordPair.class)
+														.setParameter("input_user", username).getSingleResult();
+			em.getTransaction().commit();
+			out = (userpw.getPassword().equals(Authenticator.hash(password)));
+			
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
-		return false;
+		em.close();
+		
+		return out;
 		
 	}
 	
@@ -77,7 +84,7 @@ public class Authenticator {
 	 * @throws NoSuchAlgorithmException
 	 * @throws UnsupportedEncodingException
 	 */
-	private static String hash(String query) {
+	public static String hash(String query) {
 		
 		MessageDigest md;
 		byte[] result = null;
