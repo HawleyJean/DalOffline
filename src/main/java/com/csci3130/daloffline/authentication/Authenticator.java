@@ -16,7 +16,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
 
 import com.csci3130.daloffline.DalOfflineUI;
-import com.csci3130.daloffline.domain.UsernamePasswordPair;
+import com.csci3130.daloffline.domain.*;
 
  
 /**
@@ -51,17 +51,17 @@ public class Authenticator {
 			// this is messy as hell but solves the problem of finding a single usernamepasswordpair by username
 			// field rather than primary key.
 			em.getTransaction().begin();
-			List<UsernamePasswordPair> test_result = em.createQuery("Select a from UsernamePasswordPair a", UsernamePasswordPair.class).getResultList();
+			List<User> test_result = em.createQuery("Select a from USERS a", User.class).getResultList();
 			em.getTransaction().commit();
 			
 			System.out.println(test_result.size() + " RESULTS FOUND");
 			
-			for(UsernamePasswordPair u : test_result) {
+			for(User u : test_result) {
 				System.out.println("FOUND: "+u.getUsername()+", PASSWORD: "+u.getPassword());
 			}
 			
 			em.getTransaction().begin();
-			UsernamePasswordPair userpw = em.createQuery("SELECT user FROM UsernamePasswordPair user WHERE user.username = :input_user", UsernamePasswordPair.class)
+			User userpw = em.createQuery("SELECT user FROM USERS user WHERE user.username = :input_user", User.class)
 														.setParameter("input_user", username).getSingleResult();
 			em.getTransaction().commit();
 			out = (userpw.getPassword().equals(Authenticator.hash(password)));
