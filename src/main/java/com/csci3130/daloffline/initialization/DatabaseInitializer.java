@@ -80,7 +80,7 @@ public class DatabaseInitializer {
 		em.persist(newCourse); //Persist the course (will automatically persist the added sections)
 		
 		newCourse = new Course("Principles of Programming Languages", "Computer Science", "CSCI3136", "NAUZER");
-		newSection = new Section("CS 127", 666, "NAAUUUZER", 2, 30, 60);
+		newSection = new Section("CS 127", 666, "NAAUUUZER", 13, 30, 60);
 		newSection.addDays(new int[]{2,4,6});
 		newCourse.addLecture(newSection);
 		newSection.setCourse(newCourse);

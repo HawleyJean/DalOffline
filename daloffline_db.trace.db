@@ -122,3 +122,36 @@ ALTER TABLE USER DROP CONSTRAINT FK_USER_username_pw_id [90057-193]
 	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:610)
 	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:539)
 	at java.lang.Thread.run(Thread.java:745)
+2017-03-19 11:25:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SECTION" not found; SQL statement:
+ALTER TABLE SECTION DROP CONSTRAINT FK_SECTION_COURSE_ID [42102-193]
+2017-03-19 11:25:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "COURSES" not found; SQL statement:
+DROP TABLE COURSES [42102-193]
+2017-03-19 11:25:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SECTION" not found; SQL statement:
+DROP TABLE SECTION [42102-193]
+2017-03-19 11:25:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "COURSES" not found; SQL statement:
+DROP TABLE COURSES [42102-193]
+2017-03-19 11:25:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SECTION" not found; SQL statement:
+DROP TABLE SECTION [42102-193]
+2017-03-19 11:25:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "COURSES" not found; SQL statement:
+DROP TABLE COURSES [42102-193]
+2017-03-19 11:25:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SECTION" not found; SQL statement:
+DROP TABLE SECTION [42102-193]
+2017-03-19 11:25:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "COURSES" not found; SQL statement:
+DROP TABLE COURSES [42102-193]
+2017-03-19 11:25:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SECTION" not found; SQL statement:
+DROP TABLE SECTION [42102-193]
+2017-03-19 11:25:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "COURSES" not found; SQL statement:
+DROP TABLE COURSES [42102-193]
+2017-03-19 11:25:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SECTION" not found; SQL statement:
+DROP TABLE SECTION [42102-193]
