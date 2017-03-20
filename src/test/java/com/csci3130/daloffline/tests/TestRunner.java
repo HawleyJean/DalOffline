@@ -5,13 +5,14 @@ import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 
 public class TestRunner {
-   public static void main(String[] args) {
-      Result result = JUnitCore.runClasses(AuthenticatorTest.class, UILoginTest.class);
-		
-      for (Failure failure : result.getFailures()) {
-         System.out.println(failure.toString());
-      }
-		
-      System.out.println(result.wasSuccessful());
-   }
-} 
+	public static void main(String[] args) {
+		// not all these actually work since their methods don't exist
+		// Result result = JUnitCore.runClasses(AuthenticatorTest.class, UILoginTest.class, CourseTest.class, UserTest.class);
+		Result result = JUnitCore.runClasses(AuthenticatorTest.class, UILoginTest.class);
+		for (Failure failure : result.getFailures()) {
+			System.out.println(failure.toString());
+		}
+
+		System.out.println(result.wasSuccessful());
+	}
+}
