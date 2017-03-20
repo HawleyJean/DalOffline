@@ -41,8 +41,8 @@ public class User implements Serializable {
 	{
 		this.username = username;
 		this.password = password;
-		this.setFullName(name);
-		this.setMajor(major);
+		this.fullName = name;
+		this.major = major;
 	}
 	
 	public String getBannerNumber()
@@ -54,6 +54,29 @@ public class User implements Serializable {
 	{
 		enrolledSections.add(sec);
 		return true;
+	}
+	//Not working
+	public boolean removeCourse(Course c)
+	{
+		boolean courseFound = false;
+
+		ArrayList<Integer> foundIndexes = new ArrayList<Integer>();
+		for(int i=0; i<enrolledSections.size(); i++)
+		{
+			if(enrolledSections.get(i).getCourse().getID() == c.getID())
+			{
+				courseFound = true;
+				foundIndexes.add(i);
+			}
+		}
+
+		if(foundIndexes.size() > 0)
+		{
+			for(int i=foundIndexes.size()-1; i>=0; i--)
+				enrolledSections.remove(foundIndexes.get(i));
+		}
+		
+		return courseFound;
 	}
 	
 	public ArrayList<Section> getEnrolledSections(){

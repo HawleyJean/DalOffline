@@ -29,11 +29,14 @@ import com.vaadin.v7.ui.NativeSelect;
 public class CourseInfo extends VerticalLayout {
 	Button closeButton = new Button("Close");
 	Button enrollButton = new Button("Enroll");
+	Button removeButton = new Button("Leave this Course");
 	
 	NativeSelect  lectureList = new NativeSelect ("Lecture Sections");
 	Section lectureChoice = null;
 	NativeSelect  labList = new NativeSelect ("Lab Sections");
 	Section labChoice = null;
+	
+	Course currentCourse = null;
 	
 	//ValueChangeListener lectureListener = e -> setLectureChoice(Long.parseLong((String)lectureList.getValue()));
 	//ValueChangeListener labListener = e -> setLabChoice(Long.parseLong((String)labList.getValue()));
@@ -59,15 +62,14 @@ public class CourseInfo extends VerticalLayout {
 		
 		closeButton.addClickListener(e -> this.getView().courseInfo.setVisible(false));
 		enrollButton.addClickListener(e -> addSectionToStudent());
+		//removeButton.addClickListener(e -> removeCourseFromStudent());
 		setVisible(false); //Invisible by default
         setHeight("100%");
         setWidth((int)(UI.getCurrent().getPage().getBrowserWindowWidth()*0.2), UNITS_PIXELS);
         setMargin(true);
         
         lectureList.setWidth((int)(UI.getCurrent().getPage().getBrowserWindowWidth()*0.1), UNITS_PIXELS);
-        //lectureList.setRows(4);
         labList.setWidth((int)(UI.getCurrent().getPage().getBrowserWindowWidth()*0.1), UNITS_PIXELS);
-        //labList.setRows(4);
         lectureList.setNullSelectionAllowed(false);
         labList.setNullSelectionAllowed(false);
 
@@ -118,6 +120,23 @@ public class CourseInfo extends VerticalLayout {
 		Notification.show("Section enrollment successful.","Total enrolled sections: "+user.getEnrolledSections().size(),Type.TRAY_NOTIFICATION);
 	}
 	
+	//Remove course functionality not currently working.
+	public void removeCourseFromStudent()
+	{
+		//Get the current user object
+		EntityManager em = DalOfflineUI.factory.createEntityManager();
+		em.getTransaction().begin();
+		String username = (String) getUI().getSession().getAttribute("username");
+		User user = em.createQuery("SELECT user FROM USERS user WHERE user.username = :input_user", User.class).setParameter("input_user", username).getSingleResult();
+		
+		boolean foundCourse = user.removeCourse(currentCourse);
+		
+		if(foundCourse)
+			Notification.show("Removed course from student account.","New total enrolled sections: "+user.getEnrolledSections().size(),Type.TRAY_NOTIFICATION);
+		else
+			Notification.show("Remove course failed.","You are not enrolled into this course.",Type.TRAY_NOTIFICATION);
+	}
+	
 	/**
 	 * Displays the information of the given course in the panel
 	 * 
@@ -126,6 +145,7 @@ public class CourseInfo extends VerticalLayout {
 	 */
 	public void setCourse(Course course)
 	{
+		currentCourse = course;
 		//Course Info
 		String text = "<b>Course Name:</b> "+course.getCourseName()+"<br><b>Course Code:</b> "+course.getCourseCode()
         		      +"<br><b>Professor:</b> "+course.getInstructorName()+"<br><b>Department:</b> "+course.getFaculty();
