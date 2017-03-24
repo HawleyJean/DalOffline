@@ -8,8 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import com.csci3130.daloffline.DalOfflineUI;
-import com.csci3130.daloffline.domain.Course;
-import com.csci3130.daloffline.domain.Section;
+import com.csci3130.daloffline.domain.*;
 import com.vaadin.navigator.*;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.ExternalResource;
@@ -33,33 +32,38 @@ import com.vaadin.shared.ui.label.ContentMode;
  * User profile view. Shows the user their own profile, and allows them to view their current schedule.
  * 
  * @author Connor Foran
+ * @author Brendan Chan
  */
 
 public class ProfileView extends VerticalLayout implements View {
+	private String currentUsername;
+	private Calendar schedule;
+	private HorizontalLayout profile = new HorizontalLayout(); //Profile tab
+	private TabSheet tabsheet = new TabSheet();
 	/**
 	 * Initializes and builds the profile page
 	 * 
 	 * @param None
 	 * @return Nothing
 	 */
-    public ProfileView(DalOfflineUI ui) {
+    public ProfileView(DalOfflineUI ui)
+    {
+    	//Get the current user
     	EntityManager em = DalOfflineUI.factory.createEntityManager();
     	em.getTransaction().begin();
-    	Query query = em.createQuery("SELECT s FROM Section s");
-    	List<Section> sections = query.getResultList();
-    	em.getTransaction().commit();
-    	em.close();
+    	currentUsername = (String) ui.getSession().getAttribute("username");
+        User user = em.createQuery("SELECT user FROM USERS user WHERE user.username = :input_user", User.class).setParameter("input_user", currentUsername).getSingleResult();
+        em.getTransaction().commit();
+        em.close();
+     
+        //Build UI
         setSizeFull();
-        
         VerticalLayout container = new VerticalLayout();
         Panel border = new Panel();
         
-        TabSheet tabsheet = new TabSheet(); //Tabs
-        
         Button backButton = new Button("Go Back"); //Button to go back to the main menu
         backButton.addClickListener(e -> getUI().getNavigator().navigateTo(DalOfflineUI.MAINVIEW));
-        
-        HorizontalLayout profile = new HorizontalLayout(); //Profile tab
+
         profile.setSizeFull();
         
         //Panel with three buttons inside it
@@ -75,8 +79,8 @@ public class ProfileView extends VerticalLayout implements View {
         content.addComponents(button1, button2, button3);
         actions.setContent(content);
         
-        //Text in center part of profile
-        Label profileInfo = new Label("<b>Name:</b> Jimmy McStudent<br><b>Banner ID:</b> B00XXXXXX<br><b>Major:</b> Computer Science");
+        //User information text in center part of profile
+        Label profileInfo = new Label("<b>Name: </b>"+user.getFullName()+"<br><b>Banner ID: </b>"+user.getBannerNumber()+"<br><b>Major: </b>"+user.getMajor());
         profileInfo.setContentMode(ContentMode.HTML);
         //Image on left part of profile
         Image image = new Image();
@@ -92,7 +96,7 @@ public class ProfileView extends VerticalLayout implements View {
         tabsheet.addTab(profile, "Profile");
         
         //Create schedule
-        Calendar schedule = new Calendar();
+        schedule = new Calendar();
         tabsheet.addTab(schedule, "Schedule");
         schedule.setHandler((BasicEventMoveHandler)null);
         schedule.setHandler((BasicEventResizeHandler)null);
@@ -100,17 +104,7 @@ public class ProfileView extends VerticalLayout implements View {
         schedule.setSizeFull();
         schedule.setFirstVisibleHourOfDay(7);
         schedule.setLastVisibleHourOfDay(18);
-        //populate schedule with items from database
-        	for(Section sec :sections){
-         	   String ccode = sec.getCourse().getCourseCode();
-         		String cname = sec.getCourse().getCourseName();
-             	ArrayList<GregorianCalendar> startTimes = sec.getStartTimes();
-             	ArrayList<GregorianCalendar> endTimes = sec.getEndTimes();
-             	for(int i=0; i<startTimes.size(); i++){
-             		schedule.addEvent(new BasicEvent(ccode, cname, startTimes.get(i).getTime(), endTimes.get(i).getTime()));
-             	}
-             }
-    
+
         //Build page
         container.addComponents(backButton, tabsheet);
         tabsheet.setSizeFull();
@@ -129,5 +123,38 @@ public class ProfileView extends VerticalLayout implements View {
 
 
     @Override
-    public void enter(ViewChangeEvent event) {}
+    public void enter(ViewChangeEvent event){
+    	//Get the current user
+    	EntityManager em = DalOfflineUI.factory.createEntityManager();
+    	em.getTransaction().begin();
+        User user = em.createQuery("SELECT user FROM USERS user WHERE user.username = :input_user", User.class).setParameter("input_user", currentUsername).getSingleResult();
+        em.getTransaction().commit();
+        em.close();
+        
+        tabsheet.removeAllComponents();
+        tabsheet.addTab(profile, "Profile");
+        schedule = new Calendar();
+        tabsheet.addTab(schedule, "Schedule");
+        schedule.setHandler((BasicEventMoveHandler)null);
+        schedule.setHandler((BasicEventResizeHandler)null);
+        schedule.setHandler((BasicDateClickHandler)null);
+        schedule.setSizeFull();
+        schedule.setFirstVisibleHourOfDay(7);
+        schedule.setLastVisibleHourOfDay(18);
+        
+    	//Populate schedule with the user's sections
+        ArrayList<Section> sections = user.getEnrolledSections(); //Get the user's current sections
+        for(Section sec :sections)
+        {
+          //Get course code and course name from section's associated course
+          String ccode = sec.getCourse().getCourseCode();
+          String cname = sec.getCourse().getCourseName();
+          //Get startTimes and endTimes from section
+          ArrayList<GregorianCalendar> startTimes = sec.getStartTimes();
+          ArrayList<GregorianCalendar> endTimes = sec.getEndTimes();
+          //Add each pair of start and end times to the schedule
+          for(int i=0; i<startTimes.size(); i++)
+              schedule.addEvent(new BasicEvent(ccode, cname, startTimes.get(i).getTime(), endTimes.get(i).getTime()));
+        }
+    }
 }

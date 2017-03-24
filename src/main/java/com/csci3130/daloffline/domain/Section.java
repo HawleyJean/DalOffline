@@ -13,7 +13,7 @@ import javax.persistence.*;
  * @author Connor Foran
  */
 
-@Entity
+@Entity(name = "SECTIONS") 
 public class Section implements Serializable, Cloneable {
 		
 	/**

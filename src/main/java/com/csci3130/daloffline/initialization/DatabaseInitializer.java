@@ -73,7 +73,7 @@ public class DatabaseInitializer {
 		newCourse.addLab(newSection); //Add the section to the course as a lab or lecture
 		newSection.setCourse(newCourse); //Set the reference to the parent course from the section
 		
-		newSection = new Section("Psych. 415", 69, "The Professor", 4, 0, 90);
+		newSection = new Section("Psych. 415", 69, "The Professor", 16, 0, 90);
 		newSection.addDays(new int[]{3,5});
 		newCourse.addLecture(newSection);
 		newSection.setCourse(newCourse);
