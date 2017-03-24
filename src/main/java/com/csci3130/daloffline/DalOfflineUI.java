@@ -71,7 +71,6 @@ public class DalOfflineUI extends UI {
         // Create and register the views
 		navigator.addView("", new LoginView(DalOfflineUI.this));
 		
-        
     }
 
     public void setUser(String user){
