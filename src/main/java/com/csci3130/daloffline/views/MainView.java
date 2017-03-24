@@ -32,8 +32,8 @@ public class MainView extends VerticalLayout implements View {
         Button profileButton = new Button("View Your Profile And Schedule"); //A button
         profileButton.addClickListener(e -> getUI().getNavigator().navigateTo("profile")); //Specify a view for this button to direct you to
         Label name = new Label("Hello, "+username);
-        Button studentListButton = new Button("View All Courses");
-        studentListButton.addClickListener(e -> getUI().getNavigator().navigateTo("courselist"));
+        Button courseListButton = new Button("View All Courses");
+        courseListButton.addClickListener(e -> getUI().getNavigator().navigateTo("course_list"));
         
         container.addComponents(name, profileButton, courseListButton); //Add buttons to the view
         container.setComponentAlignment(profileButton, Alignment.MIDDLE_CENTER); //Set alignments
