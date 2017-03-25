@@ -9,9 +9,8 @@ import org.junit.Test;
 
 import com.csci3130.daloffline.authentication.*;
 import com.csci3130.daloffline.initialization.DatabaseInitializer;
-import com.vaadin.testbench.TestBenchTestCase;
 
-public class AuthenticatorTest extends TestBenchTestCase {
+public class AuthenticatorTest {
 
 	@Test
 	public void authenticateTest() {
