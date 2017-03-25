@@ -62,7 +62,7 @@ public class CourseInfo extends VerticalLayout {
 		
 		closeButton.addClickListener(e -> this.getView().courseInfo.setVisible(false));
 		enrollButton.addClickListener(e -> addSectionToStudent());
-		//removeButton.addClickListener(e -> removeCourseFromStudent());
+		removeButton.addClickListener(e -> removeCourseFromStudent());
 		setVisible(false); //Invisible by default
         setHeight("100%");
         setWidth((int)(UI.getCurrent().getPage().getBrowserWindowWidth()*0.2), UNITS_PIXELS);
@@ -74,7 +74,7 @@ public class CourseInfo extends VerticalLayout {
         labList.setNullSelectionAllowed(false);
 
 
-        addComponents(courseInfo, lectureList, labList, lectureInfo, labInfo, enrollButton, closeButton);
+        addComponents(courseInfo, lectureList, labList, lectureInfo, labInfo, enrollButton, removeButton, closeButton);
 	}
 	
 	/**
@@ -135,6 +135,9 @@ public class CourseInfo extends VerticalLayout {
 			Notification.show("Removed course from student account.","New total enrolled sections: "+user.getEnrolledSections().size(),Type.TRAY_NOTIFICATION);
 		else
 			Notification.show("Remove course failed.","You are not enrolled into this course.",Type.TRAY_NOTIFICATION);
+		
+		em.getTransaction().commit();
+    	em.close();
 	}
 	
 	/**

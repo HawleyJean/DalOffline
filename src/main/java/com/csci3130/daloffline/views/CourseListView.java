@@ -9,7 +9,6 @@ import javax.persistence.Query;
 
 import com.csci3130.daloffline.CourseInfo;
 import com.csci3130.daloffline.DalOfflineUI;
-import com.csci3130.daloffline.domain.Course;
 import com.vaadin.navigator.*;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Alignment;
@@ -49,12 +48,12 @@ public class CourseListView extends VerticalLayout implements View {
     public CourseListView(DalOfflineUI ui) {
         backButton.addClickListener(e -> getUI().getNavigator().navigateTo(DalOfflineUI.MAINVIEW));
 
-        filter.setInputPrompt("Type something here and imagine that filtering was implemented...");
-        //filter.addTextChangeListener(e -> refreshList(e.getText()));
+        filter.setInputPrompt("Filter courses...");
+        filter.addTextChangeListener(e -> refreshList(e.getText()));
         
         courseList.addSelectionListener(e -> viewCourse((Course)courseList.getSelectedRow()));
         
-        refreshList();
+        refreshList("");
         buildLayout();
     }
     
@@ -115,11 +114,13 @@ public class CourseListView extends VerticalLayout implements View {
 	 * @return Nothing
 	 */
     @SuppressWarnings("unchecked") //Don't worry about it
-	void refreshList()
+	void refreshList(String str)
     {
     	EntityManager em = DalOfflineUI.factory.createEntityManager();
     	em.getTransaction().begin();
-    	Query query = em.createQuery("SELECT c FROM COURSES c");
+    	//Query query = em.createQuery("SELECT c FROM COURSES c");
+    	Query query = em.createQuery("SELECT c FROM COURSES c WHERE UPPER(c.courseName) LIKE :val OR UPPER(c.courseCode) LIKE :val"
+    							    +" OR UPPER(c.faculty) LIKE :val OR UPPER(c.instructorName) LIKE :val").setParameter("val", "%"+str.toUpperCase()+"%");
     	List<Course> courses = query.getResultList();
     	em.getTransaction().commit();
     	em.close();

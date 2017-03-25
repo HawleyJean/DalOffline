@@ -27,7 +27,6 @@ public class Section implements Serializable, Cloneable {
 	private long id;
 	
 	private String location;
-	private int CRN;
 	private String instructorName;
 	
 	//Time attributes
@@ -44,33 +43,61 @@ public class Section implements Serializable, Cloneable {
 	public Section()
 	{
 		location = "Unknown";
-		CRN = 0;
 		instructorName = "Unknown";
 		daysOfWeek = new ArrayList<Integer>();
 		startHour = 8;
 		startMinute = 35;
 		durationMinutes = 50;
 	}
-	public Section(String loc, int CRN, String instructor)
+	public Section(String loc, String instructor)
 	{
 		location = loc;
-		this.CRN = CRN;
 		instructorName = instructor;
 		daysOfWeek = new ArrayList<Integer>();
 		startHour = 8;
 		startMinute = 35;
 		durationMinutes = 50;
 	}
-	public Section(String loc, int CRN, String instructor, int hours, int minutes, int dur)
+	public Section(String loc, String instructor, int hours, int minutes, int dur)
 	{
 		location = loc;
-		this.CRN = CRN;
 		instructorName = instructor;
 		daysOfWeek = new ArrayList<Integer>();
 		startHour = hours;
 		startMinute = minutes;
 		durationMinutes = dur;
 	}
+	public Section(String loc, String instructor, int hours, int minutes, int dur, int[] days, Course course, boolean isLab)
+	{
+		location = loc;
+		instructorName = instructor;
+		daysOfWeek = new ArrayList<Integer>();
+		startHour = hours;
+		startMinute = minutes;
+		durationMinutes = dur;
+		addDays(days);
+		this.course = course;
+		if(isLab)
+			course.addLab(this);
+		else
+			course.addLecture(this);
+	}
+	public Section(String loc, int hours, int minutes, int dur, int[] days, Course course, boolean isLab)
+	{
+		location = loc;
+		instructorName = course.getInstructorName();
+		daysOfWeek = new ArrayList<Integer>();
+		startHour = hours;
+		startMinute = minutes;
+		durationMinutes = dur;
+		addDays(days);
+		this.course = course;
+		if(isLab)
+			course.addLab(this);
+		else
+			course.addLecture(this);
+	}
+	
 	
 	
 	public long getID()
@@ -149,13 +176,6 @@ public class Section implements Serializable, Cloneable {
 	}
 	public void setLocation(String location) {
 		this.location = location;
-	}
-
-	public int getCRN() {
-		return CRN;
-	}
-	public void setCRN(int CRN) {
-		this.CRN = CRN;
 	}
 	
 	public String getInstructor() {
