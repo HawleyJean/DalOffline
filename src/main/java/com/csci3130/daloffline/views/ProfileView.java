@@ -6,9 +6,9 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-
-import com.csci3130.daloffline.DalOfflineUI;
 import com.csci3130.daloffline.domain.*;
+import com.csci3130.daloffline.DalOfflineUI;
+import com.csci3130.daloffline.domain.User;
 import com.vaadin.navigator.*;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.ExternalResource;
@@ -51,8 +51,8 @@ public class ProfileView extends VerticalLayout implements View {
     	//Get the current user
     	EntityManager em = DalOfflineUI.factory.createEntityManager();
     	em.getTransaction().begin();
-    	currentUsername = (String) ui.getSession().getAttribute("username");
-        User user = em.createQuery("SELECT user FROM USERS user WHERE user.username = :input_user", User.class).setParameter("input_user", currentUsername).getSingleResult();
+    	currentUsername = (String) ((User) ui.getSession().getAttribute("user")).getUsername();
+        User user = ((User) ui.getSession().getAttribute("user"));
         em.getTransaction().commit();
         em.close();
      
