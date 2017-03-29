@@ -51,7 +51,7 @@ public class DalOfflineUI extends UI {
 	public static final String MAINVIEW = "main";
     public static final String USERPROFILE = "profile";
     public static final String COURSELIST = "course_list";
-    User user;
+    private User user;
 	/**
 	 * This function changes the view based on a VaadinRequest sent by some action
 	 * 
@@ -73,7 +73,12 @@ public class DalOfflineUI extends UI {
 		
         
     }
-
+    public void setUser(User user){
+    	this.user = user;
+    }
+    public User getUser(){
+    	return this.user;
+    }
   
     @WebServlet(urlPatterns = "/*")
     @VaadinServletConfiguration(ui = DalOfflineUI.class, productionMode = false)

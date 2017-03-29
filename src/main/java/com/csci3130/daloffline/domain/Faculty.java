@@ -14,17 +14,17 @@ private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue
 	private long id;
-	private ArrayList<Course> teachingList;
+	private ArrayList<Section> teachingList;
 	public Faculty(String username, String password, String name, String major){
 		super(username, password, name, major);
 	}
 	public Faculty(){
 		super();
 	}
-	public void addCourse(Course course){
-	teachingList.add(course);
+	public void addCourse(Section section){
+	teachingList.add(section);
 	}
-	public ArrayList<Course> getteachingList(){
+	public ArrayList<Section> getteachingList(){
 		return teachingList;
 	}
 }

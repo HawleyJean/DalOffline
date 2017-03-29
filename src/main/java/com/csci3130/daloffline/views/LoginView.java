@@ -2,8 +2,6 @@ package com.csci3130.daloffline.views;
 
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -74,7 +72,7 @@ public class LoginView extends VerticalLayout implements View {
 			EntityManager em = ui.factory.createEntityManager();
 			User userpw = em.createQuery("SELECT user FROM USERS user WHERE user.username = :input_user", User.class)
 					.setParameter("input_user", username).getSingleResult();
-			
+			em.close();
 			ui.getSession().setAttribute("user", userpw);
 			ui.getSession().getSession().setMaxInactiveInterval(600);
 			getUI().getNavigator().addView(DalOfflineUI.COURSELIST, new CourseListView(ui));
