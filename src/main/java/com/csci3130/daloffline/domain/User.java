@@ -1,84 +1,125 @@
 package com.csci3130.daloffline.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+
 import javax.persistence.*;
 
 /**
- * Entity implementation class for Entity: User
+ * Class for User objects to be stored in the database
  *
+ * @author Jesse MacLeod
+ * @author Eric Nguyen
+ * @author Connor Foran
  */
-//@Entity
+@Entity(name = "USERS") 
 public class User implements Serializable {
 
 	
 	private static final long serialVersionUID = 1L;
 	
-	//@Id
-	//@GeneratedValue
+	@Id
+	@GeneratedValue
 	private long id;
-
-	String username;
 	
-	//@OneToOne
-	//@JoinColumn(name="username_pw_id", referencedColumnName="username")
-	@Transient
-	private UsernamePasswordPair usernamePasswordPair;
+	private String major;
+	private String fullName;
 	
-	private String firstName;
-	private String lastName;
-
-	public User() {
+	@Column(unique=true)
+	private String username;
+	private String password;
+	
+	@OneToMany
+	private ArrayList<Section> enrolledSections;
+	
+	public User()
+	{
 		super();
 	}
 	
-	public User(UsernamePasswordPair usernamePasswordPair) {
-		this.usernamePasswordPair = usernamePasswordPair;
+	public User(String username, String password, String name, String major)
+	{
+		this.username = username;
+		this.password = password;
+		this.fullName = name;
+		this.major = major;
 	}
 	
-	public User(String firstName, String lastName)
+	public String getBannerNumber()
 	{
-		this.firstName = firstName;
-		this.lastName = lastName;
+		return "B00"+String.format("%06d", id);
+	}
+	
+	public boolean addSection(Section sec)
+	{
+		enrolledSections.add(sec);
+		return true;
+	}
+	//Not working
+	public boolean removeCourse(Course c)
+	{
+		boolean courseFound = false;
+
+		ArrayList<Integer> foundIndexes = new ArrayList<Integer>();
+		for(int i=0; i<enrolledSections.size(); i++)
+		{
+			if(enrolledSections.get(i).getCourse().getID() == c.getID())
+			{
+				courseFound = true;
+				foundIndexes.add(i);
+			}
+		}
+
+		if(foundIndexes.size() > 0)
+		{
+			for(int i=foundIndexes.size()-1; i>=0; i--)
+				enrolledSections.remove(foundIndexes.get(i));
+		}
 		
+		return courseFound;
 	}
 	
-	public User(String firstName, String lastName, UsernamePasswordPair usernamePasswordPair)
-	{
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.usernamePasswordPair = usernamePasswordPair;
+	public ArrayList<Section> getEnrolledSections(){
+		return enrolledSections;
 	}
 
-	public UsernamePasswordPair getUsernamePasswordPair() {
-		return usernamePasswordPair;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUsernamePasswordPair(UsernamePasswordPair usernamePasswordPair) {
-		this.usernamePasswordPair = usernamePasswordPair;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
-	public long getId() {
-		return id;
+	public String getMajor() {
+		return major;
 	}
+
+	public void setMajor(String major) {
+		this.major = major;
+	}
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+	
+	
+   
 
 }

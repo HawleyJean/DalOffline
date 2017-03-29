@@ -14,17 +14,17 @@ public class AuthenticatorTest {
 
 	@Test
 	public void authenticateTest() {
-		
+
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("daloffline_db");
-		
+
+//		//this will have to be changed later when we are no longer "generating users" but creating users
 	    DatabaseInitializer.generateUsers(factory);
-		
+
 		assertEquals(true, Authenticator.authenticate("user", "pass", factory));
 		assertNotEquals(true, Authenticator.authenticate("wrong", "pass", factory));
-		assertNotEquals(true, Authenticator.authenticate("user", "passssssssssssssss", factory));
+		assertNotEquals(true, Authenticator.authenticate("user", "wrong", factory));
 		assertNotEquals(true, Authenticator.authenticate("", "", factory));
 
-		
 	}
 
 }

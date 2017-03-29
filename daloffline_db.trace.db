@@ -122,3 +122,111 @@ ALTER TABLE USER DROP CONSTRAINT FK_USER_username_pw_id [90057-193]
 	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:610)
 	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:539)
 	at java.lang.Thread.run(Thread.java:745)
+2017-03-19 11:25:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SECTION" not found; SQL statement:
+ALTER TABLE SECTION DROP CONSTRAINT FK_SECTION_COURSE_ID [42102-193]
+2017-03-19 11:25:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "COURSES" not found; SQL statement:
+DROP TABLE COURSES [42102-193]
+2017-03-19 11:25:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SECTION" not found; SQL statement:
+DROP TABLE SECTION [42102-193]
+2017-03-19 11:25:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "COURSES" not found; SQL statement:
+DROP TABLE COURSES [42102-193]
+2017-03-19 11:25:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SECTION" not found; SQL statement:
+DROP TABLE SECTION [42102-193]
+2017-03-19 11:25:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "COURSES" not found; SQL statement:
+DROP TABLE COURSES [42102-193]
+2017-03-19 11:25:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SECTION" not found; SQL statement:
+DROP TABLE SECTION [42102-193]
+2017-03-19 11:25:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "COURSES" not found; SQL statement:
+DROP TABLE COURSES [42102-193]
+2017-03-19 11:25:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SECTION" not found; SQL statement:
+DROP TABLE SECTION [42102-193]
+2017-03-19 11:25:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "COURSES" not found; SQL statement:
+DROP TABLE COURSES [42102-193]
+2017-03-19 11:25:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SECTION" not found; SQL statement:
+DROP TABLE SECTION [42102-193]
+2017-03-19 20:27:39 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USERS_SECTION" not found; SQL statement:
+ALTER TABLE USERS_SECTION DROP CONSTRAINT FK_USERS_SECTION_enrolledSections_SECTION_ID [42102-193]
+2017-03-19 20:27:39 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USERS_SECTION" not found; SQL statement:
+ALTER TABLE USERS_SECTION DROP CONSTRAINT FK_USERS_SECTION_USERS_ID [42102-193]
+2017-03-19 20:27:39 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USERS" not found; SQL statement:
+DROP TABLE USERS [42102-193]
+2017-03-19 20:27:39 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USERS_SECTION" not found; SQL statement:
+DROP TABLE USERS_SECTION [42102-193]
+2017-03-19 20:27:39 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USERS" not found; SQL statement:
+DROP TABLE USERS [42102-193]
+2017-03-19 20:27:39 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USERS_SECTION" not found; SQL statement:
+DROP TABLE USERS_SECTION [42102-193]
+2017-03-19 20:27:39 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USERS" not found; SQL statement:
+DROP TABLE USERS [42102-193]
+2017-03-19 20:27:39 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USERS_SECTION" not found; SQL statement:
+DROP TABLE USERS_SECTION [42102-193]
+2017-03-19 20:27:39 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USERS" not found; SQL statement:
+DROP TABLE USERS [42102-193]
+2017-03-19 20:27:39 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USERS_SECTION" not found; SQL statement:
+DROP TABLE USERS_SECTION [42102-193]
+2017-03-19 20:27:39 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USERS" not found; SQL statement:
+DROP TABLE USERS [42102-193]
+2017-03-19 20:27:39 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USERS_SECTION" not found; SQL statement:
+DROP TABLE USERS_SECTION [42102-193]
+2017-03-19 20:51:21 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SECTIONS" not found; SQL statement:
+ALTER TABLE SECTIONS DROP CONSTRAINT FK_SECTIONS_COURSE_ID [42102-193]
+2017-03-19 20:51:21 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USERS_SECTIONS" not found; SQL statement:
+ALTER TABLE USERS_SECTIONS DROP CONSTRAINT FK_USERS_SECTIONS_enrolledSections_SECTION_ID [42102-193]
+2017-03-19 20:51:21 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USERS_SECTIONS" not found; SQL statement:
+ALTER TABLE USERS_SECTIONS DROP CONSTRAINT FK_USERS_SECTIONS_USERS_ID [42102-193]
+2017-03-19 20:51:21 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SECTIONS" not found; SQL statement:
+DROP TABLE SECTIONS [42102-193]
+2017-03-19 20:51:21 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USERS_SECTIONS" not found; SQL statement:
+DROP TABLE USERS_SECTIONS [42102-193]
+2017-03-19 20:51:21 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SECTIONS" not found; SQL statement:
+DROP TABLE SECTIONS [42102-193]
+2017-03-19 20:51:21 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USERS_SECTIONS" not found; SQL statement:
+DROP TABLE USERS_SECTIONS [42102-193]
+2017-03-19 20:51:21 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SECTIONS" not found; SQL statement:
+DROP TABLE SECTIONS [42102-193]
+2017-03-19 20:51:21 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USERS_SECTIONS" not found; SQL statement:
+DROP TABLE USERS_SECTIONS [42102-193]
+2017-03-19 20:51:21 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SECTIONS" not found; SQL statement:
+DROP TABLE SECTIONS [42102-193]
+2017-03-19 20:51:21 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USERS_SECTIONS" not found; SQL statement:
+DROP TABLE USERS_SECTIONS [42102-193]
+2017-03-19 20:51:21 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SECTIONS" not found; SQL statement:
+DROP TABLE SECTIONS [42102-193]
+2017-03-19 20:51:21 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USERS_SECTIONS" not found; SQL statement:
+DROP TABLE USERS_SECTIONS [42102-193]
