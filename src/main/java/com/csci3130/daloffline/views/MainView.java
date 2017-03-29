@@ -1,5 +1,5 @@
 package com.csci3130.daloffline.views;
-
+import com.csci3130.daloffline.domain.User;
 import com.csci3130.daloffline.DalOfflineUI;
 import com.vaadin.navigator.*;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -25,13 +25,14 @@ public class MainView extends VerticalLayout implements View {
 	 */
 	private String username;
     public MainView(DalOfflineUI ui) {
-    	username = (String) ui.getSession().getAttribute("username");
+    	username = (String)((User) ui.getSession().getAttribute("user")).getUsername();
+    	String role = ((User) ui.getSession().getAttribute("user")).getClass().getSimpleName();
     	VerticalLayout container = new VerticalLayout();
     	Panel border = new Panel();
 
         Button profileButton = new Button("View Your Profile And Schedule"); //A button
         profileButton.addClickListener(e -> getUI().getNavigator().navigateTo(DalOfflineUI.USERPROFILE)); //Specify a view for this button to direct you to
-        Label name = new Label("Hello, "+username);
+        Label name = new Label("Hello, "+username +", you are logged in as a " +role);
         Button courseListButton = new Button("View All Courses");
         courseListButton.addClickListener(e -> getUI().getNavigator().navigateTo(DalOfflineUI.COURSELIST));
         

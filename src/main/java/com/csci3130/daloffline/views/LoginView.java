@@ -2,14 +2,17 @@ package com.csci3130.daloffline.views;
 
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 import com.csci3130.daloffline.DalOfflineUI;
 import com.csci3130.daloffline.authentication.Authenticator;
 import com.csci3130.daloffline.initialization.DatabaseInitializer;
+import com.csci3130.daloffline.domain.User;
 import com.vaadin.navigator.*;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Alignment;
@@ -68,7 +71,11 @@ public class LoginView extends VerticalLayout implements View {
 	private void login(String username, String password, DalOfflineUI ui) {
 		
 		if(Authenticator.authenticate(username, password, DalOfflineUI.factory)) {
-			ui.getSession().setAttribute("username", username);
+			EntityManager em = ui.factory.createEntityManager();
+			User userpw = em.createQuery("SELECT user FROM USERS user WHERE user.username = :input_user", User.class)
+					.setParameter("input_user", username).getSingleResult();
+			
+			ui.getSession().setAttribute("user", userpw);
 			ui.getSession().getSession().setMaxInactiveInterval(600);
 			getUI().getNavigator().addView(DalOfflineUI.COURSELIST, new CourseListView(ui));
 	        getUI().getNavigator().addView(DalOfflineUI.MAINVIEW, new MainView(ui));

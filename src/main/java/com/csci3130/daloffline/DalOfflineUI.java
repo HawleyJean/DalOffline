@@ -8,6 +8,7 @@ import javax.persistence.Persistence;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 
+import com.csci3130.daloffline.domain.User;
 import com.csci3130.daloffline.initialization.DatabaseInitializer;
 import com.csci3130.daloffline.views.*;
 import com.vaadin.annotations.PreserveOnRefresh;
@@ -50,8 +51,7 @@ public class DalOfflineUI extends UI {
 	public static final String MAINVIEW = "main";
     public static final String USERPROFILE = "profile";
     public static final String COURSELIST = "course_list";
-    private String user ="";
-
+    User user;
 	/**
 	 * This function changes the view based on a VaadinRequest sent by some action
 	 * 
@@ -74,12 +74,7 @@ public class DalOfflineUI extends UI {
         
     }
 
-    public void setUser(String user){
-    	this.user=user;
-    }
-    public String getUser(){
-    	return this.user;
-    }
+  
     @WebServlet(urlPatterns = "/*")
     @VaadinServletConfiguration(ui = DalOfflineUI.class, productionMode = false)
     public static class MyUIServlet extends VaadinServlet{}
