@@ -141,9 +141,13 @@ public class ProfileView extends VerticalLayout implements View {
         schedule.setSizeFull();
         schedule.setFirstVisibleHourOfDay(7);
         schedule.setLastVisibleHourOfDay(18);
-        
+        ArrayList<Section> sections;
     	//Populate schedule with the user's sections
-        ArrayList<Section> sections = user.getEnrolledSections(); //Get the user's current sections
+        if(!user.getClass().getSimpleName().equals("Faculty"))
+        sections = user.getEnrolledSections(); //Get the user's current sections
+        else{
+        	sections = ((Faculty)user).getteachingList();
+        }
         for(Section sec :sections)
         {
           //Get course code and course name from section's associated course
