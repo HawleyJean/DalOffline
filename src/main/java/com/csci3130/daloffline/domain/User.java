@@ -32,6 +32,8 @@ public class User implements Serializable {
 	@OneToMany
 	private ArrayList<Section> enrolledSections;
 	
+	
+	
 	public User()
 	{
 		super();

@@ -30,6 +30,8 @@ public class CourseInfo extends VerticalLayout {
 	Button closeButton = new Button("Close");
 	Button enrollButton = new Button("Enroll");
 	Button removeButton = new Button("Leave this Course");
+	Button waitListButton = new Button("Add to Waitlist");
+	Button cancelWaitList = new Button("Cancel");
 	
 	NativeSelect  lectureList = new NativeSelect ("Lecture Sections");
 	Section lectureChoice = null;
@@ -72,7 +74,12 @@ public class CourseInfo extends VerticalLayout {
         labList.setWidth((int)(UI.getCurrent().getPage().getBrowserWindowWidth()*0.1), UNITS_PIXELS);
         lectureList.setNullSelectionAllowed(false);
         labList.setNullSelectionAllowed(false);
-
+        
+        //these aren't immediately visible until needed
+        waitListButton.addClickListener(e -> addToWaitList());
+        cancelWaitList.addClickListener(e -> this.getView().courseInfo.setVisible(false));
+        cancelWaitList.addClickListener(e -> removeComponent(waitListButton));
+        cancelWaitList.addClickListener(e -> removeComponent(cancelWaitList));
 
         addComponents(courseInfo, lectureList, labList, lectureInfo, labInfo, enrollButton, closeButton);
 	}
@@ -94,8 +101,8 @@ public class CourseInfo extends VerticalLayout {
 		//Get the current user object
 		EntityManager em = DalOfflineUI.factory.createEntityManager();
 		em.getTransaction().begin();
-		User user = ((User)getUI().getSession().getAttribute("user"));
-		ArrayList<Section> currentlyEnrolledSections = user.getEnrolledSections(); //Get the user's current sections
+		Student student = ((Student)getUI().getSession().getAttribute("student"));
+		ArrayList<Section> currentlyEnrolledSections = student.getEnrolledSections(); //Get the user's current sections
 		
 		for(Section sec : currentlyEnrolledSections) //Make sure the user isn't already enrolled into these sections
 		{
@@ -104,18 +111,37 @@ public class CourseInfo extends VerticalLayout {
 			else if(labChoice != null && sec.getID() == labChoice.getID())
 				labAlreadyAdded = true;
 		}
-		
-		//Enroll the user into the sections, if applicable
-		if(lectureChoice != null && !lectureAlreadyAdded)
-			user.addSection(lectureChoice);
-		if(labChoice != null && !labAlreadyAdded)
-			user.addSection(labChoice);
-		
+		//checks for space beforehand
+		if(lectureChoice.isSpace()){
+			//Enroll the user into the sections, if applicable
+			if(lectureChoice != null && !lectureAlreadyAdded)
+				student.addSection(lectureChoice);
+			if(labChoice != null && !labAlreadyAdded)
+				student.addSection(labChoice);
+			
+			setVisible(false); //Close this tab
+			Notification.show("Section enrollment successful.","Total enrolled sections: "+student.getEnrolledSections().size(),Type.TRAY_NOTIFICATION);
+		}
+		//instantiated if the regular section is full
+		else{
+			Notification.show("Lecture is currently full. Would you like to be put on the wait list?", Type.WARNING_MESSAGE);
+			
+			//adds in buttons to choose whether to be added on to the wait list
+			addComponents(waitListButton, cancelWaitList);	
+		}
 		em.getTransaction().commit();
 		em.close();
-		
-		setVisible(false); //Close this tab
-		Notification.show("Section enrollment successful.","Total enrolled sections: "+user.getEnrolledSections().size(),Type.TRAY_NOTIFICATION);
+	}
+	
+	//adds a student to the wait list it is not full
+	public void addToWaitList(){
+		if(lectureChoice.getWaitListSize() >= 20){
+			Notification.show("The Course is fully booked. Please contact a faculty member.", Type.TRAY_NOTIFICATION);
+		}
+		else{
+			Student student = ((Student)getUI().getSession().getAttribute("student"));
+			lectureChoice.addToWaitList(student);
+		}
 	}
 	
 	//Remove course functionality not currently working.

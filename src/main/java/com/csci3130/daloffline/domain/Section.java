@@ -35,13 +35,12 @@ public class Section implements Serializable, Cloneable {
 	//added in to cap student reg.; add to wait list
 	private int sectionSize;
 	
-	//list of wait list students and 
-	/*
-	 *@OneToMany
-	 *private LinkedList<User> waitList;
-	 *@OneToMany
-	 *private ArrayList<User> currentStudents;
-	 */
+	//list of wait list students and
+	@OneToMany
+	private LinkedList<Student> waitList;
+	@OneToMany
+	private ArrayList<Student> currentStudents;
+
 	//Time attributes
 	private ArrayList<Integer> daysOfWeek;
 	private int startHour;
@@ -66,8 +65,8 @@ public class Section implements Serializable, Cloneable {
 		startMinute = 35;
 		durationMinutes = 50;
 		sectionSize = 0;
-		//waitList = new LinkedList<User>();
-		//currentStudents = new ArrayList<User>();
+		waitList = new LinkedList<Student>();
+		currentStudents = new ArrayList<Student>();
 	}
 	public Section(String loc, int CRN, String instructor)
 	{
@@ -79,8 +78,8 @@ public class Section implements Serializable, Cloneable {
 		startMinute = 35;
 		durationMinutes = 50;
 		sectionSize = 0;
-		//waitList = new LinkedList<User>();
-		//currentStudents = new ArrayList<User>();
+		waitList = new LinkedList<Student>();
+		currentStudents = new ArrayList<Student>();
 	}
 	public Section(String loc, int CRN, String instructor, int hours, int minutes, int dur)
 	{
@@ -92,8 +91,8 @@ public class Section implements Serializable, Cloneable {
 		startMinute = minutes;
 		durationMinutes = dur;
 		this.sectionSize = sectionSize;
-		//waitList = new LinkedList<User>();
-		//currentStudents = new ArrayList<User>();
+		waitList = new LinkedList<Student>();
+		currentStudents = new ArrayList<Student>();
 	}
 	
 	
@@ -160,25 +159,27 @@ public class Section implements Serializable, Cloneable {
 		return endTimes;
 	}
 	
-	/*
 	//would be instantiated after a course could not be added to currentStudents
-	public void addToWaitList(User u){
-		if(currentStudents.size() >= sectionSize && waitList.size() >= 20 ){
-			//display error message
-		}
-		else{
-			waitList.add(u);
-		}
+	public void addToWaitList(Student student){
+		waitList.add(student);
 	}
 	
 	//adds the head of the wait list to the list of students
+	//we don't have to implement this right now
 	public void waitListPush(){
 		if(waitList.size() != 0){
 			currentStudents.add(waitList.remove());
 		}
 	}
-	*/
-	
+	//if there's space in the class, we'll let a student be added
+	public boolean isSpace(){
+		if(sectionSize < currentStudents.size())
+			return true;
+		return false;
+	}
+	public int getWaitListSize(){
+		return waitList.size();
+	}
 	//Get and set methods
 	
 	public Course getCourse(){
@@ -211,7 +212,6 @@ public class Section implements Serializable, Cloneable {
 	public void setSectionSize(int sectionSize){
 		this.sectionSize = sectionSize;
 	}
-	
 	public int getSectionSize(){
 		return sectionSize;
 	}

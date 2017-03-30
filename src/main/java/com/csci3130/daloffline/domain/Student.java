@@ -9,9 +9,7 @@ import javax.persistence.OneToMany;
 public class Student extends User implements Serializable{
 private static final long serialVersionUID = 1L;
 	
-	@Id
-	@GeneratedValue
-	private long id;
+
 	@OneToMany
 	private ArrayList<Course> CompletedCourses;
 	public Student(){
