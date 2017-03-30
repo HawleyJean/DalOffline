@@ -31,7 +31,8 @@ public class DatabaseUtilities
 		return newCourse;
 	}
 	
-	public static Section createLab(String loc, int CRN, String instructor, int hours, int minutes, int dur, Course theCourse, EntityManagerFactory factory)
+	public static Section createLab(String loc, int CRN, String instructor, int hours, int minutes, int dur,
+									Course theCourse, EntityManagerFactory factory)
 	{
 		EntityManager em = factory.createEntityManager();
 		
@@ -50,7 +51,8 @@ public class DatabaseUtilities
 		return newSection;
 	}
 	
-	public static Section createLecture(String loc, int CRN, String instructor, int hours, int minutes, int dur, Course theCourse, EntityManagerFactory factory)
+	public static Section createLecture(String loc, int CRN, String instructor, int hours, int minutes, int dur,
+										Course theCourse, EntityManagerFactory factory)
 	{
 		EntityManager em = factory.createEntityManager();
 		
