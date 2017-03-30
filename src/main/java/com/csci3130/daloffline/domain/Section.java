@@ -208,8 +208,6 @@ public class Section implements Serializable, Cloneable {
 	public void setInstructor(String instructorName) {
 		this.instructorName = instructorName;
 	}
-<<<<<<< HEAD
-	
 	public void setSectionSize(int sectionSize){
 		this.sectionSize = sectionSize;
 	}
@@ -217,13 +215,10 @@ public class Section implements Serializable, Cloneable {
 	public int getSectionSize(){
 		return sectionSize;
 	}
-=======
 	public void setFaculty(Faculty faculty){
 		this.faculty = faculty;
 	}
 	public Faculty getFaculty(){
 		return faculty;
 	}
-		
->>>>>>> branch 'master' of https://github.com/HawleyJean/DalOffline
 }
