@@ -166,5 +166,11 @@ public class Section implements Serializable, Cloneable {
 	public void setInstructor(String instructorName) {
 		this.instructorName = instructorName;
 	}
+	public void setFaculty(Faculty faculty){
+		this.faculty = faculty;
+	}
+	public Faculty getFaculty(){
+		return faculty;
+	}
 		
 }
