@@ -1,6 +1,6 @@
 language: java
 install:
-- mvn install
+- mvn -B -e -V -Dvaadin.testbench.developer.license=9286d734-0d1a-426d-9cb2-ef390ab98795 verify
 jdk:
 - oraclejdk8
 deploy:
@@ -8,3 +8,5 @@ deploy:
   api_key:
     secure: "02119998-d4e7-43da-a927-e15b701f5593"
   app: csci3130-daloffline
+env:
+- vaadin.testbench.developer.license=9286d734-0d1a-426d-9cb2-ef390ab98795
