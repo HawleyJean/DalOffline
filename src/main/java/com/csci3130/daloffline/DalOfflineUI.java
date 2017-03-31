@@ -51,6 +51,7 @@ public class DalOfflineUI extends UI {
 	public static final String MAINVIEW = "main";
     public static final String USERPROFILE = "profile";
     public static final String COURSELIST = "course_list";
+    public static final String STUDENTLIST = "studentlist";
     private User user;
 	/**
 	 * This function changes the view based on a VaadinRequest sent by some action
