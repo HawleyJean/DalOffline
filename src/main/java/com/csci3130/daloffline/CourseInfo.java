@@ -30,6 +30,7 @@ public class CourseInfo extends VerticalLayout {
 	Button closeButton = new Button("Close");
 	Button enrollButton = new Button("Enroll");
 	Button removeButton = new Button("Leave this Course");
+	Button waitListButton = new Button("Add to Waitlist");
 	
 	NativeSelect  lectureList = new NativeSelect ("Lecture Sections");
 	Section lectureChoice = null;
@@ -72,13 +73,18 @@ public class CourseInfo extends VerticalLayout {
         labList.setWidth((int)(UI.getCurrent().getPage().getBrowserWindowWidth()*0.1), UNITS_PIXELS);
         lectureList.setNullSelectionAllowed(false);
         labList.setNullSelectionAllowed(false);
-
+        
+        //these aren't immediately visible until needed
+        waitListButton.addClickListener(e -> addToWaitList());
 
         addComponents(courseInfo, lectureList, labList, lectureInfo, labInfo, enrollButton, closeButton);
 	}
 	
 	/**
 	 * Adds the currently chosen sections to the user's account
+	 * 
+	 * This also checks for space in the course, and resolves to adding
+	 * the student to the wait list if the section is full
 	 * 
 	 * @param None
 	 * @return Nothing
@@ -104,18 +110,45 @@ public class CourseInfo extends VerticalLayout {
 			else if(labChoice != null && sec.getID() == labChoice.getID())
 				labAlreadyAdded = true;
 		}
-		
-		//Enroll the user into the sections, if applicable
-		if(lectureChoice != null && !lectureAlreadyAdded)
-			user.addSection(lectureChoice);
-		if(labChoice != null && !labAlreadyAdded)
-			user.addSection(labChoice);
-		
+		//checks for space beforehand
+		if(lectureChoice.hasSpace()){
+			//Enroll the user into the sections, if applicable
+			if(lectureChoice != null && !lectureAlreadyAdded)
+				user.addSection(lectureChoice);
+			if(labChoice != null && !labAlreadyAdded)
+				user.addSection(labChoice);
+			
+			setVisible(false); //Close this tab
+			Notification.show("Section enrollment successful.","Total enrolled sections: "+user.getEnrolledSections().size(),Type.TRAY_NOTIFICATION);
+		}
+		//instantiated if the regular section is full
+		else{
+			Notification.show("Lecture is currently full. Would you like to be put on the wait list?", Type.WARNING_MESSAGE);
+			
+			//adds in buttons to choose whether to be added on to the wait list
+			addComponents(waitListButton);
+			removeComponent(enrollButton);
+		}
 		em.getTransaction().commit();
 		em.close();
-		
-		setVisible(false); //Close this tab
-		Notification.show("Section enrollment successful.","Total enrolled sections: "+user.getEnrolledSections().size(),Type.TRAY_NOTIFICATION);
+	}
+	
+	//adds a student to the wait list it is not full
+	public void addToWaitList(){
+		if(lectureChoice.getWaitListSize() >= 20){
+			Notification.show("The Course is fully booked. Please contact a faculty member.", Type.TRAY_NOTIFICATION);
+		}
+		//will only add the user if they aren't already in the wait list
+		else{
+			User user = ((User)getUI().getSession().getAttribute("user"));
+			if(!lectureChoice.onWaitList(user)){
+				lectureChoice.addToWaitList(user);
+				Notification.show("Successfully added course to wait list. Please check back soon", Type.TRAY_NOTIFICATION);
+			}
+			else
+				Notification.show("You are already on the wait list for this course.", Type.WARNING_MESSAGE);
+		}
+		setVisible(false);
 	}
 	
 	//Remove course functionality not currently working.
