@@ -1,9 +1,4 @@
 target/*
 doc/*
-<<<<<<< HEAD
-/target/
-=======
 
 \.svn/
->>>>>>> branch 'master' of https://github.com/HawleyJean/DalOffline
-/src/

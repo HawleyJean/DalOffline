@@ -98,7 +98,8 @@
 		    <groupId>com.vaadin</groupId>
 		    <artifactId>vaadin-testbench</artifactId>
 		    <version>4.2.0</version>
-		</dependency>		
+		</dependency>
+
     </dependencies>
 
     <build>

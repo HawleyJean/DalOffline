@@ -83,6 +83,9 @@ public class CourseInfo extends VerticalLayout {
 	/**
 	 * Adds the currently chosen sections to the user's account
 	 * 
+	 * This also checks for space in the course, and resolves to adding
+	 * the student to the wait list if the section is full
+	 * 
 	 * @param None
 	 * @return Nothing
 	 */
