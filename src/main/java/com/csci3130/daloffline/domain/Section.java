@@ -3,6 +3,7 @@ package com.csci3130.daloffline.domain;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.LinkedList;
 
 import javax.persistence.*;
 
@@ -11,6 +12,8 @@ import javax.persistence.*;
  * 
  * @author Hawley Jean
  * @author Connor Foran
+ * @author Braden Oickle
+ * 
  */
 
 @Entity(name = "SECTIONS") 
@@ -29,7 +32,15 @@ public class Section implements Serializable, Cloneable {
 	private String location;
 	private int CRN;
 	private String instructorName;
+	//added in to cap student reg.; add to wait list
+	private int sectionSize;
 	
+	//list of wait list students and
+	@OneToMany
+	private LinkedList<Student> waitList;
+	@OneToMany
+	private ArrayList<Student> currentStudents;
+
 	//Time attributes
 	private ArrayList<Integer> daysOfWeek;
 	private int startHour;
@@ -40,6 +51,7 @@ public class Section implements Serializable, Cloneable {
 	@JoinColumn(name="COURSE_ID")
     private Course course;
 	
+
 	@OneToOne
 	private Faculty faculty;
 	//Constructors
@@ -52,6 +64,9 @@ public class Section implements Serializable, Cloneable {
 		startHour = 8;
 		startMinute = 35;
 		durationMinutes = 50;
+		sectionSize = 0;
+		waitList = new LinkedList<Student>();
+		currentStudents = new ArrayList<Student>();
 	}
 	public Section(String loc, int CRN, String instructor)
 	{
@@ -62,6 +77,9 @@ public class Section implements Serializable, Cloneable {
 		startHour = 8;
 		startMinute = 35;
 		durationMinutes = 50;
+		sectionSize = 0;
+		waitList = new LinkedList<Student>();
+		currentStudents = new ArrayList<Student>();
 	}
 	public Section(String loc, int CRN, String instructor, int hours, int minutes, int dur)
 	{
@@ -72,6 +90,9 @@ public class Section implements Serializable, Cloneable {
 		startHour = hours;
 		startMinute = minutes;
 		durationMinutes = dur;
+		this.sectionSize = sectionSize;
+		waitList = new LinkedList<Student>();
+		currentStudents = new ArrayList<Student>();
 	}
 	
 	
@@ -138,7 +159,29 @@ public class Section implements Serializable, Cloneable {
 		return endTimes;
 	}
 	
+	//would be instantiated after a course could not be added to currentStudents
+	public void addToWaitList(Student student){
+		waitList.add(student);
+	}
+	
+	//adds the head of the wait list to the list of students
+	//we don't have to implement this right now
+	public void waitListPush(){
+		if(waitList.size() != 0){
+			currentStudents.add(waitList.remove());
+		}
+	}
+	//if there's space in the class, we'll let a student be added
+	public boolean isSpace(){
+		if(sectionSize < currentStudents.size())
+			return true;
+		return false;
+	}
+	public int getWaitListSize(){
+		return waitList.size();
+	}
 	//Get and set methods
+	
 	public Course getCourse(){
 		return course;
 	}
@@ -166,11 +209,16 @@ public class Section implements Serializable, Cloneable {
 	public void setInstructor(String instructorName) {
 		this.instructorName = instructorName;
 	}
+	public void setSectionSize(int sectionSize){
+		this.sectionSize = sectionSize;
+	}
+	public int getSectionSize(){
+		return sectionSize;
+	}
 	public void setFaculty(Faculty faculty){
 		this.faculty = faculty;
 	}
 	public Faculty getFaculty(){
 		return faculty;
 	}
-		
 }

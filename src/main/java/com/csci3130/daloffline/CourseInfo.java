@@ -30,7 +30,8 @@ public class CourseInfo extends VerticalLayout {
 	Button closeButton = new Button("Close");
 	Button enrollButton = new Button("Enroll");
 	Button removeButton = new Button("Leave this Course");
-	
+	Button waitListButton = new Button("Add to Waitlist");
+	Button cancelWaitList = new Button("Cancel");
 	NativeSelect  lectureList = new NativeSelect ("Lecture Sections");
 	Section lectureChoice = null;
 	NativeSelect  labList = new NativeSelect ("Lab Sections");
@@ -73,6 +74,11 @@ public class CourseInfo extends VerticalLayout {
         lectureList.setNullSelectionAllowed(false);
         labList.setNullSelectionAllowed(false);
 
+       // these aren't immediately visible until needed
+        waitListButton.addClickListener(e -> addToWaitList());
+        cancelWaitList.addClickListener(e -> this.getView().courseInfo.setVisible(false));
+      cancelWaitList.addClickListener(e -> removeComponent(waitListButton));
+        cancelWaitList.addClickListener(e -> removeComponent(cancelWaitList));
 
         addComponents(courseInfo, lectureList, labList, lectureInfo, labInfo, enrollButton, closeButton);
 	}
@@ -94,8 +100,8 @@ public class CourseInfo extends VerticalLayout {
 		//Get the current user object
 		EntityManager em = DalOfflineUI.factory.createEntityManager();
 		em.getTransaction().begin();
-		User user = ((User)getUI().getSession().getAttribute("user"));
-		ArrayList<Section> currentlyEnrolledSections = user.getEnrolledSections(); //Get the user's current sections
+		Student student = ((Student)getUI().getSession().getAttribute("student"));
+		ArrayList<Section> currentlyEnrolledSections = student.getEnrolledSections(); //Get the user's current sections
 		
 		for(Section sec : currentlyEnrolledSections) //Make sure the user isn't already enrolled into these sections
 		{
@@ -105,17 +111,46 @@ public class CourseInfo extends VerticalLayout {
 				labAlreadyAdded = true;
 		}
 		
-		//Enroll the user into the sections, if applicable
-		if(lectureChoice != null && !lectureAlreadyAdded)
-			user.addSection(lectureChoice);
-		if(labChoice != null && !labAlreadyAdded)
-			user.addSection(labChoice);
+		
+		if(lectureChoice.isSpace())
+		{
+			//Enroll user into section
+			if(lectureChoice != null && !lectureAlreadyAdded)
+				student.addSection(lectureChoice);
+			if(labChoice != null && !labAlreadyAdded)
+				student.addSection(labChoice);
+			setVisible(false);
+			Notification.show("Section enrollment successful.","Total enrolled sections: "+student.getEnrolledSections().size(),Type.TRAY_NOTIFICATION);
+		}
+		else
+		{
+Notification.show("Lecture is currently full. Would you like to be put on the wait list?", Type.WARNING_MESSAGE);
+			
+			addComponents(waitListButton, cancelWaitList);
+		}
+		
+		
 		
 		em.getTransaction().commit();
 		em.close();
 		
 		setVisible(false); //Close this tab
-		Notification.show("Section enrollment successful.","Total enrolled sections: "+user.getEnrolledSections().size(),Type.TRAY_NOTIFICATION);
+		Notification.show("Section enrollment successful.","Total enrolled sections: "+student.getEnrolledSections().size(),Type.TRAY_NOTIFICATION);
+	}
+	
+	
+	
+	
+	
+
+	public void addToWaitList(){
+		if(lectureChoice.getWaitListSize() >= 20){
+			Notification.show("The Course is fully booked. Please contact a faculty member.", Type.TRAY_NOTIFICATION);
+		}
+		else{
+			Student student = ((Student)getUI().getSession().getAttribute("student"));
+			lectureChoice.addToWaitList(student);
+		}
 	}
 	
 	//Remove course functionality not currently working.
@@ -125,12 +160,12 @@ public class CourseInfo extends VerticalLayout {
 		EntityManager em = DalOfflineUI.factory.createEntityManager();
 		em.getTransaction().begin();
 		String username = (String) getUI().getSession().getAttribute("username");
-		User user = em.createQuery("SELECT user FROM USERS user WHERE user.username = :input_user", User.class).setParameter("input_user", username).getSingleResult();
+		Student student = em.createQuery("SELECT student FROM STUDENTS student WHERE student.student = :input_student", Student.class).setParameter("input_student", username).getSingleResult();
 		
-		boolean foundCourse = user.removeCourse(currentCourse);
+		boolean foundCourse = student.removeCourse(currentCourse);
 		
 		if(foundCourse)
-			Notification.show("Removed course from student account.","New total enrolled sections: "+user.getEnrolledSections().size(),Type.TRAY_NOTIFICATION);
+			Notification.show("Removed course from student account.","New total enrolled sections: "+student.getEnrolledSections().size(),Type.TRAY_NOTIFICATION);
 		else
 			Notification.show("Remove course failed.","You are not enrolled into this course.",Type.TRAY_NOTIFICATION);
 	}
