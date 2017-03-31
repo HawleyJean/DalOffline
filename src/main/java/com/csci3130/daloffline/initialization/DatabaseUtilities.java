@@ -31,14 +31,14 @@ public class DatabaseUtilities
 		return newCourse;
 	}
 	
-	public static Section createLab(String loc, int CRN, String instructor, int hours, int minutes, int dur,
+	public static Section createLab(String loc, int CRN, String instructor, int sectionSize,int hours, int minutes, int dur,
 									Course theCourse, EntityManagerFactory factory)
 	{
 		EntityManager em = factory.createEntityManager();
 		
 		em.getTransaction().begin();
 	
-		Section newSection = new Section(loc, CRN, instructor, hours, minutes, dur);
+		Section newSection = new Section(loc, CRN, instructor, hours, sectionSize, minutes, dur);
 		
 		theCourse.addLab(newSection);
 	
@@ -51,12 +51,12 @@ public class DatabaseUtilities
 		return newSection;
 	}
 	
-	public static Section createLecture(String loc, int CRN, String instructor, int hours, int minutes, int dur,
+	public static Section createLecture(String loc, int CRN, String instructor, int sectionSize, int hours, int minutes, int dur,
 										Course theCourse, EntityManagerFactory factory)
 	{
 		EntityManager em = factory.createEntityManager();
 		
-		Section newSection = new Section(loc, CRN, instructor, hours, minutes, dur);
+		Section newSection = new Section(loc, CRN, instructor, sectionSize, hours, minutes, dur);
 		
 		theCourse.addLecture(newSection);
 		

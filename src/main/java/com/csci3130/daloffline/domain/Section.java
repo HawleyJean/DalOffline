@@ -37,9 +37,9 @@ public class Section implements Serializable, Cloneable {
 	
 	//list of wait list students and
 	@OneToMany
-	private LinkedList<Student> waitList;
+	private LinkedList<User> waitList;
 	@OneToMany
-	private ArrayList<Student> currentStudents;
+	private ArrayList<User> currentStudents;
 
 	//Time attributes
 	private ArrayList<Integer> daysOfWeek;
@@ -65,8 +65,8 @@ public class Section implements Serializable, Cloneable {
 		startMinute = 35;
 		durationMinutes = 50;
 		sectionSize = 0;
-		waitList = new LinkedList<Student>();
-		currentStudents = new ArrayList<Student>();
+		waitList = new LinkedList<User>();
+		currentStudents = new ArrayList<User>();
 	}
 	public Section(String loc, int CRN, String instructor)
 	{
@@ -78,10 +78,10 @@ public class Section implements Serializable, Cloneable {
 		startMinute = 35;
 		durationMinutes = 50;
 		sectionSize = 0;
-		waitList = new LinkedList<Student>();
-		currentStudents = new ArrayList<Student>();
+		waitList = new LinkedList<User>();
+		currentStudents = new ArrayList<User>();
 	}
-	public Section(String loc, int CRN, String instructor, int hours, int minutes, int dur)
+	public Section(String loc, int CRN, String instructor, int sectionSize, int hours, int minutes, int dur)
 	{
 		location = loc;
 		this.CRN = CRN;
@@ -91,8 +91,8 @@ public class Section implements Serializable, Cloneable {
 		startMinute = minutes;
 		durationMinutes = dur;
 		this.sectionSize = sectionSize;
-		waitList = new LinkedList<Student>();
-		currentStudents = new ArrayList<Student>();
+		waitList = new LinkedList<User>();
+		currentStudents = new ArrayList<User>();
 	}
 	
 	
@@ -160,8 +160,8 @@ public class Section implements Serializable, Cloneable {
 	}
 	
 	//would be instantiated after a course could not be added to currentStudents
-	public void addToWaitList(Student student){
-		waitList.add(student);
+	public void addToWaitList(User user){
+		waitList.add(user);
 	}
 	
 	//adds the head of the wait list to the list of students
@@ -172,13 +172,19 @@ public class Section implements Serializable, Cloneable {
 		}
 	}
 	//if there's space in the class, we'll let a student be added
-	public boolean isSpace(){
-		if(sectionSize < currentStudents.size())
+	public boolean hasSpace(){
+		if(sectionSize > currentStudents.size())
 			return true;
 		return false;
 	}
 	public int getWaitListSize(){
 		return waitList.size();
+	}
+	public boolean onWaitList(User user){
+		if(waitList.contains(user)){
+			return true;
+		}
+		return false;
 	}
 	//Get and set methods
 	

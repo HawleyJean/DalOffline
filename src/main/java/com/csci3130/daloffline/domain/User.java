@@ -45,6 +45,7 @@ public class User implements Serializable {
 		this.password = password;
 		this.fullName = name;
 		this.major = major;
+		enrolledSections = new ArrayList<Section>();
 	}
 	
 	public String getBannerNumber()
