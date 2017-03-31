@@ -99,6 +99,31 @@ public class DatabaseUtilities
 		return allCourses;
 	}
 	
+	public static Section getSectionByCRN(int crn, EntityManagerFactory factory) {
+		EntityManager em = factory.createEntityManager();
+		
+		em.getTransaction().begin();		
+		List<Section> section = em.createQuery("SELECT s FROM SECTIONS s WHERE s.CRN LIKE :sectCRN", Section.class).setParameter("sectCRN", crn).getResultList();
+		em.getTransaction().commit();
+		em.close();
+		
+		return section.get(0);
+	}
 	
+	public static List<User> getStudentsInSection(int crn, EntityManagerFactory factory) {
+
+		return getSectionByCRN(crn, factory).getAllStudents();
 	
+	}
+	
+	public static User getUserByUserName(String userUsername, EntityManagerFactory factory) {
+		EntityManager em = factory.createEntityManager();
+		
+		em.getTransaction().begin();		
+		List<User> user = em.createQuery("SELECT s FROM USERS s WHERE s.username LIKE :user", User.class).setParameter("user", userUsername).getResultList();
+		em.getTransaction().commit();
+		em.close();
+		
+		return user.get(0);
+	}
 }

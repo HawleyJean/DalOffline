@@ -30,6 +30,8 @@ public class Section implements Serializable, Cloneable {
 	private long id;
 	
 	private String location;
+	
+	@Column(name = "CRN")
 	private int CRN;
 	private String instructorName;
 	//added in to cap student reg.; add to wait list
@@ -50,10 +52,18 @@ public class Section implements Serializable, Cloneable {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="COURSE_ID")
     private Course course;
+
+	@OneToMany
+	private ArrayList<User> students;
+
+
 	
 
 	@OneToOne
+
+
 	private Faculty faculty;
+
 	//Constructors
 	public Section()
 	{
@@ -90,9 +100,11 @@ public class Section implements Serializable, Cloneable {
 		startHour = hours;
 		startMinute = minutes;
 		durationMinutes = dur;
+
 		this.sectionSize = sectionSize;
 		waitList = new LinkedList<User>();
 		currentStudents = new ArrayList<User>();
+
 	}
 	
 	
@@ -212,6 +224,7 @@ public class Section implements Serializable, Cloneable {
 	public String getInstructor() {
 		return instructorName;
 	}
+	
 	public void setInstructor(String instructorName) {
 		this.instructorName = instructorName;
 	}
@@ -221,6 +234,22 @@ public class Section implements Serializable, Cloneable {
 	public int getSectionSize(){
 		return sectionSize;
 	}
+
+
+	
+	public void addStudent(User student) {
+//	public void addStudent(User student, EntityManagerFactory factory) {
+//		EntityManager em = factory.createEntityManager();
+//		em.getTransaction().begin();
+		students.add(student);
+//		em.getTransaction().commit();
+//		em.close();
+	}
+	
+	public ArrayList<User> getAllStudents() {
+		return students;
+	}
+
 	public void setFaculty(Faculty faculty){
 		this.faculty = faculty;
 	}

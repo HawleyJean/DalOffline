@@ -68,12 +68,17 @@ public class DatabaseInitializer {
 		
 		EntityManager em = factory.createEntityManager();
 		
+		User student = DatabaseUtilities.getUserByUserName("user", factory);
+		
 		em.getTransaction().begin(); //Begin a transaction
 		Course newCourse = new Course("Software Engineering", "Computer Science", "CSCI3130", "Dr. Ashraf Abusharekh"); //Create a course object with params
 		Section newSection = new Section("Killam Fun Zone", 123, "The TAs",50 ,8, 30, 90); //Create a section with params
 		newSection.addDays(new int[]{4,6}); //Set days for this section
 		newCourse.addLab(newSection); //Add the section to the course as a lab or lecture
 		newSection.setCourse(newCourse); //Set the reference to the parent course from the section
+				
+//		newSection.addStudent(student, factory);
+		newSection.addStudent(student);
 		
 		//a full course to test wait list
 		Course anotherOne = new Course("Advanced Yoshi Tech", "Arts", "SSBM4020", "aMSa");
