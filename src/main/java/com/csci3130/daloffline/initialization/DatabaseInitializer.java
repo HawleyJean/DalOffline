@@ -31,6 +31,8 @@ public class DatabaseInitializer {
 		
 		users.add(new User("user", Authenticator.hash("pass"), "Jimmy McStudentFace", "Computer Science"));
 		users.add(new User("jesse", Authenticator.hash("1234"), "Jesse McLeod", "Computer Science"));
+		users.add(new Student("student", Authenticator.hash("pass"), "student class", "Computer Science"));
+		users.add(new Faculty("nauzer", Authenticator.hash("isthatclear"), "NAUZER", "Computer Science"));
 		//users.add(new User("xrd", Authenticator.hash("mmspos")));
 		//users.add(new User("Bobethy", Authenticator.hash("Collective")));
 		

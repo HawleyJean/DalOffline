@@ -94,9 +94,7 @@ public class CourseInfo extends VerticalLayout {
 		//Get the current user object
 		EntityManager em = DalOfflineUI.factory.createEntityManager();
 		em.getTransaction().begin();
-		String username = (String) getUI().getSession().getAttribute("username");
-		User user = em.createQuery("SELECT user FROM USERS user WHERE user.username = :input_user", User.class).setParameter("input_user", username).getSingleResult();
-		
+		User user = ((User)getUI().getSession().getAttribute("user"));
 		ArrayList<Section> currentlyEnrolledSections = user.getEnrolledSections(); //Get the user's current sections
 		
 		for(Section sec : currentlyEnrolledSections) //Make sure the user isn't already enrolled into these sections

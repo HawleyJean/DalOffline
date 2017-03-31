@@ -39,7 +39,9 @@ public class Section implements Serializable, Cloneable {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="COURSE_ID")
     private Course course;
-
+	
+	@OneToOne
+	private Faculty faculty;
 	//Constructors
 	public Section()
 	{
@@ -163,6 +165,12 @@ public class Section implements Serializable, Cloneable {
 	}
 	public void setInstructor(String instructorName) {
 		this.instructorName = instructorName;
+	}
+	public void setFaculty(Faculty faculty){
+		this.faculty = faculty;
+	}
+	public Faculty getFaculty(){
+		return faculty;
 	}
 		
 }
