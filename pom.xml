@@ -18,6 +18,7 @@
         <failOnMissingWebXml>false</failOnMissingWebXml>
         <vaadin.version>8.0.0.alpha2</vaadin.version>
         <vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
+	<vaadin.testbench.developer.license>9286d734-0d1a-426d-9cb2-ef390ab98795</vaadin.testbench.developer.license>
     </properties>
     <repositories>
         <repository>
@@ -97,7 +98,8 @@
 		    <groupId>com.vaadin</groupId>
 		    <artifactId>vaadin-testbench</artifactId>
 		    <version>4.2.0</version>
-		</dependency>		
+		</dependency>
+
     </dependencies>
 
     <build>

@@ -6,9 +6,9 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-
-import com.csci3130.daloffline.DalOfflineUI;
 import com.csci3130.daloffline.domain.*;
+import com.csci3130.daloffline.DalOfflineUI;
+import com.csci3130.daloffline.domain.User;
 import com.vaadin.navigator.*;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.ExternalResource;
@@ -51,8 +51,8 @@ public class ProfileView extends VerticalLayout implements View {
     	//Get the current user
     	EntityManager em = DalOfflineUI.factory.createEntityManager();
     	em.getTransaction().begin();
-    	currentUsername = (String) ui.getSession().getAttribute("username");
-        User user = em.createQuery("SELECT user FROM USERS user WHERE user.username = :input_user", User.class).setParameter("input_user", currentUsername).getSingleResult();
+    	currentUsername = (String) ((User) ui.getSession().getAttribute("user")).getUsername();
+        User user = ((User) ui.getSession().getAttribute("user"));
         em.getTransaction().commit();
         em.close();
      
@@ -141,9 +141,13 @@ public class ProfileView extends VerticalLayout implements View {
         schedule.setSizeFull();
         schedule.setFirstVisibleHourOfDay(7);
         schedule.setLastVisibleHourOfDay(18);
-        
+        ArrayList<Section> sections;
     	//Populate schedule with the user's sections
-        ArrayList<Section> sections = user.getEnrolledSections(); //Get the user's current sections
+        if(!user.getClass().getSimpleName().equals("Faculty"))
+        sections = user.getEnrolledSections(); //Get the user's current sections
+        else{
+        	sections = ((Faculty)user).getteachingList();
+        }
         for(Section sec :sections)
         {
           //Get course code and course name from section's associated course

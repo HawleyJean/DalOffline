@@ -41,8 +41,14 @@ public class Section implements Serializable, Cloneable {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="COURSE_ID")
     private Course course;
+
 	@OneToMany
 	private ArrayList<User> students;
+
+
+	
+	@OneToOne
+	private Faculty faculty;
 
 	//Constructors
 	public Section()
@@ -170,6 +176,7 @@ public class Section implements Serializable, Cloneable {
 	public void setInstructor(String instructorName) {
 		this.instructorName = instructorName;
 	}
+
 	
 	public void addStudent(User student) {
 //	public void addStudent(User student, EntityManagerFactory factory) {
@@ -183,4 +190,12 @@ public class Section implements Serializable, Cloneable {
 	public ArrayList<User> getAllStudents() {
 		return students;
 	}
+
+	public void setFaculty(Faculty faculty){
+		this.faculty = faculty;
+	}
+	public Faculty getFaculty(){
+		return faculty;
+	}
+		
 }
