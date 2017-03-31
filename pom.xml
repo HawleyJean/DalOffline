@@ -99,12 +99,6 @@
 		    <artifactId>vaadin-testbench</artifactId>
 		    <version>4.2.0</version>
 		</dependency>
-	    <!-- https://mvnrepository.com/artifact/com.edugility/h2-maven-plugin -->
-		<dependency>
-		    <groupId>com.edugility</groupId>
-		    <artifactId>h2-maven-plugin</artifactId>
- 		   <version>1.0</version>
-		</dependency>
 
     </dependencies>
 
