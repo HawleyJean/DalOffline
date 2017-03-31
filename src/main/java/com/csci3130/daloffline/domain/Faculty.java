@@ -11,9 +11,9 @@ import javax.persistence.Id;
 public class Faculty extends User implements Serializable{
 private static final long serialVersionUID = 1L;
 	
-	@Id
-	@GeneratedValue
-	private long id;
+//	@Id
+	//@GeneratedValue
+	//private long id;
 	private ArrayList<Section> teachingList;
 	public Faculty(String username, String password, String name, String major){
 		super(username, password, name, major);
