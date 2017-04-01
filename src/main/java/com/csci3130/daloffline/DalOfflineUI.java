@@ -82,9 +82,8 @@ public class DalOfflineUI extends UI {
 	 */
     @Override
     protected void init(VaadinRequest request) {
-    	System.out.println("AAA");
-    	String databaseUrl = System.getenv("DATABASE_URL");
-    	if(databaseUrl != null)
+    	//String databaseUrl = System.getenv("DATABASE_URL");
+    	/*if(databaseUrl != null)
     	{
 	    	StringTokenizer st = new StringTokenizer(databaseUrl, ":@/");
 	    	String dbVendor = st.nextToken(); //if DATABASE_URL is set
@@ -100,15 +99,15 @@ public class DalOfflineUI extends UI {
 	    	properties.put("javax.persistence.jdbc.password", password );
 	    	properties.put("javax.persistence.jdbc.driver", "org.postgresql.Driver");
 	    	properties.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
-	    	factory = Persistence.createEntityManagerFactory("postgres", properties);
+	    	factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT, properties);
     	}
-    	else
-    		factory = Persistence.createEntityManagerFactory("postgres");
+    	else*/
+    		//factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
     	
-    	/*Map<String, Object> configOverrides = new HashMap<String, Object>();
+    	Map<String, Object> configOverrides = new HashMap<String, Object>();
     	String env = System.getenv("JDBC_DATABASE_URL");
 		configOverrides.put("hibernate.connection.url", env);
-		factory = Persistence.createEntityManagerFactory("postgres", configOverrides);*/
+		factory = Persistence.createEntityManagerFactory("postgres", configOverrides);
 		
     	//factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
     	DatabaseInitializer.generateUsers(factory);
