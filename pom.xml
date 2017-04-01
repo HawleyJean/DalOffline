@@ -83,9 +83,9 @@
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.eclipse.persistence/eclipselink -->
 		<dependency>
-		    <groupId>org.eclipse.persistence</groupId>
-		    <artifactId>eclipselink</artifactId>
-		    <version>2.6.2</version>
+		    <groupId>org.hibernate</groupId>
+    		<artifactId>hibernate-entitymanager</artifactId>
+    		<version>3.6.3.Final</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
 		<dependency>
