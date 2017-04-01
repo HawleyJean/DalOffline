@@ -105,7 +105,8 @@ public class DalOfflineUI extends UI {
     		//factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
     	
     	Map<String, Object> configOverrides = new HashMap<String, Object>();
-		configOverrides.put("hibernate.connection.url", System.getenv("DATABASE_URL"));
+    	String env = System.getenv("JDBC_DATABASE_URL");
+		configOverrides.put("hibernate.connection.url", env);
 		factory = Persistence.createEntityManagerFactory("postgres", configOverrides);
 		
     	//factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
