@@ -79,7 +79,7 @@ public class UILoginTest extends TestBenchTestCase {
 	
 	@After
 	public void tearDown() throws Exception {
-		getDriver().quit();
+		//getDriver().quit();
 	}
 	
 //	@AfterClass
