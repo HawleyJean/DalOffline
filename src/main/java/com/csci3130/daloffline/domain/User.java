@@ -2,6 +2,7 @@ package com.csci3130.daloffline.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -30,7 +31,7 @@ public class User implements Serializable {
 	private String password;
 	
 	@OneToMany
-	private ArrayList<Section> enrolledSections;
+	private List<Section> enrolledSections;
 	
 	
 	
@@ -78,7 +79,7 @@ public class User implements Serializable {
 		return courseFound;
 	}
 	
-	public ArrayList<Section> getEnrolledSections(){
+	public List<Section> getEnrolledSections(){
 		return enrolledSections;
 	}
 

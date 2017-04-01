@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -39,9 +40,9 @@ public class Section implements Serializable, Cloneable {
 	
 	//list of wait list students and
 	@OneToMany
-	private LinkedList<User> waitList;
+	private List<User> waitList;
 	@OneToMany
-	private ArrayList<User> currentStudents;
+	private List<User> currentStudents;
 
 	//Time attributes
 	private ArrayList<Integer> daysOfWeek;
@@ -54,7 +55,7 @@ public class Section implements Serializable, Cloneable {
     private Course course;
 
 	@OneToMany
-	private ArrayList<User> students;
+	private List<User> students;
 
 	@OneToOne
 	private Faculty faculty;
@@ -178,7 +179,7 @@ public class Section implements Serializable, Cloneable {
 	//we don't have to implement this right now
 	public void waitListPush(){
 		if(waitList.size() != 0){
-			currentStudents.add(waitList.remove());
+			//currentStudents.add(waitList.remove());
 		}
 	}
 	//if there's space in the class, we'll let a student be added
@@ -244,7 +245,7 @@ public class Section implements Serializable, Cloneable {
 //		em.close();
 	}
 	
-	public ArrayList<User> getAllStudents() {
+	public List<User> getAllStudents() {
 		return students;
 	}
 

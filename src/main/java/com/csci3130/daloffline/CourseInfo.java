@@ -101,7 +101,7 @@ public class CourseInfo extends VerticalLayout {
 		EntityManager em = DalOfflineUI.factory.createEntityManager();
 		em.getTransaction().begin();
 		User user = ((User)getUI().getSession().getAttribute("user"));
-		ArrayList<Section> currentlyEnrolledSections = user.getEnrolledSections(); //Get the user's current sections
+		List<Section> currentlyEnrolledSections = user.getEnrolledSections(); //Get the user's current sections
 		
 		for(Section sec : currentlyEnrolledSections) //Make sure the user isn't already enrolled into these sections
 		{
@@ -186,7 +186,7 @@ public class CourseInfo extends VerticalLayout {
 		courseInfo.setCaption(text);
 		
 		//Create lectures dropdown list
-		ArrayList<Section> lectures = course.getLectures();
+		List<Section> lectures = course.getLectures();
 		//lectureList.removeAllItems();
 		for(Section lec : lectures)
 			lectureList.addItem(""+lec.getID());
@@ -194,7 +194,7 @@ public class CourseInfo extends VerticalLayout {
 		lectureList.addValueChangeListener(e -> setLectureChoice(Long.parseLong((String)lectureList.getValue())));
 		
 		//Create labs dropdown list
-		ArrayList<Section> labs = course.getLabs();
+		List<Section> labs = course.getLabs();
 		//labList.removeAllItems();
 		for(Section lab : labs)
 			labList.addItem(""+lab.getID());

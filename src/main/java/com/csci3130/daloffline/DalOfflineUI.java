@@ -1,5 +1,6 @@
 package com.csci3130.daloffline;
 
+import org.hibernate.*;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -101,11 +102,11 @@ public class DalOfflineUI extends UI {
 	    	factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT, properties);
     	}
     	else*/
-    		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+    		//factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
     	
-    	//Map<String, Object> configOverrides = new HashMap<String, Object>();
-		//configOverrides.put("hibernate.connection.url", System.getenv("JDBC_DATABASE_URL"));
-		//factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT, configOverrides);
+    	Map<String, Object> configOverrides = new HashMap<String, Object>();
+		configOverrides.put("hibernate.connection.url", System.getenv("DATABASE_URL"));
+		factory = Persistence.createEntityManagerFactory("postgres", configOverrides);
 		
     	//factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
     	DatabaseInitializer.generateUsers(factory);

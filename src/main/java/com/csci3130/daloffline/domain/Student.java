@@ -1,6 +1,8 @@
 package com.csci3130.daloffline.domain;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -11,7 +13,8 @@ private static final long serialVersionUID = 1L;
 	
 
 	@OneToMany
-	private ArrayList<Course> CompletedCourses;
+	private List<Course> CompletedCourses;
+	
 	public Student(){
 		super();
 	}
@@ -21,7 +24,7 @@ private static final long serialVersionUID = 1L;
 	public void addCompletedCourse(Course course){
 		CompletedCourses.add(course);
 	}
-	public ArrayList<Course> getCompletedCourses(){
+	public List<Course> getCompletedCourses(){
 		return CompletedCourses;
 	}
 }
