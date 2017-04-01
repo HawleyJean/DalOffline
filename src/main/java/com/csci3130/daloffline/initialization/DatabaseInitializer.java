@@ -71,42 +71,27 @@ public class DatabaseInitializer {
 		User student = DatabaseUtilities.getUserByUserName("user", factory);
 		
 		em.getTransaction().begin(); //Begin a transaction
+		
 		Course newCourse = new Course("Software Engineering", "Computer Science", "CSCI3130", "Dr. Ashraf Abusharekh"); //Create a course object with params
-		Section newSection = new Section("Killam Fun Zone", 123, "The TAs",50 ,8, 30, 90); //Create a section with params
-		newSection.addDays(new int[]{4,6}); //Set days for this section
-		newCourse.addLab(newSection); //Add the section to the course as a lab or lecture
-		newSection.setCourse(newCourse); //Set the reference to the parent course from the section
-				
-//		newSection.addStudent(student, factory);
-		newSection.addStudent(student);
-		
-		//a full course to test wait list
-		Course anotherOne = new Course("Advanced Yoshi Tech", "Arts", "SSBM4020", "aMSa");
-		Section anotherSec = new Section("Ondaatje Auditorium", 155, "aMSa", 0, 10, 30, 60);
-		anotherSec.addDays(new int[]{2,4,6});
-		anotherSec.setCourse(anotherOne);
-		anotherOne.addLecture(anotherSec);
-		
-		newSection = new Section();
-		
-		newSection = new Section("Psych. 415", 69, "The Professor", 100, 16, 0, 90);
-		newSection.addDays(new int[]{3,5});
-		newCourse.addLecture(newSection);
-		newSection.setCourse(newCourse);
+		Section newSection = new Section("Killam 312", "Juliano", 8, 30, 90, new int[]{4,6}, newCourse, true); //Create a section with params
+		newSection = new Section("Psych. 415", 16, 0, 90, new int[]{3,5}, newCourse, false);
 		em.persist(newCourse); //Persist the course (will automatically persist the added sections)
 		
-		newCourse = new Course("Principles of Programming Languages", "Computer Science", "CSCI3136", "NAUZER");
-		newSection = new Section("CS 127", 666, "NAAUUUZER", 50, 13, 30, 60);
-		newSection.addDays(new int[]{2,4,6});
-		newCourse.addLecture(newSection);
-		newSection.setCourse(newCourse);
-		newSection = new Section("Somewhere Else", 667, "NAAUUUZER", 25, 11, 30, 60);
-		newSection.addDays(new int[]{2,4,6});
-		newCourse.addLecture(newSection);
-		newSection.setCourse(newCourse);
-		
+		newCourse = new Course("Principles of Programming Languages", "Computer Science", "CSCI3136", "Dr. Nauzer Kalyaniwalla");
+		newSection = new Section("CS 127", 13, 30, 60, new int[]{2,4,6}, newCourse, false);
+		newSection = new Section("CS 127", 11, 30, 60, new int[]{2,4,6}, newCourse, false);
 		em.persist(newCourse);
-		em.persist(anotherOne);
+		
+		newCourse = new Course("Operating Systems", "Computer Science", "CSCI3120", "Khurram Aziz");
+		newSection = new Section("CS 127", 10, 0, 90, new int[]{4,6}, newCourse, false);
+		newSection = new Section("CS 127", 11, 30, 60, new int[]{2,4,6}, newCourse, false);
+		em.persist(newCourse);
+		
+		newCourse = new Course("Network Computing", "Computer Science", "CSCI3171", "Dr. Nur Zincir-Heywood");
+		newSection = new Section("LSC 300", 13, 30, 60, new int[]{2,3,5}, newCourse, false);
+		newSection = new Section("CS Teaching Lab 2", "Abdulhadi Alqarni", 13, 30, 60, new int[]{4}, newCourse, true);
+		newSection = new Section("CS Teaching Lab 2", "Saurabh Dey", 13, 30, 60, new int[]{6}, newCourse, true);
+		em.persist(newCourse);
 
 		em.getTransaction().commit();
 		em.close();

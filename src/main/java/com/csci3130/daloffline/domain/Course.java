@@ -82,18 +82,7 @@ public class Course implements Serializable, Cloneable {
 	{
 		lectures.add(lec);
 	}
-	/**
-	 * Adds a lecture to the course
-	 * 
-	 * @param loc - a string representing the location
-	 * @param CRN - an integer for the Course Registration Number
-	 * @param Instructor - A string for the instructor's name
-	 * @return Nothing
-	 */
-	public void addLecture(String loc, int CRN, String instructor)
-	{
-		lectures.add(new Section(loc, CRN, instructor));
-	}
+
 	/**
 	 * Adds a lab to the course
 	 * 
@@ -103,18 +92,6 @@ public class Course implements Serializable, Cloneable {
 	public void addLab(Section lab)
 	{
 		labs.add(lab);
-	}
-	/**
-	 * Adds a lab to the course
-	 * 
-	 * @param loc - a string representing the location
-	 * @param CRN - an integer for the Course Registration Number
-	 * @param Instructor - A string for the instructor's name
-	 * @return Nothing
-	 */
-	public void addLab(String loc, int CRN, String instructor)
-	{
-		labs.add(new Section(loc, CRN, instructor));
 	}
 	
 	/**
