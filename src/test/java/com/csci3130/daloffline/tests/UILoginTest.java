@@ -33,7 +33,7 @@ public class UILoginTest extends TestBenchTestCase {
 	
 	@Before
 	public void setUp() throws Exception {
-		setDriver(new ChromeDriver());
+		//setDriver(new ChromeDriver());
 	}
 	
 	String user = "user";
