@@ -14,7 +14,7 @@ import javax.persistence.*;
 
 public class DatabaseUtilities 
 {
-	
+	/*
 	public static Course createCourse(String courseName, String faculty, String courseCode, String instructorName, EntityManagerFactory factory)
 	{
 		EntityManager em = factory.createEntityManager();
@@ -56,7 +56,7 @@ public class DatabaseUtilities
 	{
 		EntityManager em = factory.createEntityManager();
 		
-		Section newSection = new Section(loc, CRN, instructor, sectionSize, hours, minutes, dur);
+		Section newSection = new Section(loc, CRN, instructor, sectionSize, hours, minutes, dur, sectionSize);
 		
 		theCourse.addLecture(newSection);
 		
@@ -82,7 +82,7 @@ public class DatabaseUtilities
 		em.close();
 		
 		return worked;
-	}
+	}*/
 	
 	public static List<Course> getAllCourses(EntityManagerFactory factory)
 	{
