@@ -82,34 +82,17 @@ public class DalOfflineUI extends UI {
 	 */
     @Override
     protected void init(VaadinRequest request) {
-    	//String databaseUrl = System.getenv("DATABASE_URL");
-    	/*if(databaseUrl != null)
-    	{
-	    	StringTokenizer st = new StringTokenizer(databaseUrl, ":@/");
-	    	String dbVendor = st.nextToken(); //if DATABASE_URL is set
-	    	String userName = st.nextToken();
-	    	String password = st.nextToken();
-	    	String host = st.nextToken();
-	    	String port = st.nextToken();
-	    	String databaseName = st.nextToken();
-	    	String jdbcUrl = String.format("jdbc:postgresql://%s:%s/%s?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory", host, port, databaseName);
-	    	Map<String, String> properties = new HashMap<String, String>();
-	    	properties.put("javax.persistence.jdbc.url", databaseUrl );
-	    	properties.put("javax.persistence.jdbc.user", userName );
-	    	properties.put("javax.persistence.jdbc.password", password );
-	    	properties.put("javax.persistence.jdbc.driver", "org.postgresql.Driver");
-	    	properties.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
-	    	factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT, properties);
-    	}
-    	else*/
-    		//factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
-    	
-    	Map<String, Object> configOverrides = new HashMap<String, Object>();
     	String env = System.getenv("JDBC_DATABASE_URL");
-		configOverrides.put("hibernate.connection.url", env);
-		factory = Persistence.createEntityManagerFactory("postgres", configOverrides);
+    	
+    	if(env != null)
+    	{
+    		Map<String, Object> configOverrides = new HashMap<String, Object>();
+    		configOverrides.put("hibernate.connection.url", env);
+    		factory = Persistence.createEntityManagerFactory("postgres", configOverrides);
+    	}
+    	else
+    		factory = Persistence.createEntityManagerFactory("local");
 		
-    	//factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
     	DatabaseInitializer.generateUsers(factory);
     	DatabaseInitializer.generateCourses(factory);
     	
