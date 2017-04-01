@@ -2,6 +2,7 @@ package com.csci3130.daloffline.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -30,7 +31,9 @@ public class User implements Serializable {
 	private String password;
 	
 	@OneToMany
-	private ArrayList<Section> enrolledSections;
+	private List<Section> enrolledSections;
+	
+	
 	
 	public User()
 	{
@@ -43,6 +46,7 @@ public class User implements Serializable {
 		this.password = password;
 		this.fullName = name;
 		this.major = major;
+		enrolledSections = new ArrayList<Section>();
 	}
 	
 	public String getBannerNumber()
@@ -60,26 +64,22 @@ public class User implements Serializable {
 	{
 		boolean courseFound = false;
 
-		ArrayList<Integer> foundIndexes = new ArrayList<Integer>();
+		//ArrayList<Integer> foundIndexes = new ArrayList<Integer>();
 		for(int i=0; i<enrolledSections.size(); i++)
 		{
 			if(enrolledSections.get(i).getCourse().getID() == c.getID())
 			{
 				courseFound = true;
-				foundIndexes.add(i);
+				//foundIndexes.add(i);
+				enrolledSections.remove(i);
+				i--;
 			}
-		}
-
-		if(foundIndexes.size() > 0)
-		{
-			for(int i=foundIndexes.size()-1; i>=0; i--)
-				enrolledSections.remove(foundIndexes.get(i));
 		}
 		
 		return courseFound;
 	}
 	
-	public ArrayList<Section> getEnrolledSections(){
+	public List<Section> getEnrolledSections(){
 		return enrolledSections;
 	}
 

@@ -36,7 +36,7 @@ import com.vaadin.shared.ui.label.ContentMode;
  */
 
 public class ProfileView extends VerticalLayout implements View {
-	private String currentUsername;
+	//private String currentUsername;
 	private Calendar schedule;
 	private HorizontalLayout profile = new HorizontalLayout(); //Profile tab
 	private TabSheet tabsheet = new TabSheet();
@@ -51,7 +51,7 @@ public class ProfileView extends VerticalLayout implements View {
     	//Get the current user
     	EntityManager em = DalOfflineUI.factory.createEntityManager();
     	em.getTransaction().begin();
-    	currentUsername = (String) ((User) ui.getSession().getAttribute("user")).getUsername();
+    	//currentUsername = (String) ((User) ui.getSession().getAttribute("user")).getUsername();
         User user = ((User) ui.getSession().getAttribute("user"));
         em.getTransaction().commit();
         em.close();
@@ -127,7 +127,7 @@ public class ProfileView extends VerticalLayout implements View {
     	//Get the current user
     	EntityManager em = DalOfflineUI.factory.createEntityManager();
     	em.getTransaction().begin();
-        User user = em.createQuery("SELECT user FROM USERS user WHERE user.username = :input_user", User.class).setParameter("input_user", currentUsername).getSingleResult();
+    	User user = (User)getUI().getSession().getAttribute("user");
         em.getTransaction().commit();
         em.close();
         
@@ -141,10 +141,10 @@ public class ProfileView extends VerticalLayout implements View {
         schedule.setSizeFull();
         schedule.setFirstVisibleHourOfDay(7);
         schedule.setLastVisibleHourOfDay(18);
-        ArrayList<Section> sections;
+        List<Section> sections;
     	//Populate schedule with the user's sections
         if(!user.getClass().getSimpleName().equals("Faculty"))
-        sections = user.getEnrolledSections(); //Get the user's current sections
+        	sections = user.getEnrolledSections(); //Get the user's current sections
         else{
         	sections = ((Faculty)user).getteachingList();
         }
