@@ -4,26 +4,14 @@
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<properties>
-			<property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
-			<property name="javax.persistence.jdbc.url" value="jdbc:h2:./daloffline_db"/>
-			<property name="javax.persistence.jdbc.user" value="sa"/>
-			<property name="javax.persistence.jdbc.password" value="sa"/>
+			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://ec2-50-17-236-15.compute-1.amazonaws.com:5432/dbt78tuf11g1us"/>
+			<property name="javax.persistence.jdbc.user" value="mjtslyucmvehaw"/>
+			<property name="javax.persistence.jdbc.password" value="1397b66c4b16a454f006a83ade36d8316ad0925197e995143f882973af805498"/>
 			<property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
 			<property name="eclipselink.ddl-generation.output-mode" value="database"/>
 			<property name="eclipselink.logging.level" value="FINE" /> 
-		</properties>
-	</persistence-unit>
-	<persistence-unit name="daloffline_db_testing" transaction-type="RESOURCE_LOCAL">
-		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-		<exclude-unlisted-classes>false</exclude-unlisted-classes>
-		<properties>
-			<property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
-			<property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:daloffline_db_testing"/>
-			<property name="javax.persistence.jdbc.user" value="sa"/>
-			<property name="javax.persistence.jdbc.password" value="sa"/>
-			<property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
-			<property name="eclipselink.ddl-generation.output-mode" value="database"/>
-			<property name="eclipselink.logging.level" value="FINE" /> 
+			
 		</properties>
 	</persistence-unit>
 	

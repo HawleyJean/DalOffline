@@ -1,7 +1,12 @@
 package com.csci3130.daloffline;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
@@ -55,6 +60,19 @@ public class DalOfflineUI extends UI {
     public static final String USERPROFILE = "profile";
     public static final String COURSELIST = "course_list";
     private User user;
+    
+    
+    
+    private static Connection getConnection() throws URISyntaxException, SQLException {
+        URI dbUri = new URI(System.getenv("DATABASE_URL"));
+
+        String username = dbUri.getUserInfo().split(":")[0];
+        String password = dbUri.getUserInfo().split(":")[1];
+        String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
+
+        return DriverManager.getConnection(dbUrl, username, password);
+    }
+    
 	/**
 	 * This function changes the view based on a VaadinRequest sent by some action
 	 * 
@@ -64,7 +82,7 @@ public class DalOfflineUI extends UI {
     @Override
     protected void init(VaadinRequest request) {
     	String databaseUrl = System.getenv("DATABASE_URL");
-    	if(databaseUrl != null)
+    	/*if(databaseUrl != null)
     	{
 	    	StringTokenizer st = new StringTokenizer(databaseUrl, ":@/");
 	    	String dbVendor = st.nextToken(); //if DATABASE_URL is set
@@ -82,7 +100,7 @@ public class DalOfflineUI extends UI {
 	    	properties.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
 	    	factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT, properties);
     	}
-    	else
+    	else*/
     		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
     	
     	//Map<String, Object> configOverrides = new HashMap<String, Object>();
