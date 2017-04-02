@@ -36,6 +36,7 @@ public class MainView extends VerticalLayout implements View {
         Button courseListButton = new Button("View All Courses");
         Button studentListButton = new Button("View Student List");
         courseListButton.addClickListener(e -> getUI().getNavigator().navigateTo(DalOfflineUI.COURSELIST));
+        studentListButton.addClickListener(e-> getUI().getNavigator().navigateTo(DalOfflineUI.STUDENTLIST));
         
         container.addComponents(name, profileButton, courseListButton, studentListButton); //Add buttons to the view
         container.setComponentAlignment(studentListButton, Alignment.MIDDLE_CENTER);
