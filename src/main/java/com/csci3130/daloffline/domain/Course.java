@@ -2,6 +2,7 @@ package com.csci3130.daloffline.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -33,9 +34,9 @@ public class Course implements Serializable, Cloneable {
 	private String instructorName;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "course")
-	private ArrayList<Section> lectures;
+	private List<Section> lectures;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "course")
-	private ArrayList<Section> labs;
+	private List<Section> labs;
 	
 	
 	/**
@@ -82,18 +83,7 @@ public class Course implements Serializable, Cloneable {
 	{
 		lectures.add(lec);
 	}
-	/**
-	 * Adds a lecture to the course
-	 * 
-	 * @param loc - a string representing the location
-	 * @param CRN - an integer for the Course Registration Number
-	 * @param Instructor - A string for the instructor's name
-	 * @return Nothing
-	 */
-	public void addLecture(String loc, int CRN, String instructor)
-	{
-		lectures.add(new Section(loc, CRN, instructor));
-	}
+
 	/**
 	 * Adds a lab to the course
 	 * 
@@ -103,18 +93,6 @@ public class Course implements Serializable, Cloneable {
 	public void addLab(Section lab)
 	{
 		labs.add(lab);
-	}
-	/**
-	 * Adds a lab to the course
-	 * 
-	 * @param loc - a string representing the location
-	 * @param CRN - an integer for the Course Registration Number
-	 * @param Instructor - A string for the instructor's name
-	 * @return Nothing
-	 */
-	public void addLab(String loc, int CRN, String instructor)
-	{
-		labs.add(new Section(loc, CRN, instructor));
 	}
 	
 	/**
@@ -135,7 +113,7 @@ public class Course implements Serializable, Cloneable {
 	 * @param lab - A Section object representing a lab
 	 * @return ArrayList<Section>
 	 */
-	public ArrayList<Section> getLectures()
+	public List<Section> getLectures()
 	{
 		return lectures;
 	}
@@ -145,7 +123,7 @@ public class Course implements Serializable, Cloneable {
 	 * @param lab - A Section object representing a lab
 	 * @return ArrayList<Section>
 	 */
-	public ArrayList<Section> getLabs()
+	public List<Section> getLabs()
 	{
 		return labs;
 	}

@@ -1,7 +1,16 @@
 package com.csci3130.daloffline;
 
+import org.hibernate.*;
 import java.io.UnsupportedEncodingException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.StringTokenizer;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -53,6 +62,19 @@ public class DalOfflineUI extends UI {
     public static final String COURSELIST = "course_list";
     public static final String STUDENTLIST = "studentlist";
     private User user;
+    
+    
+    
+    private static Connection getConnection() throws URISyntaxException, SQLException {
+        URI dbUri = new URI(System.getenv("DATABASE_URL"));
+
+        String username = dbUri.getUserInfo().split(":")[0];
+        String password = dbUri.getUserInfo().split(":")[1];
+        String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
+
+        return DriverManager.getConnection(dbUrl, username, password);
+    }
+    
 	/**
 	 * This function changes the view based on a VaadinRequest sent by some action
 	 * 
@@ -61,8 +83,17 @@ public class DalOfflineUI extends UI {
 	 */
     @Override
     protected void init(VaadinRequest request) {
+    	String env = System.getenv("JDBC_DATABASE_URL");
     	
-    	factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+    	if(env != null)
+    	{
+    		Map<String, Object> configOverrides = new HashMap<String, Object>();
+    		configOverrides.put("hibernate.connection.url", env);
+    		factory = Persistence.createEntityManagerFactory("postgres", configOverrides);
+    	}
+    	else
+    		factory = Persistence.createEntityManagerFactory("local");
+		
     	DatabaseInitializer.generateUsers(factory);
     	DatabaseInitializer.generateCourses(factory);
     	

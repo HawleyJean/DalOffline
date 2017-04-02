@@ -14,7 +14,7 @@ import javax.persistence.*;
 
 public class DatabaseUtilities 
 {
-	
+	/*
 	public static Course createCourse(String courseName, String faculty, String courseCode, String instructorName, EntityManagerFactory factory)
 	{
 		EntityManager em = factory.createEntityManager();
@@ -31,13 +31,14 @@ public class DatabaseUtilities
 		return newCourse;
 	}
 	
-	public static Section createLab(String loc, int CRN, String instructor, int hours, int minutes, int dur, Course theCourse, EntityManagerFactory factory)
+	public static Section createLab(String loc, int CRN, String instructor, int sectionSize,int hours, int minutes, int dur,
+									Course theCourse, EntityManagerFactory factory)
 	{
 		EntityManager em = factory.createEntityManager();
 		
 		em.getTransaction().begin();
 	
-		Section newSection = new Section(loc, CRN, instructor, hours, minutes, dur);
+		Section newSection = new Section(loc, CRN, instructor, hours, sectionSize, minutes, dur);
 		
 		theCourse.addLab(newSection);
 	
@@ -50,11 +51,12 @@ public class DatabaseUtilities
 		return newSection;
 	}
 	
-	public static Section createLecture(String loc, int CRN, String instructor, int hours, int minutes, int dur, Course theCourse, EntityManagerFactory factory)
+	public static Section createLecture(String loc, int CRN, String instructor, int sectionSize, int hours, int minutes, int dur,
+										Course theCourse, EntityManagerFactory factory)
 	{
 		EntityManager em = factory.createEntityManager();
 		
-		Section newSection = new Section(loc, CRN, instructor, hours, minutes, dur);
+		Section newSection = new Section(loc, CRN, instructor, sectionSize, hours, minutes, dur, sectionSize);
 		
 		theCourse.addLecture(newSection);
 		
@@ -80,7 +82,7 @@ public class DatabaseUtilities
 		em.close();
 		
 		return worked;
-	}
+	}*/
 	
 	public static List<Course> getAllCourses(EntityManagerFactory factory)
 	{
@@ -97,6 +99,31 @@ public class DatabaseUtilities
 		return allCourses;
 	}
 	
+	public static Section getSectionByCRN(int crn, EntityManagerFactory factory) {
+		EntityManager em = factory.createEntityManager();
+		
+		em.getTransaction().begin();		
+		List<Section> section = em.createQuery("SELECT s FROM SECTIONS s WHERE s.CRN LIKE :sectCRN", Section.class).setParameter("sectCRN", crn).getResultList();
+		em.getTransaction().commit();
+		em.close();
+		
+		return section.get(0);
+	}
 	
+	public static List<User> getStudentsInSection(int crn, EntityManagerFactory factory) {
+
+		return getSectionByCRN(crn, factory).getAllStudents();
 	
+	}
+	
+	public static User getUserByUserName(String userUsername, EntityManagerFactory factory) {
+		EntityManager em = factory.createEntityManager();
+		
+		em.getTransaction().begin();		
+		List<User> user = em.createQuery("SELECT s FROM USERS s WHERE s.username LIKE :user", User.class).setParameter("user", userUsername).getResultList();
+		em.getTransaction().commit();
+		em.close();
+		
+		return user.get(0);
+	}
 }
