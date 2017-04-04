@@ -68,16 +68,20 @@ public class ProfileView extends VerticalLayout implements View {
         
         //Panel with three buttons inside it
         Panel actions = new Panel("Actions");
-        Button button1 = new Button("Button1");
+        Button button1 = new Button("View your course history");
         button1.setStyleName("v-button-borderless");
-        Button button2 = new Button("Button2");
+        //Other unnecessary buttons atm
+/*        Button button2 = new Button("Button2");
         button2.setStyleName("v-button-borderless");
         Button button3 = new Button("Button3");
-        button3.setStyleName("v-button-borderless");
+        button3.setStyleName("v-button-borderless");*/
         VerticalLayout content = new VerticalLayout();
         content.setSizeFull();
-        content.addComponents(button1, button2, button3);
+        content.addComponents(button1/*, button2, button3*/);
         actions.setContent(content);
+        
+        //Add functionality for course history button
+        button1.addClickListener(e -> getUI().getNavigator().navigateTo(DalOfflineUI.COMPLETEDCOURSES));
         
         //User information text in center part of profile
         Label profileInfo = new Label("<b>Name: </b>"+user.getFullName()+"<br><b>Banner ID: </b>"+user.getBannerNumber()+"<br><b>Major: </b>"+user.getMajor());
