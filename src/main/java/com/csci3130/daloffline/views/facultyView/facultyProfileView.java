@@ -1,5 +1,4 @@
-package com.csci3130.daloffline.views;
-
+package com.csci3130.daloffline.views.facultyView;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -8,7 +7,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import com.csci3130.daloffline.domain.*;
 import com.csci3130.daloffline.DalOfflineUI;
-import com.csci3130.daloffline.domain.User;
 import com.vaadin.navigator.*;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.ExternalResource;
@@ -22,39 +20,32 @@ import com.vaadin.ui.Notification;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.TabSheet;
 import com.vaadin.ui.UI;
+
+import com.vaadin.v7.ui.Grid;
+
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.v7.data.util.BeanItemContainer;
 import com.vaadin.v7.ui.Calendar;
 import com.vaadin.v7.ui.components.calendar.event.BasicEvent;
 import com.vaadin.v7.ui.components.calendar.handler.*;
 import com.vaadin.shared.ui.label.ContentMode;
 
-/**
- * User profile view. Shows the user their own profile, and allows them to view their current schedule.
- * 
- * @author Connor Foran
- * @author Brendan Chan
- */
+public class facultyProfileView extends VerticalLayout implements View {
 
-public class ProfileView extends VerticalLayout implements View {
-	//private String currentUsername;
-	private Calendar schedule;
+	private HorizontalLayout teachingList = new HorizontalLayout();
+	private Grid courseList = new Grid();
 	private HorizontalLayout profile = new HorizontalLayout(); //Profile tab
 	private TabSheet tabsheet = new TabSheet();
-	private HorizontalLayout courseHistory = new HorizontalLayout(); // courseHistory Tab
-	/**
-	 * Initializes and builds the profile page
-	 * 
-	 * @param None
-	 * @return Nothing
-	 */
-    public ProfileView(DalOfflineUI ui)
+	private Calendar schedule;
+	
+	public facultyProfileView(DalOfflineUI ui)
     {
     	//Get the current user
     	EntityManager em = DalOfflineUI.factory.createEntityManager();
     	em.getTransaction().begin();
     	//currentUsername = (String) ((User) ui.getSession().getAttribute("user")).getUsername();
         //User user = ((User) ui.getSession().getAttribute("user"));
-        Student user = ((Student) ui.getSession().getAttribute("student"));
+        Faculty user = ((Faculty) ui.getSession().getAttribute("faculty"));
     	em.getTransaction().commit();
         em.close();
      
@@ -64,26 +55,21 @@ public class ProfileView extends VerticalLayout implements View {
         Panel border = new Panel();
         
         Button backButton = new Button("Go Back"); //Button to go back to the main menu
-        backButton.addClickListener(e -> getUI().getNavigator().navigateTo(DalOfflineUI.MAINVIEW));
+        backButton.addClickListener(e -> getUI().getNavigator().navigateTo(DalOfflineUI.FACULTYMAINVIEW));
 
         profile.setSizeFull();
         
         //Panel with three buttons inside it
         Panel actions = new Panel("Actions");
-        //Button completedCoursesB = new Button("Completed Courses");
-        //completedCoursesB.setStyleName("v-button-borderless");
-        //Other unnecessary buttons atm
-/*        Button button2 = new Button("Button2");
-        button2.setStyleName("v-button-borderless");
-        Button button3 = new Button("Button3");
-        button3.setStyleName("v-button-borderless");*/
+        
+        
+      
         VerticalLayout content = new VerticalLayout();
         content.setSizeFull();
-        //content.addComponents(completedCoursesB/*, button2, button3*/);
+        content.addComponents(/*, button2, button3*/);
         actions.setContent(content);
         
         //Add functionality for course history button
-        //completedCoursesB.addClickListener(e -> getUI().getNavigator().navigateTo(DalOfflineUI.COMPLETEDCOURSES));
         
         //User information text in center part of profile
         Label profileInfo = new Label("<b>Name: </b>"+user.getFullName()+"<br><b>Banner ID: </b>"+user.getBannerNumber()+"<br><b>Major: </b>"+user.getMajor());
@@ -100,40 +86,17 @@ public class ProfileView extends VerticalLayout implements View {
         actions.setWidth("50%");
         profile.setMargin(true);
         tabsheet.addTab(profile, "Profile");
-        tabsheet.addTab(courseHistory,"Completed Courses");
+        tabsheet.addTab(teachingList, "Courses Teaching");
         //Create schedule
-        schedule = new Calendar();
-        tabsheet.addTab(schedule, "Schedule");
-        schedule.setHandler((BasicEventMoveHandler)null);
-        schedule.setHandler((BasicEventResizeHandler)null);
-        schedule.setHandler((BasicDateClickHandler)null);
-        schedule.setSizeFull();
-        schedule.setFirstVisibleHourOfDay(7);
-        schedule.setLastVisibleHourOfDay(18);
         
-        //courseHistory Tab
+        //create TeachingList
+        List<Section> listOfCourses = user.getteachingList();
         
-        List<Course> completed = user.getCompletedCourses();
+       
+        teachingList.addComponent(courseList);
         
-        System.out.println(user.getFullName()+ " Has completed  "+completed.size()+"\n");
-        
-        String listofCourses = "Courses Completed :";
-        for(Course completedCourse : completed)
-        {
-        	listofCourses = listofCourses+"\n<b>Course :<\b>    " +completedCourse.getCourseName() +"<br>";
-        }
-        
-        Label courseListLabel = new Label(listofCourses);
-        courseHistory.addComponent(courseListLabel);
-        courseHistory.setComponentAlignment(courseListLabel,Alignment.TOP_CENTER);
-        //Course History Tab
-        
-        //
-        //Change settings tab
-        
-        
-        
-        //change settings tab
+        //endCreateTeachingList
+
         //Build page
         container.addComponents(backButton, tabsheet);
         tabsheet.setSizeFull();
@@ -149,14 +112,12 @@ public class ProfileView extends VerticalLayout implements View {
         border.setHeight("90%");
         setComponentAlignment(border, Alignment.MIDDLE_CENTER);
     }
-
-
-    @Override
-    public void enter(ViewChangeEvent event){
+	
+	public void enter(ViewChangeEvent event){
     	//Get the current user
-    	EntityManager em = DalOfflineUI.factory.createEntityManager();
+		EntityManager em = DalOfflineUI.factory.createEntityManager();
     	em.getTransaction().begin();
-    	Student user = (Student)getUI().getSession().getAttribute("student");
+    	Faculty user = (Faculty)getUI().getSession().getAttribute("faculty");
         em.getTransaction().commit();
         em.close();
         
@@ -164,7 +125,7 @@ public class ProfileView extends VerticalLayout implements View {
         tabsheet.addTab(profile, "Profile");
         schedule = new Calendar();
         tabsheet.addTab(schedule, "Schedule");
-        tabsheet.addTab(courseHistory, "Course History");
+        tabsheet.addTab(teachingList, "Courses Teaching");
         schedule.setHandler((BasicEventMoveHandler)null);
         schedule.setHandler((BasicEventResizeHandler)null);
         schedule.setHandler((BasicDateClickHandler)null);
@@ -172,24 +133,19 @@ public class ProfileView extends VerticalLayout implements View {
         schedule.setFirstVisibleHourOfDay(7);
         schedule.setLastVisibleHourOfDay(18);
         List<Section> sections;
-        sections = user.getEnrolledSections();
-    	//Populate schedule with the user's sections
-      //  if(!user.getClass().getSimpleName().equals("Faculty"))
-        //	sections = user.getEnrolledSections(); //Get the user's current sections
-       // else{
-       // 	sections = ((Faculty)user).getteachingList();
-       // }
+  
+        sections = ((Faculty)user).getteachingList();
+        
         for(Section sec :sections)
         {
-          //Get course code and course name from section's associated course
           String ccode = sec.getCourse().getCourseCode();
           String cname = sec.getCourse().getCourseName();
-          //Get startTimes and endTimes from section
           ArrayList<GregorianCalendar> startTimes = sec.getStartTimes();
           ArrayList<GregorianCalendar> endTimes = sec.getEndTimes();
-          //Add each pair of start and end times to the schedule
           for(int i=0; i<startTimes.size(); i++)
               schedule.addEvent(new BasicEvent(ccode, cname, startTimes.get(i).getTime(), endTimes.get(i).getTime()));
         }
     }
 }
+	
+

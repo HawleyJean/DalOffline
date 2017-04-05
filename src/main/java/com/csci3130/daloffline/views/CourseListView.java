@@ -31,6 +31,7 @@ import com.vaadin.v7.ui.TextField;
  * @author Connor Foran
  */
 
+
 public class CourseListView extends VerticalLayout implements View {
 	Panel border = new Panel();
     TextField filter = new TextField();

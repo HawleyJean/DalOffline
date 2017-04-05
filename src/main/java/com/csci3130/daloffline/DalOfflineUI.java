@@ -59,9 +59,12 @@ public class DalOfflineUI extends UI {
 	// View Names
 	public static final String MAINVIEW = "main";
     public static final String USERPROFILE = "profile";
-    public static final String COURSELIST = "course_list";
     public static final String STUDENTLIST = "studentlist";
+    public static final String COURSELIST = "courselist";
     public static final String COMPLETEDCOURSES = "coursehistory";
+    public static final String FACULTYMAINVIEW = "fmain";
+    public static final String FACULTYPROFILE = "fprofile";
+    public static final String COURSESTEACHING = "fteaching"; 
     private User user;
     
     
@@ -95,15 +98,15 @@ public class DalOfflineUI extends UI {
     	else
     		factory = Persistence.createEntityManagerFactory("local");
 		
+    	
     	DatabaseInitializer.generateUsers(factory);
     	DatabaseInitializer.generateCourses(factory);
-    	
     	// Create a navigator to control the views
 		navigator = new Navigator(this, this);
 
         // Create and register the views
 		navigator.addView("", new LoginView(DalOfflineUI.this));
-		
+		CourseInfo cs = new CourseInfo();
         
     }
     public void setUser(User user){

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import com.csci3130.daloffline.domain.*;
+import com.csci3130.daloffline.initialization.DatabaseUtilities;
 import com.csci3130.daloffline.views.CourseListView;
 import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.Button;
@@ -201,6 +202,16 @@ public class CourseInfo extends VerticalLayout {
 		labChoice = null;
 		labList.addValueChangeListener(e -> setLabChoice(Long.parseLong((String)labList.getValue())));
 		
+	}
+	
+	public void populateFinishedCourses()
+	{
+		System.out.println("POPULATING\n");
+		EntityManager em = DalOfflineUI.factory.createEntityManager();
+		List<Course> courselist = em.createQuery("Select a from COURSES a", Course.class).getResultList();
+		Student student = (Student)DatabaseUtilities.getUserByUserName("Hawley", DalOfflineUI.factory);
+		student.addCompletedCourse(courselist.get(0));
+		em.close();
 	}
 	
 	/**

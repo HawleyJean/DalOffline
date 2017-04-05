@@ -19,7 +19,7 @@ import javax.persistence.*;
 
 @Entity(name = "SECTIONS") 
 public class Section implements Serializable, Cloneable {
-		
+		//
 	/**
 	 *  init version
 	 */
@@ -53,7 +53,7 @@ public class Section implements Serializable, Cloneable {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="COURSE_ID")
     private Course course;
-
+	
 	@OneToMany
 	private List<User> students;
 
@@ -192,10 +192,12 @@ public class Section implements Serializable, Cloneable {
 		return waitList.size();
 	}
 	public boolean onWaitList(User user){
-		if(waitList.contains(user)){
-			return true;
+		boolean onList = false;
+		for(int i=0;i < waitList.size();i++){
+			if(user.getUsername().equals(waitList.get(i).getUsername()))
+				onList = true;
 		}
-		return false;
+		return onList;
 	}
 	//Get and set methods
 	
@@ -251,6 +253,8 @@ public class Section implements Serializable, Cloneable {
 
 	public void setFaculty(Faculty faculty){
 		this.faculty = faculty;
+		instructorName=faculty.getFullName();
+		faculty.addCourse(this);
 	}
 	public Faculty getFaculty(){
 		return faculty;
