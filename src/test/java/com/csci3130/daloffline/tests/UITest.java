@@ -9,6 +9,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.jetty.jetty.Server;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
 
 import com.vaadin.testbench.TestBenchTestCase;
 import com.vaadin.testbench.elements.ButtonElement;
@@ -34,7 +35,9 @@ public class UITest extends TestBenchTestCase {
 	
 	@Before
 	public void setUp() throws Exception {
-		setDriver(new ChromeDriver());
+		//Use chrome driver for local testing
+//		setDriver(new ChromeDriver());
+		setDriver(new PhantomJSDriver());
 	}
 	
 	String user = "student";
