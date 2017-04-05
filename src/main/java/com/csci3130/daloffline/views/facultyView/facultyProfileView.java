@@ -32,8 +32,8 @@ import com.vaadin.shared.ui.label.ContentMode;
 
 public class facultyProfileView extends VerticalLayout implements View {
 
-	private HorizontalLayout teachingList = new HorizontalLayout();
-	private Grid courseList = new Grid();
+	private HorizontalLayout coursesTeachingLayout = new HorizontalLayout();
+	private Grid courseGrid = new Grid();
 	private HorizontalLayout profile = new HorizontalLayout(); //Profile tab
 	private TabSheet tabsheet = new TabSheet();
 	private Calendar schedule;
@@ -72,7 +72,7 @@ public class facultyProfileView extends VerticalLayout implements View {
         //Add functionality for course history button
         
         //User information text in center part of profile
-        Label profileInfo = new Label("<b>Name: </b>"+user.getFullName()+"<br><b>Banner ID: </b>"+user.getBannerNumber()+"<br><b>Major: </b>"+user.getMajor());
+        Label profileInfo = new Label("<b>Name: </b>"+user.getFullName()+"<br><b>Faculty: </b>"+user.getMajor());
         profileInfo.setContentMode(ContentMode.HTML);
         //Image on left part of profile
         Image image = new Image();
@@ -86,14 +86,15 @@ public class facultyProfileView extends VerticalLayout implements View {
         actions.setWidth("50%");
         profile.setMargin(true);
         tabsheet.addTab(profile, "Profile");
-        tabsheet.addTab(teachingList, "Courses Teaching");
+        tabsheet.addTab(coursesTeachingLayout, "Courses Teaching");
         //Create schedule
         
         //create TeachingList
         List<Section> listOfCourses = user.getteachingList();
         
+        
        
-        teachingList.addComponent(courseList);
+        coursesTeachingLayout.addComponent(courseGrid);
         
         //endCreateTeachingList
 
@@ -125,7 +126,7 @@ public class facultyProfileView extends VerticalLayout implements View {
         tabsheet.addTab(profile, "Profile");
         schedule = new Calendar();
         tabsheet.addTab(schedule, "Schedule");
-        tabsheet.addTab(teachingList, "Courses Teaching");
+        tabsheet.addTab(coursesTeachingLayout, "Courses Teaching");
         schedule.setHandler((BasicEventMoveHandler)null);
         schedule.setHandler((BasicEventResizeHandler)null);
         schedule.setHandler((BasicDateClickHandler)null);
