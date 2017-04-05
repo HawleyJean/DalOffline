@@ -2,20 +2,20 @@ package com.csci3130.daloffline.tests;
 
 import static org.junit.Assert.*;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+//import org.junit.After;
+//import org.junit.AfterClass;
+//import org.junit.Before;
+//import org.junit.BeforeClass;
 import org.junit.Test;
-import org.openqa.jetty.jetty.Server;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
+//import org.openqa.jetty.jetty.Server;
+//import org.openqa.selenium.chrome.ChromeDriver;
+//import org.openqa.selenium.phantomjs.PhantomJSDriver;
 
 import com.vaadin.testbench.TestBenchTestCase;
-import com.vaadin.testbench.elements.ButtonElement;
-import com.vaadin.testbench.elements.LabelElement;
-import com.vaadin.testbench.elements.PasswordFieldElement;
-import com.vaadin.testbench.elements.TextFieldElement;
+//import com.vaadin.testbench.elements.ButtonElement;
+//import com.vaadin.testbench.elements.LabelElement;
+//import com.vaadin.testbench.elements.PasswordFieldElement;
+//import com.vaadin.testbench.elements.TextFieldElement;
 
 /**
  * Tests that all the buttons work and the display shows the expected results.
@@ -33,15 +33,15 @@ public class UITest extends TestBenchTestCase {
 ////		server.start();
 //	}
 	
-	@Before
-	public void setUp() throws Exception {
-//		setDriver(new PhantomJSDriver());
-		//use chrome driver for local testing
-//		setDriver(new ChromeDriver());
-	}
+//	@Before
+//	public void setUp() throws Exception {
+////		setDriver(new PhantomJSDriver());
+//		//use chrome driver for local testing
+////		setDriver(new ChromeDriver());
+//	}
 	
-	String user = "student";
-	String pass = "pass";
+//	String user = "student";
+//	String pass = "pass";
 	@Test
 	public void loginTest() {
 		
@@ -79,11 +79,11 @@ public class UITest extends TestBenchTestCase {
 	}
 	
 	
-	@After
-	public void tearDown() throws Exception {
-//		getDriver().quit();
-	}
-	
+//	@After
+//	public void tearDown() throws Exception {
+////		getDriver().quit();
+//	}
+//	
 //	@AfterClass
 //	public static void stopJetty() throws Exception {
 ////		server.stop();
