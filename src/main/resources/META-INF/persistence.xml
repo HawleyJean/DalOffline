@@ -5,7 +5,7 @@
 	version="2.0">
 
 	<persistence-unit name="postgres">
-		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<provider>org.hibernate.ejb.HibernatePersistenceProvider</provider>
 		<properties>
 			<property name="hibernate.archive.autodetection" value="class" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
