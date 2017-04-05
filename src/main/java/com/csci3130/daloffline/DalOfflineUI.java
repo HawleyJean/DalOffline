@@ -106,7 +106,7 @@ public class DalOfflineUI extends UI {
 
         // Create and register the views
 		navigator.addView("", new LoginView(DalOfflineUI.this));
-		CourseInfo cs = new CourseInfo();
+		//CourseInfo cs = new CourseInfo();
         
     }
     public void setUser(User user){

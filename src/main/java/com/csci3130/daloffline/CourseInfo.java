@@ -101,7 +101,7 @@ public class CourseInfo extends VerticalLayout {
 		//Get the current user object
 		EntityManager em = DalOfflineUI.factory.createEntityManager();
 		em.getTransaction().begin();
-		User user = ((User)getUI().getSession().getAttribute("user"));
+		User user = ((User)getUI().getSession().getAttribute("student"));
 		List<Section> currentlyEnrolledSections = user.getEnrolledSections(); //Get the user's current sections
 		
 		for(Section sec : currentlyEnrolledSections) //Make sure the user isn't already enrolled into these sections
@@ -141,7 +141,7 @@ public class CourseInfo extends VerticalLayout {
 		}
 		//will only add the user if they aren't already in the wait list
 		else{
-			User user = ((User)getUI().getSession().getAttribute("user"));
+			User user = ((User)getUI().getSession().getAttribute("student"));
 			if(!lectureChoice.onWaitList(user)){
 				lectureChoice.addToWaitList(user);
 				Notification.show("Successfully added course to wait list. Please check back soon", Type.TRAY_NOTIFICATION);
@@ -158,7 +158,7 @@ public class CourseInfo extends VerticalLayout {
 		//Get the current user object
 		EntityManager em = DalOfflineUI.factory.createEntityManager();
 		em.getTransaction().begin();
-		User user = (User)getUI().getSession().getAttribute("user");
+		User user = (User)getUI().getSession().getAttribute("student");
 		//User user = em.createQuery("SELECT user FROM USERS user WHERE user.username = :input_user", User.class).setParameter("input_user", username).getSingleResult();
 		
 		boolean foundCourse = user.removeCourse(currentCourse);
@@ -203,7 +203,7 @@ public class CourseInfo extends VerticalLayout {
 		labList.addValueChangeListener(e -> setLabChoice(Long.parseLong((String)labList.getValue())));
 		
 	}
-	
+	/*
 	public void populateFinishedCourses()
 	{
 		System.out.println("POPULATING\n");
@@ -212,7 +212,7 @@ public class CourseInfo extends VerticalLayout {
 		Student student = (Student)DatabaseUtilities.getUserByUserName("Hawley", DalOfflineUI.factory);
 		student.addCompletedCourse(courselist.get(0));
 		em.close();
-	}
+	}*/
 	
 	/**
 	 * Stores a reference to the lecture Section chosen by the user in the drop-down menu

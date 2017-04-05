@@ -29,18 +29,18 @@ public class DatabaseInitializer {
 	public static void generateUsers(EntityManagerFactory factory) {
 
 		EntityManager em = factory.createEntityManager();
-		Student Hawley = new Student("Hawley", Authenticator.hash("pass"), "Hawley Jean", "Music");
-		Course randomCourse = new Course("Mechanical Engineering", "Computer Science", "CSCI3130", "Dr. Ashraf Abusharekh");
+		//Student Hawley = new Student("Hawley", Authenticator.hash("pass"), "Hawley Jean", "Music");
+		//Course randomCourse = new Course("Mechanical Engineering", "Computer Science", "CSCI3130", "Dr. Ashraf Abusharekh");
 		users.add(new User("user", Authenticator.hash("pass"), "Jimmy McStudentFace", "Computer Science"));
 		users.add(new User("jesse", Authenticator.hash("1234"), "Jesse McLeod", "Computer Science"));
 		users.add(new Student("student", Authenticator.hash("pass"), "student class", "Computer Science"));
 		users.add(new Faculty("nauzer", Authenticator.hash("isthatclear"), "Nauzer Kalywani", "Computer Science"));
 		//users.add(new User("xrd", Authenticator.hash("mmspos")));
 		//users.add(new User("Bobethy", Authenticator.hash("Collective")));
-		em.persist(randomCourse);
-		Hawley.addCompletedCourse(randomCourse);
+		//em.persist(randomCourse);
+		//Hawley.addCompletedCourse(randomCourse);
 		
-		users.add(Hawley);
+		//users.add(Hawley);
 				
 		try {
 			em.getTransaction().begin();
@@ -74,7 +74,7 @@ public class DatabaseInitializer {
 		
 		EntityManager em = factory.createEntityManager();
 		
-		Student student = (Student)DatabaseUtilities.getUserByUserName("Hawley", factory);
+		//Student student = (Student)DatabaseUtilities.getUserByUserName("Hawley", factory);
 		em.getTransaction().begin(); //Begin a transaction
 		
 		Course newCourse = new Course("Software Engineering", "Computer Science", "CSCI3130", "Dr. Ashraf Abusharekh"); //Create a course object with params
@@ -96,9 +96,9 @@ public class DatabaseInitializer {
 		newSection = new Section("CS Teaching Lab 2", "Abdulhadi Alqarni", 13, 30, 60, new int[]{4}, newCourse, true, 25);
 		newSection = new Section("CS Teaching Lab 2", "Saurabh Dey", 13, 30, 60, new int[]{6}, newCourse, true, 25);
 		em.persist(newCourse);
-		student.addCompletedCourse(newCourse);
+		//student.addCompletedCourse(newCourse);
 		Course musicCourse = new Course("Introdoction to Jazz Hands", "Music", "MUSC1223", "Dr. Douglas Reach"); //Create a course object with params
-		System.out.println("The course size is "+student.getCompletedCourses().size()+"\n\n");
+		//System.out.println("The course size is "+student.getCompletedCourses().size()+"\n\n");
 		newSection = new Section("RC 112", 13, 30, 60, new int[]{2, 3, 5},musicCourse,true, 15);
 		em.persist(musicCourse);
 		
