@@ -61,7 +61,7 @@ public class LoginView extends VerticalLayout implements View {
         addComponents(content);
         setComponentAlignment(content, Alignment.MIDDLE_CENTER);
     }
-
+//
 	/**
 	 * Function that attempts to log the user in
 	 * 

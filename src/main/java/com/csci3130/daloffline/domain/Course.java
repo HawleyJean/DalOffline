@@ -16,7 +16,7 @@ import javax.persistence.*;
 
 @Entity(name = "COURSES") 
 public class Course implements Serializable, Cloneable {
-	
+	//
 	/**
 	 *  init version
 	 */

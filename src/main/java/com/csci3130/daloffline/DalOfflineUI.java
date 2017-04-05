@@ -59,8 +59,8 @@ public class DalOfflineUI extends UI {
 	// View Names
 	public static final String MAINVIEW = "main";
     public static final String USERPROFILE = "profile";
-    public static final String COURSELIST = "course_list";
     public static final String STUDENTLIST = "studentlist";
+    public static final String COURSELIST = "courselist";
     public static final String COMPLETEDCOURSES = "coursehistory";
     public static final String FACULTYMAINVIEW = "fmain";
     public static final String FACULTYPROFILE = "fprofile";

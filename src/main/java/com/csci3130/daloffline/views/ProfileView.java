@@ -128,7 +128,7 @@ public class ProfileView extends VerticalLayout implements View {
         courseHistory.setComponentAlignment(courseListLabel,Alignment.TOP_CENTER);
         //Course History Tab
         
-        
+        //
         //Change settings tab
         
         

@@ -19,7 +19,7 @@ import javax.persistence.*;
 
 @Entity(name = "SECTIONS") 
 public class Section implements Serializable, Cloneable {
-		
+		//
 	/**
 	 *  init version
 	 */

@@ -60,6 +60,7 @@ public class User implements Serializable {
 		enrolledSections.add(sec);
 		return true;
 	}
+	//
 	//Not working
 	public boolean removeCourse(Course c)
 	{

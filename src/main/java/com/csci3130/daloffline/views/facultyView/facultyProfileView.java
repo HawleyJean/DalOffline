@@ -63,12 +63,7 @@ public class facultyProfileView extends VerticalLayout implements View {
         Panel actions = new Panel("Actions");
         
         
-        
-        //Other unnecessary buttons atm
-/*        Button button2 = new Button("Button2");
-        button2.setStyleName("v-button-borderless");
-        Button button3 = new Button("Button3");
-        button3.setStyleName("v-button-borderless");*/
+      
         VerticalLayout content = new VerticalLayout();
         content.setSizeFull();
         content.addComponents(/*, button2, button3*/);
@@ -138,21 +133,15 @@ public class facultyProfileView extends VerticalLayout implements View {
         schedule.setFirstVisibleHourOfDay(7);
         schedule.setLastVisibleHourOfDay(18);
         List<Section> sections;
-    	//Populate schedule with the user's sections
-   /*     if(!user.getClass().getSimpleName().equals("Faculty"))
-        	sections = user.getEnrolledSections(); //Get the user's current sections
-        else{*/
+  
         sections = ((Faculty)user).getteachingList();
         
         for(Section sec :sections)
         {
-          //Get course code and course name from section's associated course
           String ccode = sec.getCourse().getCourseCode();
           String cname = sec.getCourse().getCourseName();
-          //Get startTimes and endTimes from section
           ArrayList<GregorianCalendar> startTimes = sec.getStartTimes();
           ArrayList<GregorianCalendar> endTimes = sec.getEndTimes();
-          //Add each pair of start and end times to the schedule
           for(int i=0; i<startTimes.size(); i++)
               schedule.addEvent(new BasicEvent(ccode, cname, startTimes.get(i).getTime(), endTimes.get(i).getTime()));
         }

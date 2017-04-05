@@ -15,7 +15,7 @@ import com.vaadin.ui.VerticalLayout;
 /**
  * Main menu view. Displays buttons to the user that allows them to navigate to the other interfaces.
  * 
- * @author Connor Foran
+ * @author Hawley Jean
  */
 
 public class facultyMainView extends VerticalLayout implements View {
