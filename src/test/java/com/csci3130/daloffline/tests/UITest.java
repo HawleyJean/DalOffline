@@ -118,11 +118,11 @@ public class UITest extends TestBenchTestCase {
 	}
 	
 	private void setPassword(String password) {
-		$(PasswordFieldElement.class).caption("Password:").first().setValue(password);
+//		$(PasswordFieldElement.class).caption("Password:").first().setValue(password);
 	}
 	
 	private void setUsername(String username) {
-		$(TextFieldElement.class).caption("Username:").first().setValue(username);
+//		$(TextFieldElement.class).caption("Username:").first().setValue(username);
 	}
 	
 	private String getLoginScreenText() {
