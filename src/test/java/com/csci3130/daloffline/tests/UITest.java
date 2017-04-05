@@ -35,7 +35,7 @@ public class UITest extends TestBenchTestCase {
 	
 	@Before
 	public void setUp() throws Exception {
-		setDriver(new PhantomJSDriver());
+//		setDriver(new PhantomJSDriver());
 		//use chrome driver for local testing
 //		setDriver(new ChromeDriver());
 	}
@@ -81,7 +81,7 @@ public class UITest extends TestBenchTestCase {
 	
 	@After
 	public void tearDown() throws Exception {
-		getDriver().quit();
+//		getDriver().quit();
 	}
 	
 //	@AfterClass
