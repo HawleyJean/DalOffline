@@ -59,22 +59,22 @@ public class UITest extends TestBenchTestCase {
 //		assertEquals("Hello, student, you are logged in as a Student", getLoggedInText());
 		
 		//check list of classes
-		viewCourseList();
+//		viewCourseList();
 		//there is nothing really testable here
 		//TODO when search is implemented, the search can be checked here
-		goBack();
+//		goBack();
 //		assertEquals("Hello, student, you are logged in as a Student", getLoggedInText());
 		
 		//view profile
-		viewProfileMain();
+//		viewProfileMain();
 		//there is nothing that can really be checked here either, as it is hardcoded.
 		//just checking if we can go to/leave the page
 		//TODO check about viewing course information
 //		viewProfileSchedule();
 		//TODO when the profile is attached to a user check against database if information is right
 //		viewProfileUser();
-		goBack();
-		assertEquals("Hello, student, you are logged in as a Student", getLoggedInText());
+//		goBack();
+//		assertEquals("Hello, student, you are logged in as a Student", getLoggedInText());
 		
 	}
 	
