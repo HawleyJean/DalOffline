@@ -15,7 +15,7 @@
 			<property name="hibernate.enable_lazy_load_no_trans" value="true" />
 		</properties>
 	</persistence-unit>
-	<!--persistence-unit name="local">
+	<persistence-unit name="local">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<properties>
 			<property name="hibernate.archive.autodetection" value="class" />
@@ -28,5 +28,5 @@
 			<property name="hibernate.hbm2ddl.auto" value="create" />
 			<property name="hibernate.enable_lazy_load_no_trans" value="true" />
 		</properties>
-	</persistence-unit-->
+	</persistence-unit>
 </persistence>

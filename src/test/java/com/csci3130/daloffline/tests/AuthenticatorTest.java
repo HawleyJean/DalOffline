@@ -29,7 +29,7 @@ public class AuthenticatorTest {
     		factory = Persistence.createEntityManagerFactory("postgres", configOverrides);
     	}
     	else
-    		factory = Persistence.createEntityManagerFactory("postgres");
+    		factory = Persistence.createEntityManagerFactory("local");
 		
 		//this will have to be changed later when we are no longer "generating users" but creating users
 	    DatabaseInitializer.generateUsers(factory);
