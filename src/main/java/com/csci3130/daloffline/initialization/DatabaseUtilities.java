@@ -126,4 +126,15 @@ public class DatabaseUtilities
 		
 		return user.get(0);
 	}
+	
+	public static List<Course> getStudentCompletedCoursesByName(String name, EntityManagerFactory factory) {
+		EntityManager em = factory.createEntityManager();
+		
+		em.getTransaction().begin();		
+		List<Course> completedCourses = em.createQuery("SELECT s FROM USERS s WHERE s.name LIKE :studentName", Course.class).setParameter("studentName", name).getResultList();
+		em.getTransaction().commit();
+		em.close();
+		
+		return completedCourses;
+	}
 }
