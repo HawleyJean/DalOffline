@@ -14,4 +14,3 @@ after_deploy:
 - mvn mvn com.edugility.h2-maven-plugin:1.0-SNAPSHOT:stop
 env:
 - vaadin.testbench.developer.license=9286d734-0d1a-426d-9cb2-ef390ab98795
-script: phantomjs testrunner.js
