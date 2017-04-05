@@ -38,6 +38,7 @@ public class Course implements Serializable, Cloneable {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "course")
 	private List<Section> labs;
 	
+
 	
 	/**
 	 * Base Constructor

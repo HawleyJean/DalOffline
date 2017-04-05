@@ -1,10 +1,12 @@
-package com.csci3130.daloffline.views;
-import com.csci3130.daloffline.domain.Student;
+package com.csci3130.daloffline.views.facultyView;
+import com.csci3130.daloffline.domain.User;
+import com.csci3130.daloffline.domain.Faculty;
 import com.csci3130.daloffline.DalOfflineUI;
 import com.vaadin.navigator.*;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.Grid;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Panel;
@@ -16,7 +18,7 @@ import com.vaadin.ui.VerticalLayout;
  * @author Connor Foran
  */
 
-public class MainView extends VerticalLayout implements View {
+public class facultyMainView extends VerticalLayout implements View {
 	/**
 	 * Initializes and builds the main menu page
 	 * 
@@ -24,24 +26,27 @@ public class MainView extends VerticalLayout implements View {
 	 * @return Nothing
 	 */
 	private String username;
-    public MainView(DalOfflineUI ui) {
-    	username = (String)((Student) ui.getSession().getAttribute("student")).getUsername();
-    	String role = ((Student) ui.getSession().getAttribute("student")).getClass().getSimpleName();
+	
+    public facultyMainView(DalOfflineUI ui) {
+    	username = (String)((Faculty) ui.getSession().getAttribute("faculty")).getUsername();
+    	String role = ((Faculty) ui.getSession().getAttribute("faculty")).getClass().getSimpleName();
     	VerticalLayout container = new VerticalLayout();
     	Panel border = new Panel();
-
+    	//
+    	//
+    	
         Button profileButton = new Button("View Your Profile And Schedule"); //A button
-        profileButton.addClickListener(e -> getUI().getNavigator().navigateTo(DalOfflineUI.USERPROFILE)); //Specify a view for this button to direct you to
-        Label name = new Label("Hello, "+username +", you are logged in as a " +role);
-        Button courseListButton = new Button("View All Courses");
-        Button studentListButton = new Button("View Student List");
-        courseListButton.addClickListener(e -> getUI().getNavigator().navigateTo(DalOfflineUI.COURSELIST));
-        studentListButton.addClickListener(e-> getUI().getNavigator().navigateTo(DalOfflineUI.STUDENTLIST));
+        profileButton.addClickListener(e -> getUI().getNavigator().navigateTo(DalOfflineUI.FACULTYPROFILE)); //Specify a view for this button to direct you to
+        Label name = new Label("Hello, "+username +", you are logged in as " +role);
+        //Button courseListButton = new Button("View Courses You are Teaching");
+        //Button studentListButton = new Button("View Student List");
+        //courseListButton.addClickListener(e -> getUI().getNavigator().navigateTo(DalOfflineUI.COURSESTEACHING));
+        //studentListButton.addClickListener(e-> getUI().getNavigator().navigateTo(DalOfflineUI.STUDENTLIST));
         
-        container.addComponents(name, profileButton, courseListButton, studentListButton); //Add buttons to the view
-        container.setComponentAlignment(studentListButton, Alignment.MIDDLE_CENTER);
+        container.addComponents(name, profileButton); //Add buttons to the view
+       // container.setComponentAlignment(studentListButton, Alignment.MIDDLE_CENTER);
         container.setComponentAlignment(profileButton, Alignment.MIDDLE_CENTER); //Set alignments
-        container.setComponentAlignment(courseListButton, Alignment.MIDDLE_CENTER);
+    //    container.setComponentAlignment(courseListBu Alignment.MIDDLE_CENTER);
         container.setComponentAlignment(name, Alignment.MIDDLE_CENTER);
         container.setHeight("40%");
         

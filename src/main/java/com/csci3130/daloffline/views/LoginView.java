@@ -7,9 +7,12 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import com.csci3130.daloffline.views.facultyView.*;
 import com.csci3130.daloffline.DalOfflineUI;
 import com.csci3130.daloffline.authentication.Authenticator;
 import com.csci3130.daloffline.initialization.DatabaseInitializer;
+import com.csci3130.daloffline.domain.Faculty;
+import com.csci3130.daloffline.domain.Student;
 import com.csci3130.daloffline.domain.User;
 import com.vaadin.navigator.*;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -73,13 +76,34 @@ public class LoginView extends VerticalLayout implements View {
 			User userpw = em.createQuery("SELECT user FROM USERS user WHERE user.username = :input_user", User.class)
 					.setParameter("input_user", username).getSingleResult();
 			em.close();
-			ui.getSession().setAttribute("user", userpw);
-			ui.getSession().getSession().setMaxInactiveInterval(600);
-			getUI().getNavigator().addView(DalOfflineUI.COURSELIST, new CourseListView(ui));
-	        getUI().getNavigator().addView(DalOfflineUI.MAINVIEW, new MainView(ui));
-	        getUI().getNavigator().addView(DalOfflineUI.USERPROFILE, new ProfileView(ui));
-	        
-			getUI().getNavigator().navigateTo("main");
+			
+			if(userpw.getClass().equals(Student.class))
+			{
+				System.out.print("Student!\n");
+				ui.getSession().setAttribute("student", userpw);
+				ui.getSession().getSession().setMaxInactiveInterval(600);
+				getUI().getNavigator().addView(DalOfflineUI.COURSELIST, new CourseListView(ui));
+		        getUI().getNavigator().addView(DalOfflineUI.MAINVIEW, new MainView(ui));
+		        getUI().getNavigator().addView(DalOfflineUI.USERPROFILE, new ProfileView(ui));
+		        
+				getUI().getNavigator().navigateTo("main");
+			}
+			else if(userpw.getClass().equals(Faculty.class))
+			{
+				System.out.print("Faculty!\n");
+
+				ui.getSession().setAttribute("faculty", userpw);
+				ui.getSession().getSession().setMaxInactiveInterval(600);
+				getUI().getNavigator().addView(DalOfflineUI.FACULTYMAINVIEW, new facultyMainView(ui));
+		        getUI().getNavigator().addView(DalOfflineUI.FACULTYPROFILE, new facultyProfileView(ui));
+		        getUI().getNavigator().navigateTo("fmain");
+			}
+			else{
+				System.out.print("Other!\n");
+
+			}
+				
+			
 		}
 		else {
 			 Notification.show("Invalid password or username. (For testing purposes use \"user\" and \"pass\")");

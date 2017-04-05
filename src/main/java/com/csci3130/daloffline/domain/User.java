@@ -21,6 +21,7 @@ public class User implements Serializable {
 	
 	@Id
 	@GeneratedValue
+    @Column(name = "USER_ID", nullable = false)
 	private long id;
 	
 	private String major;

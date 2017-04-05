@@ -14,6 +14,7 @@ private static final long serialVersionUID = 1L;
 	private ArrayList<Section> teachingList;
 	public Faculty(String username, String password, String name, String major){
 		super(username, password, name, major);
+		teachingList = new ArrayList<Section>();
 	}
 	public Faculty(){
 		super();
