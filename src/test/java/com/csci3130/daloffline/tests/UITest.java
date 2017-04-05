@@ -9,7 +9,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.jetty.jetty.Server;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
 
 import com.vaadin.testbench.TestBenchTestCase;
 import com.vaadin.testbench.elements.ButtonElement;
@@ -35,12 +34,10 @@ public class UITest extends TestBenchTestCase {
 	
 	@Before
 	public void setUp() throws Exception {
-		//Use chrome driver for local testing
-//		setDriver(new ChromeDriver());
-		setDriver(new PhantomJSDriver());
+		setDriver(new ChromeDriver());
 	}
 	
-	String user = "student";
+	String user = "user";
 	String pass = "pass";
 	@Test
 	public void loginTest() {
@@ -56,14 +53,14 @@ public class UITest extends TestBenchTestCase {
 		setUsername(user);
 		setPassword(pass);
 		login();
-		assertEquals("Hello, student, you are logged in as a Student", getLoggedInText());
+		assertEquals("Hello, user", getLoggedInText());
 		
 		//check list of classes
 		viewCourseList();
 		//there is nothing really testable here
 		//TODO when search is implemented, the search can be checked here
 		goBack();
-		assertEquals("Hello, student, you are logged in as a Student", getLoggedInText());
+		assertEquals("Hello, user", getLoggedInText());
 		
 		//view profile
 		viewProfileMain();
@@ -74,7 +71,7 @@ public class UITest extends TestBenchTestCase {
 		//TODO when the profile is attached to a user check against database if information is right
 //		viewProfileUser();
 		goBack();
-		assertEquals("Hello, student, you are logged in as a Student", getLoggedInText());
+		assertEquals("Hello, user", getLoggedInText());
 		
 	}
 	

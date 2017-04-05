@@ -38,16 +38,20 @@ public class facultyMainView extends VerticalLayout implements View {
         Button profileButton = new Button("View Your Profile And Schedule"); //A button
         profileButton.addClickListener(e -> getUI().getNavigator().navigateTo(DalOfflineUI.FACULTYPROFILE)); //Specify a view for this button to direct you to
         Label name = new Label("Hello, "+username +", you are logged in as " +role);
+        Button logoutButton = new Button("Logout");
+        logoutButton.addClickListener(e -> logout());
+        
         //Button courseListButton = new Button("View Courses You are Teaching");
         //Button studentListButton = new Button("View Student List");
         //courseListButton.addClickListener(e -> getUI().getNavigator().navigateTo(DalOfflineUI.COURSESTEACHING));
         //studentListButton.addClickListener(e-> getUI().getNavigator().navigateTo(DalOfflineUI.STUDENTLIST));
         
-        container.addComponents(name, profileButton); //Add buttons to the view
+        container.addComponents(name, profileButton,logoutButton); //Add buttons to the view
        // container.setComponentAlignment(studentListButton, Alignment.MIDDLE_CENTER);
         container.setComponentAlignment(profileButton, Alignment.MIDDLE_CENTER); //Set alignments
     //    container.setComponentAlignment(courseListBu Alignment.MIDDLE_CENTER);
         container.setComponentAlignment(name, Alignment.MIDDLE_CENTER);
+        container.setComponentAlignment(logoutButton, Alignment.MIDDLE_CENTER);
         container.setHeight("40%");
         
         VerticalLayout container2 = new VerticalLayout();
@@ -61,6 +65,10 @@ public class facultyMainView extends VerticalLayout implements View {
         border.setHeight("90%");
         setComponentAlignment(border, Alignment.MIDDLE_CENTER);
         setSizeFull();
+    }
+    public void logout(){
+    	getUI().getSession().close();
+    	getUI().getNavigator().navigateTo("");
     }
 
 
