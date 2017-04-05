@@ -60,8 +60,9 @@ public class MainView extends VerticalLayout implements View {
         setSizeFull();
     }
 public void logout(){
-	getUI().getSession().close();
 	getUI().getNavigator().navigateTo("");
+	getUI().getSession().close();
+	DalOfflineUI.factory.close();
 }
 
     @Override
