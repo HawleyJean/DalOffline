@@ -55,7 +55,8 @@ public class MainView extends MainDesign implements View {
 		//Button profileButton = new Button("View Your Profile And Schedule"); 	
         profileButton.addClickListener(e -> getUI().getNavigator().navigateTo(DalOfflineUI.USERPROFILE)); //Specify a view for this button to direct you to
 		
-		//Button courseListButton = new Button("View All Courses"); 
+		//Button courseListButton = new Button("View All Courses");
+        courseListButton.setCaption("View All Courses");
         courseListButton.addClickListener(e -> getUI().getNavigator().navigateTo(DalOfflineUI.COURSELIST));	
         
         //Button logoutButton = new Button("Logout");

@@ -16,6 +16,7 @@ import com.vaadin.testbench.TestBenchTestCase;
 import com.vaadin.testbench.elements.ButtonElement;
 import com.vaadin.testbench.elements.LabelElement;
 import com.vaadin.testbench.elements.PasswordFieldElement;
+import com.vaadin.testbench.elements.TextAreaElement;
 import com.vaadin.testbench.elements.TextFieldElement;
 
 /**
@@ -36,11 +37,11 @@ public class UITest extends TestBenchTestCase {
 	
 	@Before
 	public void setUp() throws Exception {
-		setDriver(TestBench.createDriver(new PhantomJSDriver()));
-		//setDriver(TestBench.createDriver(new ChromeDriver()));
+//		setDriver(TestBench.createDriver(new PhantomJSDriver()));
+		setDriver(TestBench.createDriver(new ChromeDriver()));
 	}
 	
-	String user = "user";
+	String user = "student";
 	String pass = "pass";
 	@Test
 	public void loginTest() {
@@ -55,14 +56,14 @@ public class UITest extends TestBenchTestCase {
 		setUsername(user);
 		setPassword(pass);
 		login();
-		assertEquals("Hello, user", getLoggedInText());
+		assertEquals("     Dal Offline", getLoggedInText());
 		
 		//check list of classes
 		viewCourseList();
 		//there is nothing really testable here
 		//TODO when search is implemented, the search can be checked here
 		goBack();
-		assertEquals("Hello, user", getLoggedInText());
+		assertEquals("     Dal Offline", getLoggedInText());
 		
 		//view profile
 		viewProfileMain();
@@ -73,7 +74,7 @@ public class UITest extends TestBenchTestCase {
 		//TODO when the profile is attached to a user check against database if information is right
 //		viewProfileUser();
 		goBack();
-		assertEquals("Hello, user", getLoggedInText());
+		assertEquals("     Dal Offline", getLoggedInText());
 		
 	}
 	
@@ -97,7 +98,7 @@ public class UITest extends TestBenchTestCase {
 	}
 	
 	private void viewProfileMain() {
-		$(ButtonElement.class).caption("View Your Profile And Schedule").first().click();
+		$(ButtonElement.class).caption("View Profile").first().click();
 	}
 	
 	private void goBack() {
@@ -106,6 +107,7 @@ public class UITest extends TestBenchTestCase {
 	
 	private void viewCourseList() {
 		$(ButtonElement.class).caption("View All Courses").first().click();
+		
 	}
 	
 	private String getLoggedInText() {
