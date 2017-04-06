@@ -88,7 +88,7 @@ public class MainView extends MainDesign implements View {
 		//DalOfflineUI.factory.close();
 		getUI().getSession().close();
 
-	}
+  }
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
@@ -135,3 +135,4 @@ public class MainView extends MainDesign implements View {
     }
 
 }
+
