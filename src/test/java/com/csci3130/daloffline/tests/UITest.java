@@ -36,8 +36,8 @@ public class UITest extends TestBenchTestCase {
 	
 	@Before
 	public void setUp() throws Exception {
-		//setDriver(TestBench.createDriver(new PhantomJSDriver()));
-		setDriver(TestBench.createDriver(new ChromeDriver()));
+		setDriver(TestBench.createDriver(new PhantomJSDriver()));
+		//setDriver(TestBench.createDriver(new ChromeDriver()));
 	}
 	
 	String user = "user";
