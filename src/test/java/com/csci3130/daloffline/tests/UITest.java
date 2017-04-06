@@ -9,7 +9,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.jetty.jetty.Server;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
 
+import com.vaadin.testbench.TestBench;
 import com.vaadin.testbench.TestBenchTestCase;
 import com.vaadin.testbench.elements.ButtonElement;
 import com.vaadin.testbench.elements.LabelElement;
@@ -34,7 +36,8 @@ public class UITest extends TestBenchTestCase {
 	
 	@Before
 	public void setUp() throws Exception {
-		setDriver(new ChromeDriver());
+		//setDriver(TestBench.createDriver(new PhantomJSDriver()));
+		setDriver(TestBench.createDriver(new ChromeDriver()));
 	}
 	
 	String user = "user";
@@ -43,7 +46,6 @@ public class UITest extends TestBenchTestCase {
 	public void loginTest() {
 		
 		//is the server running
-//		assertEquals(true, server.isStarted());
 		getDriver().get("http://localhost:8080/");
 		
 		//check if we've loaded the correct page
