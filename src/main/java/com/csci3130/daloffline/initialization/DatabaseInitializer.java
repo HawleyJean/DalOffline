@@ -29,21 +29,27 @@ public class DatabaseInitializer {
 	public static void generateUsers(EntityManagerFactory factory) {
 
 		EntityManager em = factory.createEntityManager();
-		//Student Hawley = new Student("Hawley", Authenticator.hash("pass"), "Hawley Jean", "Music");
-		//Course randomCourse = new Course("Mechanical Engineering", "Computer Science", "CSCI3130", "Dr. Ashraf Abusharekh");
+		Student Hawley = new Student("Hawley", Authenticator.hash("pass"), "Hawley Jean", "Music");
+		Course randomCourse = new Course("Mechanical Engineering", "Computer Science", "CSCI3130", "Dr. Ashraf Abusharekh");
 		users.add(new User("user", Authenticator.hash("pass"), "Jimmy McStudentFace", "Computer Science"));
 		users.add(new User("jesse", Authenticator.hash("1234"), "Jesse McLeod", "Computer Science"));
 		users.add(new Student("student", Authenticator.hash("pass"), "student class", "Computer Science"));
-		users.add(new Faculty("nauzer", Authenticator.hash("isthatclear"), "Nauzer Kalywani", "Computer Science"));
+		Faculty Nauzer = new Faculty("nauzer", Authenticator.hash("isthatclear"), "Nauzer Kalywani", "Computer Science");
 		//users.add(new User("xrd", Authenticator.hash("mmspos")));
 		//users.add(new User("Bobethy", Authenticator.hash("Collective")));
-		//em.persist(randomCourse);
-		//Hawley.addCompletedCourse(randomCourse);
+	
+		Section sec = new Section("Killam 312", "Juliano", 8, 30, 90, new int[]{4,6}, randomCourse, true, 60);
+		em.persist(randomCourse);
+		em.persist(sec);
+		Hawley.addCompletedCourse(randomCourse);
+		Nauzer.addCourse(sec);
+		users.add(Hawley);
+		users.add(Nauzer);
 		
-		//users.add(Hawley);
-				
+		
 		try {
 			em.getTransaction().begin();
+			
 			for(User u : users) {
 				em.persist(u);
 				System.out.println("Adding username: "+u.getUsername()+" with password: "+u.getPassword());

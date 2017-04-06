@@ -24,7 +24,9 @@ import com.vaadin.ui.UI;
 import com.vaadin.v7.ui.Grid;
 
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.v7.data.Item;
 import com.vaadin.v7.data.util.BeanItemContainer;
+import com.vaadin.v7.data.util.IndexedContainer;
 import com.vaadin.v7.ui.Calendar;
 import com.vaadin.v7.ui.components.calendar.event.BasicEvent;
 import com.vaadin.v7.ui.components.calendar.handler.*;
@@ -83,7 +85,7 @@ public class facultyProfileView extends VerticalLayout implements View {
         profile.setComponentAlignment(image, Alignment.TOP_CENTER);
         profile.setComponentAlignment(profileInfo, Alignment.TOP_CENTER);
         profile.setComponentAlignment(actions, Alignment.TOP_CENTER);
-        actions.setWidth("50%");
+       // actions.setWidth("50%");
         profile.setMargin(true);
         tabsheet.addTab(profile, "Profile");
         tabsheet.addTab(coursesTeachingLayout, "Courses Teaching");
@@ -91,11 +93,37 @@ public class facultyProfileView extends VerticalLayout implements View {
         
         //create TeachingList
         List<Section> listOfCourses = user.getteachingList();
-        
-        
+        System.out.println(user.getMajor()+"  has a total of "+listOfCourses.size()+" courses!\n");
+        IndexedContainer incontainer = new IndexedContainer();
+    	incontainer.addContainerProperty("Course Name", String.class, "");
+    	incontainer.addContainerProperty("Type",String.class, "");
+    	incontainer.addContainerProperty("Section Number", java.lang.Long.class, "");
+    	incontainer.addContainerProperty("Course Code", Integer.class, "");
+    	incontainer.addContainerProperty("Faculty", String.class, "");
+    	incontainer.addContainerProperty("Location", String.class, "");
+        String lectureorlab= "";
+        for(Section section : listOfCourses)
+        {
+    		Item item = incontainer.addItem(section);
+    		
+    		if(section.isLab())
+    		{
+    			lectureorlab = "Lab";
+    		}
+    		else
+    			lectureorlab="Lecture";    		
+    		item.getItemProperty("Course Name").setValue(section.getCourse().getCourseName());
+    		item.getItemProperty("Type").setValue(lectureorlab);
+    		item.getItemProperty("Section Number").setValue(section.getID());
+    		item.getItemProperty("Course Code").setValue(section.getCRN());
+    		item.getItemProperty("Faculty").setValue(section.getFaculty().getMajor());
+    		item.getItemProperty("Location").setValue(section.getLocation());
+        }
+       courseGrid.setContainerDataSource(incontainer);
+       courseGrid.addSelectionListener(e -> viewStudentList((Section)courseGrid.getSelectedRow()));
        
-        coursesTeachingLayout.addComponent(courseGrid);
-        
+    //   refreshList("");
+       coursesTeachingLayout.addComponent(courseGrid);
         //endCreateTeachingList
 
         //Build page
@@ -113,6 +141,12 @@ public class facultyProfileView extends VerticalLayout implements View {
         border.setHeight("90%");
         setComponentAlignment(border, Alignment.MIDDLE_CENTER);
     }
+	
+	public void viewStudentList(Section sec)
+	{
+return;
+		
+	}
 	
 	public void enter(ViewChangeEvent event){
     	//Get the current user
@@ -147,6 +181,8 @@ public class facultyProfileView extends VerticalLayout implements View {
               schedule.addEvent(new BasicEvent(ccode, cname, startTimes.get(i).getTime(), endTimes.get(i).getTime()));
         }
     }
+	
+	
 }
 	
 

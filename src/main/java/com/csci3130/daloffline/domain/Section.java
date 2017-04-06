@@ -37,6 +37,8 @@ public class Section implements Serializable, Cloneable {
 	private String instructorName;
 	//added in to cap student reg.; add to wait list
 	private int sectionSize;
+	private boolean isLab;
+	
 	
 	//list of wait list students and
 	@OneToMany
@@ -50,6 +52,7 @@ public class Section implements Serializable, Cloneable {
 	private int startMinute;
 	private int durationMinutes;
 	
+	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="COURSE_ID")
     private Course course;
@@ -57,7 +60,8 @@ public class Section implements Serializable, Cloneable {
 	@OneToMany
 	private List<User> students;
 
-	@OneToOne
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="USER_ID")
 	private Faculty faculty;
 
 	//Constructors
@@ -85,6 +89,7 @@ public class Section implements Serializable, Cloneable {
 		addDays(days);
 		this.course = course;
 		sectionSize = size;
+		this.isLab = isLab;
 		if(isLab)
 			course.addLab(this);
 		else
@@ -101,6 +106,7 @@ public class Section implements Serializable, Cloneable {
 		addDays(days);
 		this.course = course;
 		sectionSize = size;
+		this.isLab=isLab;
 		if(isLab)
 			course.addLab(this);
 		else
@@ -236,7 +242,9 @@ public class Section implements Serializable, Cloneable {
 		return sectionSize;
 	}
 
-
+	public boolean isLab(){
+		return isLab;
+	}
 	
 	public void addStudent(User student) {
 //	public void addStudent(User student, EntityManagerFactory factory) {
@@ -254,7 +262,7 @@ public class Section implements Serializable, Cloneable {
 	public void setFaculty(Faculty faculty){
 		this.faculty = faculty;
 		instructorName=faculty.getFullName();
-		faculty.addCourse(this);
+		//faculty.addCourse(this);
 	}
 	public Faculty getFaculty(){
 		return faculty;
