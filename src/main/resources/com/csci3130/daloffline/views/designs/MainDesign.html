@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <meta name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src/main/java&quot;,&quot;THEME&quot;:&quot;mytheme&quot;}">
+  <meta name="vaadin-version" content="8.0.2">
+ </head>
+ <body>
+  <vaadin-vertical-layout size-full>
+   <vaadin-panel width="90%" height="90%" _id="basePanel" :middle :center>
+    <vaadin-vertical-layout _id="baseLayout">
+     <vaadin-label _id="dalOffline">
+      <header>
+       <h1> &nbsp;&nbsp;&nbsp;&nbsp; Dal Offline </h1>
+      </header>
+     </vaadin-label>
+     <vaadin-panel _id="navBarPanel">
+      <vaadin-horizontal-layout width-full _id="navBarLayout">
+       <vaadin-horizontal-layout spacing="false" _id="leftNavBarButtons">
+        <vaadin-button height="30px" plain-text _id="courseListButton">
+          View Course List 
+        </vaadin-button>
+        <vaadin-button height="30px" plain-text _id="profileButton">
+          View Profile 
+        </vaadin-button>
+       </vaadin-horizontal-layout>
+       <vaadin-button height="30px" plain-text _id="logoutButton" :right>
+         Log out 
+       </vaadin-button>
+      </vaadin-horizontal-layout>
+     </vaadin-panel>
+     <vaadin-horizontal-split-panel locked height-auto split-position="75%" _id="contentSplitLayout" :middle>
+      <vaadin-vertical-layout _id="contentSplitLeftLayout">
+       <vaadin7-calendar visible="false" size-full _id="schedule"></vaadin7-calendar>
+      </vaadin-vertical-layout>
+      <vaadin-vertical-layout size-full _id="contentSplitRightLayout">
+       <vaadin-panel size-full _id="infoPanel" :middle :center>
+        <vaadin-vertical-layout size-full _id="infoLayout">
+         <vaadin-text-area caption="Notifications:" size-full readonly _id="infoArea" :middle :center></vaadin-text-area>
+        </vaadin-vertical-layout>
+       </vaadin-panel>
+      </vaadin-vertical-layout>
+     </vaadin-horizontal-split-panel>
+    </vaadin-vertical-layout>
+   </vaadin-panel>
+  </vaadin-vertical-layout>
+ </body>
+</html>
