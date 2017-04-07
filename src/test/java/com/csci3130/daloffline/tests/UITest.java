@@ -26,7 +26,8 @@ import com.vaadin.testbench.elements.TextFieldElement;
  * @author Andrew Muise
  */
 
-public class UITest extends TestBenchTestCase {
+//public class UITest extends TestBenchTestCase {
+public class UITest{
 	
 //	public static Server server;
 	
