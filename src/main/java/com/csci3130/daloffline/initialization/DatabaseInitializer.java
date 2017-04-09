@@ -30,7 +30,7 @@ public class DatabaseInitializer {
 
 		EntityManager em = factory.createEntityManager();
 		Student Hawley = new Student("Hawley", Authenticator.hash("pass"), "Hawley Jean", "Music");
-		Course randomCourse = new Course("Mechanical Engineering", "Computer Science", "CSCI3130", "Dr. Ashraf Abusharekh");
+		//Course randomCourse = new Course("Mechanical Engineering", "Computer Science", "CSCI3130", "Dr. Ashraf Abusharekh");
 		users.add(new User("user", Authenticator.hash("pass"), "Jimmy McStudentFace", "Computer Science"));
 		users.add(new User("jesse", Authenticator.hash("1234"), "Jesse McLeod", "Computer Science"));
 		users.add(new Student("student", Authenticator.hash("pass"), "student class", "Computer Science"));
@@ -38,11 +38,11 @@ public class DatabaseInitializer {
 		//users.add(new User("xrd", Authenticator.hash("mmspos")));
 		//users.add(new User("Bobethy", Authenticator.hash("Collective")));
 	
-		Section sec = new Section("Killam 312", "Juliano", 8, 30, 90, new int[]{4,6}, randomCourse, true, 60);
-		em.persist(randomCourse);
-		em.persist(sec);
-		Hawley.addCompletedCourse(randomCourse);
-		Nauzer.addCourse(sec);
+		//Section sec = new Section("Killam 312", "Juliano", 8, 30, 90, new int[]{4,6}, randomCourse, true, 60);
+		//em.persist(randomCourse);
+		//em.persist(sec);
+		//Hawley.addCompletedCourse(randomCourse);
+		//Nauzer.addCourse(sec);
 		users.add(Hawley);
 		users.add(Nauzer);
 		
