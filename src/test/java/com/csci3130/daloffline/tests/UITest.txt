@@ -47,7 +47,6 @@ public class UITest extends TestBenchTestCase {
 	String pass = "pass";
 	@Test
 	public void loginTest() {
-		assertEquals(true, true);
 		
 		//is the server running
 		getDriver().get("http://localhost:8080/");
