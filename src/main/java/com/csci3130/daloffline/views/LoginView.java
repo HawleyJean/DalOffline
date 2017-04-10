@@ -106,7 +106,7 @@ public class LoginView extends VerticalLayout implements View {
 			
 		}
 		else {
-			 Notification.show("Invalid password or username. (For testing purposes use \"user\" and \"pass\")");
+			 Notification.show("Invalid password or username. (For testing purposes use \"student\" and \"pass\")");
 		}
 
 	}
