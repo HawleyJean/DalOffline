@@ -34,7 +34,7 @@ public class User implements Serializable {
 	@OneToMany
 	private List<Section> enrolledSections;
 	
-	
+	// constructors
 	
 	public User()
 	{
@@ -50,16 +50,26 @@ public class User implements Serializable {
 		enrolledSections = new ArrayList<Section>();
 	}
 	
+	
+	/**
+	 * @return Banner number
+	 */
 	public String getBannerNumber()
 	{
 		return "B00"+String.format("%06d", id);
 	}
 	
+	
+	/**
+	 * @param sec - Section to add to the users enrolledSections list
+	 * @return true if added properly, false otherwise.
+	 */
 	public boolean addSection(Section sec)
 	{
 		enrolledSections.add(sec);
 		return true;
 	}
+	
 	//
 	//Not working
 	public boolean removeCourse(Course c)
@@ -81,22 +91,39 @@ public class User implements Serializable {
 		return courseFound;
 	}
 	
+	
+	/**
+	 * @return List of enrolled sections
+	 */
 	public List<Section> getEnrolledSections(){
 		return enrolledSections;
 	}
 
+	/**
+	 * @return the username of this user
+	 */
 	public String getUsername() {
 		return username;
 	}
 
+	/**
+	 * @param username
+	 */
 	public void setUsername(String username) {
 		this.username = username;
 	}
 
+	/**
+	 * @return The password of this user
+	 */
 	public String getPassword() {
 		return password;
 	}
 
+	
+	/**
+	 * @param password
+	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
@@ -105,18 +132,30 @@ public class User implements Serializable {
 		return serialVersionUID;
 	}
 
+	/**
+	 * @return The major of this user
+	 */
 	public String getMajor() {
 		return major;
 	}
 
+	/**
+	 * @param major
+	 */
 	public void setMajor(String major) {
 		this.major = major;
 	}
 
+	/**
+	 * @return The full name of this user
+	 */
 	public String getFullName() {
 		return fullName;
 	}
 
+	/**
+	 * @param fullName
+	 */
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
 	}

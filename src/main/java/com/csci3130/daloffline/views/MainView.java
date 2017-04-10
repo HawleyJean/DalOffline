@@ -14,15 +14,7 @@ import javax.persistence.EntityManager;
 
 import com.csci3130.daloffline.DalOfflineUI;
 import com.vaadin.navigator.*;
-import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.ui.Alignment;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.Notification;
-import com.vaadin.ui.Panel;
-import com.vaadin.ui.TextArea;
-import com.vaadin.ui.VerticalLayout;
+
 import com.vaadin.v7.ui.Calendar;
 import com.vaadin.v7.ui.components.calendar.event.BasicEvent;
 import com.vaadin.v7.ui.components.calendar.handler.BasicDateClickHandler;
