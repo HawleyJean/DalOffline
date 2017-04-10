@@ -64,7 +64,12 @@ public class Section implements Serializable, Cloneable {
 	@JoinColumn(name="USER_ID")
 	private Faculty faculty;
 
-	//Constructors
+	/**
+	 * Base Constructor
+	 * 
+	 * @param None
+	 * @category Constructor
+	 */
 	public Section()
 	{
 		location = "Unknown";
@@ -78,6 +83,20 @@ public class Section implements Serializable, Cloneable {
 		waitList = new LinkedList<User>();
 		currentStudents = new ArrayList<User>();
 	}
+	/**
+	 * Constructor with instructor name
+	 * 
+	 * @param loc - String for location
+	 * @param instructor - String for instructor name
+	 * @param hours - section time hour
+	 * @param minutes - section time minute
+	 * @param dur - section time duration in minutes
+	 * @param days - array of integers denoting the days of the week that this section occurs
+	 * @param course - reference to the parent course objects
+	 * @param isLab - "true" if this section is a lab, "false" for a lecture
+	 * @param size - max number of students that can be enrolled in this course
+	 * @category Constructor
+	 */
 	public Section(String loc, String instructor, int hours, int minutes, int dur, int[] days, Course course, boolean isLab, int size)
 	{
 		location = loc;
@@ -95,6 +114,19 @@ public class Section implements Serializable, Cloneable {
 		else
 			course.addLecture(this);
 	}
+	/**
+	 * Constructor without instructor name (defaults to course's instructor)
+	 * 
+	 * @param loc - String for location
+	 * @param hours - section time hour
+	 * @param minutes - section time minute
+	 * @param dur - section time duration in minutes
+	 * @param days - array of integers denoting the days of the week that this section occurs
+	 * @param course - reference to the parent course objects
+	 * @param isLab - "true" if this section is a lab, "false" for a lecture
+	 * @param size - max number of students that can be enrolled in this course
+	 * @category Constructor
+	 */
 	public Section(String loc, int hours, int minutes, int dur, int[] days, Course course, boolean isLab, int size)
 	{
 		location = loc;
@@ -113,24 +145,48 @@ public class Section implements Serializable, Cloneable {
 			course.addLecture(this);
 	}
 	
+	/**
+	 * Get this section's table ID
+	 * 
+	 * @param None
+	 * @return long
+	 */
 	public long getID()
 	{
 		return id;
 	}
 	
-	//Set the time
+	/**
+	 * Set the time for this section
+	 * 
+	 * @param int hours
+	 * @param int minutes
+	 * @param int dur
+	 * @return none
+	 */
 	public void setTime(int hours, int minutes, int dur)
 	{
 		startHour = hours;
 		startMinute = minutes;
 		durationMinutes = dur;
 	}
-	//Add a day
+	/**
+	 * Add a day to this section
+	 * 
+	 * @param int day
+	 * @return none
+	 */
 	public void addDay(int day)
 	{
 		if(!daysOfWeek.contains(day) && day >= 1 && day <= 7)
 			daysOfWeek.add(day);
 	}
+	/**
+	 * Add all days in an array to this section
+	 * 
+	 * @param int[] days
+	 * @return none
+	 */
 	public void addDays(int[] days)
 	{
 		for(int day : days){
@@ -138,14 +194,25 @@ public class Section implements Serializable, Cloneable {
 				daysOfWeek.add(day);
 		}
 	}
-	//Remove a day
+	/**
+	 * Remove a given day from this section
+	 * 
+	 * @param int day
+	 * @return none
+	 */
 	public void removeDay(int day)
 	{
 		int index = daysOfWeek.indexOf(day);
 		if(index > -1)
 			daysOfWeek.remove(index);
 	}
-	//Get the start times as a list of calendar objects (For adding to calendar)
+
+	/**
+	 * Get the start times as a list of calendar objects (For adding to calendar)
+	 * 
+	 * @param none
+	 * @return ArrayList<GregorianCalendar>
+	 */
 	public ArrayList<GregorianCalendar> getStartTimes()
 	{
 		ArrayList<GregorianCalendar> startTimes = new ArrayList<GregorianCalendar>();
@@ -160,7 +227,12 @@ public class Section implements Serializable, Cloneable {
 		}
 		return startTimes;
 	}
-	//Get the end times as a list of calendar objects (For adding to calendar)
+	/**
+	 * Get the end times as a list of calendar objects (For adding to calendar)
+	 * 
+	 * @param none
+	 * @return ArrayList<GregorianCalendar>
+	 */
 	public ArrayList<GregorianCalendar> getEndTimes()
 	{
 		ArrayList<GregorianCalendar> endTimes = new ArrayList<GregorianCalendar>();
@@ -176,7 +248,12 @@ public class Section implements Serializable, Cloneable {
 		return endTimes;
 	}
 	
-	//would be instantiated after a course could not be added to currentStudents
+	/**
+	 * Adds user to the waitlist
+	 * 
+	 * @param User
+	 * @return none
+	 */
 	public void addToWaitList(User user){
 		waitList.add(user);
 	}
